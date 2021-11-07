@@ -12,10 +12,11 @@
             >
               <img
                 style="margin-right: 10px"
+                alt="github收藏"
                 src="https://img.shields.io/github/stars/BIgerMe/beautiful_frontend?style=flat-square&label=Stars&logo=github"
               />
             </a>
-            <p>网站未引入用户概念，所有内容开放，希望可以方便身边的人~</p>
+            <p>网站未引入用户概念，所有内容开放，希望可以方便到大家~</p>
           </div>
         </el-alert>
       </el-col>
