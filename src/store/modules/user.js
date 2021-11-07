@@ -69,12 +69,17 @@ const actions = {
     }
   },
   async getUserInfo({ commit, state }) {
-    const { data } = await getUserInfo(state.accessToken)
+    commit('setPermissions', ['admin'])
+    commit('setUsername', '迷路的菜鸟')
+    commit('setAvatar', 'http://head.xxroom.xyz/FvMguZxQ0n3eOdndhnQBv-HbQQVf')
+    return ['admin']
+    /*const { data } = await getUserInfo(state.accessToken)
     if (!data) {
       Vue.prototype.$baseMessage('验证失败，请重新登录...', 'error')
       return false
     }
     let { permissions, username, avatar } = data
+    console.log(permissions)
     if (permissions && username && Array.isArray(permissions)) {
       commit('setPermissions', permissions)
       commit('setUsername', username)
@@ -83,7 +88,7 @@ const actions = {
     } else {
       Vue.prototype.$baseMessage('用户信息接口异常', 'error')
       return false
-    }
+    }*/
   },
   async logout({ dispatch }) {
     await logout(state.accessToken)

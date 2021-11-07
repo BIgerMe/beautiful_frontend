@@ -7,6 +7,7 @@ import store from '@/store'
 import VabProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import getPageTitle from '@/utils/pageTitle'
+import { setAccessToken } from '@/utils/accessToken'
 import {
   authentication,
   loginInterception,
@@ -23,10 +24,13 @@ VabProgress.configure({
 })
 router.beforeResolve(async (to, from, next) => {
   if (progressBar) VabProgress.start()
+
   let hasToken = store.getters['user/accessToken']
-
+  if (!hasToken) {
+    setAccessToken('guest')
+    hasToken = store.getters['user/accessToken']
+  }
   if (!loginInterception) hasToken = true
-
   if (hasToken) {
     if (to.path === '/login') {
       next({ path: '/' })
