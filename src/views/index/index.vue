@@ -16,7 +16,7 @@
                 src="https://img.shields.io/github/stars/BIgerMe/beautiful_frontend?style=flat-square&label=Stars&logo=github"
               />
             </a>
-            <p>网站未引入用户概念，所有内容开放，希望可以方便到大家~</p>
+            <p style="margin: auto!important;">网站未引入用户概念，所有内容开放，希望可以方便到大家~</p>
           </div>
         </el-alert>
       </el-col>
@@ -29,6 +29,34 @@
         </el-card>
 
         <el-card shadow="never">
+          <el-col
+            v-for="(item, index) in iconList"
+            :key="index"
+            :xs="24"
+            :sm="12"
+            :md="6"
+            :lg="6"
+            :xl="6"
+          >
+            <router-link :to="item.link" target="_blank">
+              <el-card class="icon-panel" shadow="never">
+                <vab-icon
+                  :style="{ color: item.color }"
+                  :icon="['fas', item.icon]"
+                ></vab-icon>
+                <p>{{ item.title }}</p>
+              </el-card>
+            </router-link>
+          </el-col>
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+        <el-card shadow="never">
+          <div slot="header">
+            <span>词云</span>
+          </div>
+<!--          <vab-chart style="width:100%;height:300px"  theme="vab-echarts-theme" :option="cy" />-->
+          <div style="width:100%;height:300px" id="cy"></div>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
@@ -36,66 +64,8 @@
           <div slot="header">
             <span>访问量</span>
           </div>
-          <vab-chart autoresize theme="vab-echarts-theme" :option="fwl" />
-          <div class="bottom">
-            <span>
-              日均访问量:
-
-              <vab-count
-                :start-val="config1.startVal"
-                :end-val="config1.endVal"
-                :duration="config1.duration"
-                :separator="config1.separator"
-                :prefix="config1.prefix"
-                :suffix="config1.suffix"
-                :decimals="config1.decimals"
-              />
-            </span>
-          </div>
+          <vab-chart theme="vab-echarts-theme" :option="fwl" />
         </el-card>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
-        <el-card shadow="never">
-          <div slot="header">
-            <span>授权数</span>
-          </div>
-          <vab-chart autoresize theme="vab-echarts-theme" :option="sqs" />
-          <div class="bottom">
-            <span>
-              总授权数:
-              <vab-count
-                :start-val="config2.startVal"
-                :end-val="config2.endVal"
-                :duration="config2.duration"
-                :separator="config2.separator"
-                :prefix="config2.prefix"
-                :suffix="config2.suffix"
-                :decimals="config2.decimals"
-              />
-            </span>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col
-        v-for="(item, index) in iconList"
-        :key="index"
-        :xs="12"
-        :sm="6"
-        :md="3"
-        :lg="3"
-        :xl="3"
-      >
-        <router-link :to="item.link" target="_blank">
-          <el-card class="icon-panel" shadow="never">
-            <vab-icon
-              :style="{ color: item.color }"
-              :icon="['fas', item.icon]"
-            ></vab-icon>
-            <p>{{ item.title }}</p>
-          </el-card>
-        </router-link>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="13" :lg="13" :xl="13">
       </el-col>
     </el-row>
   </div>
@@ -108,7 +78,8 @@
   import { getNoticeList } from '@/api/notice'
   import Plan from './components/Plan'
   import VersionInformation from './components/VersionInformation'
-
+  import * as echarts from 'echarts'
+  import 'echarts-wordcloud';
   export default {
     name: 'Index',
     components: {
@@ -150,7 +121,6 @@
           separator: ',',
           duration: 8000,
         },
-
         //访问量
         fwl: {
           grid: {
@@ -185,71 +155,50 @@
             },
           ],
         },
-        //授权数
-        sqs: {
-          grid: {
-            top: '4%',
-            left: '2%',
-            right: '4%',
-            bottom: '0%',
-            containLabel: true,
-          },
-          xAxis: [
-            {
-              type: 'category',
-              /*boundaryGap: false,*/
-              data: ['0时', '4时', '8时', '12时', '16时', '20时', '24时'],
-              axisTick: {
-                alignWithLabel: true,
-              },
-            },
-          ],
-          yAxis: [
-            {
-              type: 'value',
-            },
-          ],
-          series: [
-            {
-              name: '授权数',
-              type: 'bar',
-              barWidth: '60%',
-              data: [10, 52, 20, 33, 39, 33, 22],
-            },
-          ],
-        },
         //词云
         cy: {
-          grid: {
-            top: '4%',
-            left: '2%',
-            right: '4%',
-            bottom: '0%',
-          },
-          series: [
-            {
-              type: 'wordCloud',
-              gridSize: 15,
-              sizeRange: [12, 40],
-              rotationRange: [0, 0],
-              width: '100%',
-              height: '100%',
+          series: [{
+            type: 'wordCloud',
+            shape: 'circle',
+            // maskImage: maskImage,
+            maskImage: '',
+            left: 'center',
+            top: 'center',
+            width: '100%',
+            height: '100%',
+            right: null,
+            bottom: null,
+            sizeRange: [6, 60],
+            rotationRange: [-45, 90],
+            autoSize: {
+              enable: true,
+              minSize: 6
+            },
+            textPadding: 0,
+            // rotationStep: 45,
+            // gridSize: 8,
+            drawOutOfBound: false,
+            textStyle: {
+              fontFamily: 'sans-serif',
+              fontWeight: 'bold',
+              // Color can be a callback function or a color string
+              color: function () {
+                // Random color
+                return 'rgb(' + [
+                  Math.round(Math.random() * 160),
+                  Math.round(Math.random() * 160),
+                  Math.round(Math.random() * 160)
+                ].join(',') + ')';
+              }
+            },
+            emphasis: {
+              focus: 'self',
+
               textStyle: {
-                normal: {
-                  color() {
-                    const arr = [
-                      '#5470c6',
-                      '#91cc75',
-                      '#fac858',
-                      '#ee6666',
-                      '#73c0de',
-                      '#975FE5',
-                    ]
-                    let index = Math.floor(Math.random() * arr.length)
-                    return arr[index]
-                  },
-                },
-              },
+                shadowBlur: 10,
+                shadowColor: '#333'
+              }
+            },
               data: [
                 {
                   name: 'vue-admin-beautiful',
@@ -348,6 +297,34 @@
                   name: 'author is very cool',
                   value: 9200,
                 },
+                {
+                  name: '5555',
+                  value: 700,
+                },
+                {
+                  name: '666',
+                  value: 8300,
+                },
+                {
+                  name: '77',
+                  value: 12000,
+                },
+                {
+                  name: '123 is ver4y 5',
+                  value: 3200,
+                },
+                {
+                  name: '666 is me ',
+                  value: 8300,
+                },
+                {
+                  name: '77 gg',
+                  value: 5330,
+                },
+                {
+                  name: 'todayis66socold',
+                  value: 22300,
+                },
               ],
             },
           ],
@@ -361,18 +338,6 @@
         userAgent: navigator.userAgent,
         //卡片图标
         iconList: [
-          {
-            icon: 'video',
-            title: '视频播放器',
-            link: '/vab/player',
-            color: '#ffc069',
-          },
-          {
-            icon: 'table',
-            title: '表格',
-            link: '/vab/table/comprehensiveTable',
-            color: '#5cdbd3',
-          },
           {
             icon: 'laptop-code',
             title: '源码',
@@ -390,19 +355,6 @@
             title: '公告',
             link: '',
             color: '#ff85c0',
-          },
-          {
-            icon: 'gift',
-            title: '礼物',
-            link: '',
-            color: '#ffd666',
-          },
-
-          {
-            icon: 'balance-scale-left',
-            title: '公平的世界',
-            link: '',
-            color: '#ff9c6e',
           },
           {
             icon: 'coffee',
@@ -424,37 +376,13 @@
       clearInterval(this.timer)
     },
     mounted() {
-      let base = +new Date(2020, 1, 1)
-      let oneDay = 24 * 3600 * 1000
-      let date = []
-
-      let data = [Math.random() * 1500]
-      let now = new Date(base)
-
-      const addData = (shift) => {
-        now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')
-        date.push(now)
-        data.push(this.$baseLodash.random(20000, 60000))
-
-        if (shift) {
-          date.shift()
-          data.shift()
-        }
-
-        now = new Date(+new Date(now) + oneDay)
+      let maskImage = new Image()
+      let myChart = echarts.init(document.getElementById('cy'));
+      maskImage.src = require('@/assets/mask/twitter.png')
+      maskImage.onload = ()=>{
+        this.cy.series[0].maskImage = maskImage
+        myChart.setOption(this.cy)
       }
-
-      for (let i = 1; i < 6; i++) {
-        addData()
-      }
-      addData(true)
-      this.fwl.xAxis[0].data = date
-      this.fwl.series[0].data = data
-      this.timer = setInterval(() => {
-        addData(true)
-        this.fwl.xAxis[0].data = date
-        this.fwl.series[0].data = data
-      }, 3000)
     },
     methods: {
       handleClick(e) {

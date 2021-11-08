@@ -45,6 +45,7 @@
     "core-js": "^3.18.1",
     "dayjs": "^1.10.7",
     "echarts": "^5.2.1",
+    "echarts-wordcloud": "^2.0.0",
     "element-ui": "^2.15.6",
     "jsencrypt": "^3.2.1",
     "lodash": "^4.17.21",
