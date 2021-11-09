@@ -54,16 +54,16 @@ export const asyncRoutes = [
     ],
   },
   {
-    path: '/test',
+    path: '/blog',
     component: Layout,
     redirect: '/index',
     children: [
       {
         path: 'index',
-        name: 'Test',
-        component: () => import('@/views/test/index'),
+        name: 'blog',
+        component: () => import('@/views/blog/index'),
         meta: {
-          title: 'test',
+          title: '文章分享',
           permissions: ['admin'],
         },
       },
