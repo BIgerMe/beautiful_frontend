@@ -50,12 +50,12 @@
           </el-col>
         </el-card>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
         <el-card shadow="never">
           <div slot="header">
-            <span>词云</span>
+            <span>博客分类</span>
           </div>
-<!--          <vab-chart style="width:100%;height:300px"  theme="vab-echarts-theme" :option="cy" />-->
+<!--          <vab-chart id="cy" autosize theme="vab-echarts-theme" :option="cy" />-->
           <div style="width:100%;height:300px" id="cy"></div>
         </el-card>
       </el-col>
@@ -74,8 +74,7 @@
 <script>
   import VabChart from '@/plugins/echarts'
   import { dependencies, devDependencies } from '../../../package.json'
-  import { getList } from '@/api/changeLog'
-  import { getNoticeList } from '@/api/notice'
+  import { categoryCY } from '@/api/blog'
   import Plan from './components/Plan'
   import VersionInformation from './components/VersionInformation'
   import * as echarts from 'echarts'
@@ -168,15 +167,13 @@
             height: '100%',
             right: null,
             bottom: null,
-            sizeRange: [6, 60],
+            sizeRange: [10, 60],
             rotationRange: [-45, 90],
             autoSize: {
               enable: true,
-              minSize: 6
+              minSize: 10
             },
             textPadding: 0,
-            // rotationStep: 45,
-            // gridSize: 8,
             drawOutOfBound: false,
             textStyle: {
               fontFamily: 'sans-serif',
@@ -199,135 +196,106 @@
                 shadowColor: '#333'
               }
             },
-              data: [
-                {
-                  name: 'vue-admin-beautiful',
-                  value: 15000,
-                },
-                {
-                  name: 'element',
-                  value: 10081,
-                },
-                {
-                  name: 'beautiful',
-                  value: 9386,
-                },
+            data: [
+              {
+                name: 'vue-admin-beautiful',
+                value: 15000,
+              },
+              {
+                name: 'element',
+                value: 10081,
+              },
+              {
+                name: 'beautiful',
+                value: 9386,
+              },
 
-                {
-                  name: 'vue',
-                  value: 6500,
-                },
-                {
-                  name: 'chuzhixin',
-                  value: 6000,
-                },
-                {
-                  name: 'good',
-                  value: 4500,
-                },
-                {
-                  name: 'success',
-                  value: 3800,
-                },
-                {
-                  name: 'never',
-                  value: 3000,
-                },
-                {
-                  name: 'boy',
-                  value: 2500,
-                },
-                {
-                  name: 'girl',
-                  value: 2300,
-                },
-                {
-                  name: 'github',
-                  value: 2000,
-                },
-                {
-                  name: 'hbuilder',
-                  value: 1900,
-                },
-                {
-                  name: 'dcloud',
-                  value: 1800,
-                },
-                {
-                  name: 'china',
-                  value: 1700,
-                },
-                {
-                  name: '1204505056',
-                  value: 1600,
-                },
-                {
-                  name: '972435319',
-                  value: 1500,
-                },
-                {
-                  name: 'young',
-                  value: 1200,
-                },
-                {
-                  name: 'old',
-                  value: 1100,
-                },
-                {
-                  name: 'vuex',
-                  value: 900,
-                },
-                {
-                  name: 'router',
-                  value: 800,
-                },
-                {
-                  name: 'money',
-                  value: 700,
-                },
-                {
-                  name: 'qingdao',
-                  value: 800,
-                },
-                {
-                  name: 'yantai',
-                  value: 9000,
-                },
-                {
-                  name: 'author is very cool',
-                  value: 9200,
-                },
-                {
-                  name: '5555',
-                  value: 700,
-                },
-                {
-                  name: '666',
-                  value: 8300,
-                },
-                {
-                  name: '77',
-                  value: 12000,
-                },
-                {
-                  name: '123 is ver4y 5',
-                  value: 3200,
-                },
-                {
-                  name: '666 is me ',
-                  value: 8300,
-                },
-                {
-                  name: '77 gg',
-                  value: 5330,
-                },
-                {
-                  name: 'todayis66socold',
-                  value: 22300,
-                },
-              ],
-            },
-          ],
+              {
+                name: 'vue',
+                value: 6500,
+              },
+              {
+                name: 'chuzhixin',
+                value: 6000,
+              },
+              {
+                name: 'good',
+                value: 4500,
+              },
+              {
+                name: 'success',
+                value: 3800,
+              },
+              {
+                name: 'never',
+                value: 3000,
+              },
+              {
+                name: 'boy',
+                value: 2500,
+              },
+              {
+                name: 'girl',
+                value: 2300,
+              },
+              {
+                name: 'github',
+                value: 2000,
+              },
+              {
+                name: 'hbuilder',
+                value: 1900,
+              },
+              {
+                name: 'dcloud',
+                value: 1800,
+              },
+              {
+                name: 'china',
+                value: 1700,
+              },
+              {
+                name: '1204505056',
+                value: 1600,
+              },
+              {
+                name: '972435319',
+                value: 1500,
+              },
+              {
+                name: 'young',
+                value: 1200,
+              },
+              {
+                name: 'old',
+                value: 1100,
+              },
+              {
+                name: 'vuex',
+                value: 900,
+              },
+              {
+                name: 'router',
+                value: 800,
+              },
+              {
+                name: 'money',
+                value: 700,
+              },
+              {
+                name: 'qingdao',
+                value: 800,
+              },
+              {
+                name: 'yantai',
+                value: 9000,
+              },
+              {
+                name: 'author is very cool',
+                value: 9200,
+              },
+            ]
+          }],
         },
 
         //更新日志
@@ -375,15 +343,7 @@
     beforeDestroy() {
       clearInterval(this.timer)
     },
-    mounted() {
-      let maskImage = new Image()
-      let myChart = echarts.init(document.getElementById('cy'));
-      maskImage.src = require('@/assets/mask/twitter.png')
-      maskImage.onload = ()=>{
-        this.cy.series[0].maskImage = maskImage
-        myChart.setOption(this.cy)
-      }
-    },
+    mounted() {},
     methods: {
       handleClick(e) {
         this.$baseMessage(`点击了${e.name},这里可以写跳转`)
@@ -401,28 +361,23 @@
         }
       },
       async fetchData() {
-        const { data } = await getList()
-        data.map((item, index) => {
-          if (index === data.length - 1) {
-            item.color = '#0bbd87'
-          }
-        })
-        this.activities = data
-        const res = await getNoticeList()
-        this.noticeList = res.data
-        /* getRepos({
-        token: "1061286824f978ea3cf98b7b8ea26fe27ba7cea1",
-      }).then((res) => {
-        const per_page = Math.ceil(res.data.stargazers_count / 100);
-        alert(per_page);
-        getStargazers({
-          token: "1061286824f978ea3cf98b7b8ea26fe27ba7cea1",
-          page: 1,
-          per_page: res.per_page,
-        }).then((res) => {
-          alert(JSON.stringify(res));
-        });
-      }); */
+        const { data } = await categoryCY()
+        let cyData = []
+        for(let index in data){
+          cyData.push({'name': index,'value': data[index]})
+        }
+        let maskImage = new Image()
+        let cyChart = echarts.init(document.getElementById('cy'));
+        maskImage.src = require('@/assets/mask/twitter.png')
+        maskImage.onload = ()=>{
+          this.cy.series[0].data = cyData
+          this.cy.series[0].maskImage = maskImage
+          console.log(this.cy)
+          cyChart.setOption(this.cy)
+          cyChart.on('click',function(params){
+            console.log(params)
+          })
+        }
       },
     },
   }
