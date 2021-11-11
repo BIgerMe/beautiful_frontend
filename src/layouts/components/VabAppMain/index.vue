@@ -1,7 +1,8 @@
 <template>
   <div v-if="routerView" class="app-main-container">
     <transition mode="out-in" name="fade-transform">
-      <keep-alive :include="cachedRoutes" :max="keepAliveMaxNum">
+      <!--缓存排除name: blog的页面-->
+      <keep-alive :include="cachedRoutes" exclude="blog" :max="keepAliveMaxNum">
         <router-view :key="key" class="app-main-height" />
       </keep-alive>
     </transition>
@@ -40,6 +41,7 @@
             cachedRoutesArr.push(item.name)
           }
         })
+        console.log(cachedRoutesArr)
         return cachedRoutesArr
       },
       key() {
