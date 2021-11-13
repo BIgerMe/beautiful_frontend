@@ -23,7 +23,7 @@
       <el-col :xs="24" :sm="24" :md="24" :lg="11" :xl="11">
         <el-card class="card" shadow="never">
           <video class="war3-homepage-video" style="width:100%" id="autoplayVideo" autoplay muted loop>
-            <source src="http://video.xxroom.xyz/%E6%A8%B1%E8%8A%B1.mp4" type="video/mp4" />
+            <source src="http://video.xxroom.xyz/%E6%A3%AE%E6%9E%97.mp4" type="video/mp4" />
             <source src="http://video.xxroom.xyz/%E6%A8%B1%E8%8A%B1" type="video/webm" />
           </video>
         </el-card>

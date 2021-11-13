@@ -19,17 +19,34 @@
       </a-affix>
     </el-col>
     <el-col :xs="24" :sm="24"  :md="14" :lg="14" :xl="14">
-      <el-card shadow="always" style="height:2000px">
+      <el-card shadow="always">
         <a-affix :offset-top="120" >
-          <div style="background:white">
+          <div style="background:white;padding: 0 0 20px 0;">
             <a-input-search placeholder="搜索内容" style="width: 300px" @search="" />
           </div>
         </a-affix>
-        <a-card class="blogCard">
-          <img src="http://head.xxroom.xyz/FvIdoCa7PxkSZVG1Gca78TSF6z-m" slot="cover" style='width: 100%;height: 200px;object-fit: cover;'>
-          <a-card-meta title="Europe Street beat">
+        <a-card v-for="item in lists" class="blogCard">
+          <img v-if="item.cover" :src="item.cover" slot="cover" style='width: 100%;height: 200px;object-fit: cover;'>
+          <a-card-meta>
+            <template slot="title">
+              <h3><a>{{item.title}}</a></h3>
+              <div>
+                <a-tag><a>{{item.nickname}}</a></a-tag>
+                <a-divider type="vertical" />
+                <a-tag v-for="c in item.category"><a>{{c}}</a></a-tag>
+                <a-divider type="vertical" />
+                <span style='font-family:"Droid Serif",Georgia,"Times New Roman","PingFang SC","Hiragino Sans GB","Source Han Sans CN","WenQuanYi Micro Hei","Microsoft Yahei",serif'>{{item.update_at}}</span>
+              </div>
+            </template>
             <template slot="description">
-              www.instagram.com
+              <mavon-editor
+                :subfield = "false"
+                :defaultOpen = "'preview'"
+                :toolbarsFlag = "false"
+                :editable="false"
+                :scrollStyle="true"
+                :ishljs = "true"
+                :value="item.original_content"/>
             </template>
           </a-card-meta>
         </a-card>
@@ -45,13 +62,16 @@
   </el-row>
 </template>
 <script>
-  import { categoryCY } from '@/api/blog'
-  // import $ from 'jQuery'
+  import { categoryCY , lists } from '@/api/blog'
+  import { mavonEditor } from 'mavon-editor'
+  import 'mavon-editor/dist/css/index.css'
   export default {
     name: 'blog',
+    components: { 'mavon-editor':mavonEditor },
     data() {
       return {
-        category:[]
+        category:[],
+        lists:[],
       }
     },
     created() {
@@ -60,8 +80,12 @@
     mounted() {},
     methods: {
       async fetchData(){
-        const { data } = await categoryCY()
+        /*分类*/
+        let { data } = await categoryCY()
         this.category = data
+        /*文章列表*/
+        data = await lists()
+        this.lists = data.data
       },
     },
   }
@@ -77,5 +101,26 @@
     margin-top:16px;
     border-radius: 15px;
     box-shadow: 3px 3px #4b4a50, -1em 0 0.4em black;
+  }
+  .ant-card-meta-description{
+    max-height: 450px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
+    overflow: hidden;
+    /*-webkit-line-clamp用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性：
+    display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。
+    -webkit-box-orient 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。*/
+  }
+  .v-note-wrapper{
+    z-index:1!important;
+  }
+  a{
+    color: black;
+  }
+  a:hover{
+    color: #1890ff;
   }
 </style>

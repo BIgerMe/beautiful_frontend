@@ -6,3 +6,11 @@ export function categoryCY() {
     method: 'get'
   })
 }
+
+export function lists(data) {
+  return request({
+    url: '/z/blog/lists',
+    method: 'get',
+    data
+  })
+}
