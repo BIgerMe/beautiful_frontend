@@ -6,10 +6,12 @@
           <el-card shadow="always">
           <a-menu
             style="width: auto"
-            :default-selected-keys="['php']"
+            :default-selected-keys="['']"
             mode="inline"
             theme="light"
+            @click="changeCategory"
           >
+            <a-menu-item key="">全部</a-menu-item>
             <a-menu-item v-for="(item, index) in category" :key="index">
               {{index}}
             </a-menu-item>
@@ -18,18 +20,18 @@
         </el-scrollbar>
       </a-affix>
     </el-col>
-    <el-col :xs="24" :sm="24"  :md="14" :lg="14" :xl="14">
+    <el-col :xs="24" :sm="24"  :md="14" :lg="14" :xl="14" >
       <el-card shadow="always">
         <a-affix :offset-top="120" >
           <div style="background:white;padding: 0 0 20px 0;">
-            <a-input-search placeholder="搜索内容" style="width: 300px" @search="" />
+            <a-input-search v-model="listQuery.key" placeholder="搜索内容" style="width: 300px" @search="getList()" />
           </div>
         </a-affix>
         <a-card v-for="item in lists" class="blogCard">
           <img v-if="item.cover" :src="item.cover" slot="cover" style='width: 100%;height: 200px;object-fit: cover;'>
           <a-card-meta>
             <template slot="title">
-              <h3><a>{{item.title}}</a></h3>
+              <h3><a><router-link :to="{name:'blogDetail',params:{id:item.id}}">{{item.title}}</router-link></a></h3>
               <div>
                 <a-tag><a>{{item.nickname}}</a></a-tag>
                 <a-divider type="vertical" />
@@ -72,10 +74,46 @@
       return {
         category:[],
         lists:[],
+        total:0,
+        listQuery:{
+          category:'',
+          key:'',
+          page:1,
+          pageSize:5
+        },
+        loading: false,
+      }
+    },
+    computed: {
+      noMore () {
+        return this.listQuery.page * this.listQuery.pageSize >= this.total
+      },
+      disabled () {
+        return this.loading || this.noMore
       }
     },
     created() {
       this.fetchData()
+      let _this = this
+      this.$nextTick(() => {
+        // this.initScroll()
+        window.onscroll = function() {
+          //变量scrollTop是滚动条滚动时，距离顶部的距离
+          var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+          //变量windowHeight是可视区的高度
+          var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+          //变量scrollHeight是滚动条的总高度
+          var scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
+          //滚动条到底部的条件
+          if(scrollTop+windowHeight==scrollHeight){
+            //写后台加载数据的函数
+            console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+            if(!_this.disabled){
+              _this.load()
+            }
+          }  
+        }
+      })
     },
     mounted() {},
     methods: {
@@ -83,18 +121,38 @@
         /*分类*/
         let { data } = await categoryCY()
         this.category = data
-        /*文章列表*/
-        data = await lists()
-        this.lists = data.data
+        this.getList()
       },
+      async getList(push=false){
+        /*文章列表*/
+        const { data } = await lists(this.listQuery)
+        if(push){
+          for (let i in data.data){
+            this.lists.push(data.data[i])
+          }
+        }else{
+          this.lists = data.data
+        }
+        this.total = data.total
+      },
+      changeCategory(e){
+        this.listQuery.category = e.key
+        this.listQuery.page = 1
+        window.scrollTo(0,0)
+        this.getList()
+      },
+      load() {
+        this.listQuery.page = this.listQuery.page + 1
+        this.getList(true)
+      }
     },
   }
 </script>
-<style>
+<style scoped>
   .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
     border-right: 0 solid #e8e8e8!important;
   }
-  .categoryList {
+  .el-scrollbar>>>.categoryList {
     max-height: 80vh;
   }
   .blogCard{
@@ -102,7 +160,10 @@
     border-radius: 15px;
     box-shadow: 3px 3px #4b4a50, -1em 0 0.4em black;
   }
-  .ant-card-meta-description{
+
+  .v-note-wrapper{
+    z-index:1!important;
+    min-height:100px;
     max-height: 450px;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -110,12 +171,6 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 9;
     overflow: hidden;
-    /*-webkit-line-clamp用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性：
-    display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。
-    -webkit-box-orient 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。*/
-  }
-  .v-note-wrapper{
-    z-index:1!important;
   }
   a{
     color: black;

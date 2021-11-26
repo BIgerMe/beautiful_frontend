@@ -2,7 +2,7 @@
   <div class="index-container">
     <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-alert v-if="noticeList[0]" :closable="noticeList[0].closable">
+        <el-alert>
           <div
             style="display: flex; align-items: center; justify-content: center"
           >
@@ -13,14 +13,47 @@
               <img
                 style="margin-right: 10px"
                 alt="github收藏"
-                src="https://img.shields.io/github/stars/BIgerMe/beautiful_frontend?style=flat-square&label=Stars&logo=github"
+                src="https://img.shields.io/github/stars/BIgerMe/beautiful_frontend?style=social&label=github&logo=github"
               />
             </a>
-            <p style="margin: auto!important;">网站未引入用户概念，所有内容开放，希望可以方便到大家~</p>
+            <a
+              target="_blank"
+              href="https://space.bilibili.com/279882228"
+            >
+              <img
+                style="margin-right: 10px"
+                alt="bilibili"
+                src="https://img.shields.io/badge/bilibili--blue?logo=bilibili&style=social"
+              />
+            </a>
+            <a
+              target="_blank"
+              href="https://twitter.com/m2UzmUjSYUG24Wh"
+            >
+              <img
+                style="margin-right: 10px"
+                alt="twitter"
+                src="https://img.shields.io/badge/twitter--blue?logo=twitter&style=social"
+              />
+            </a>
+            
+            <img
+              style="margin-right: 10px"
+              alt="wechat"
+              src="https://img.shields.io/badge/wechat-iyeallday-blue?logo=wechat&style=plastic"
+            />
+          
+            <img
+              style="margin-right: 10px"
+              alt="email"
+              src="https://img.shields.io/badge/Email-2260891938@qq.com-blue?style=plastic"
+            />
+            
+            <p style="margin: auto!important;">你可以通过以上方式关注联系我，网站暂未引入用户概念，所有内容开放。</p>
           </div>
         </el-alert>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="11" :xl="11">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <el-card class="card" shadow="never">
           <video class="war3-homepage-video" style="width:100%" id="autoplayVideo" autoplay muted loop>
             <source src="http://video.xxroom.xyz/%E6%A3%AE%E6%9E%97.mp4" type="video/mp4" />
@@ -38,33 +71,21 @@
             :lg="6"
             :xl="6"
           >
-            <router-link :to="item.link" target="_blank">
-              <el-card class="icon-panel" shadow="never">
-                <vab-icon
-                  :style="{ color: item.color }"
-                  :icon="['fas', item.icon]"
-                ></vab-icon>
-                <p>{{ item.title }}</p>
-              </el-card>
-            </router-link>
+          
           </el-col>
         </el-card>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="7" :xl="7">
         <el-card shadow="never">
-          <div slot="header">
-            <span>博客分类</span>
-          </div>
-<!--          <vab-chart id="cy" autosize theme="vab-echarts-theme" :option="cy" />-->
           <div style="width:100%;height:300px" id="cy"></div>
         </el-card>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="5" :xl="5">
         <el-card shadow="never">
-          <div slot="header">
-            <span>访问量</span>
-          </div>
-          <vab-chart theme="vab-echarts-theme" :option="fwl" />
+          <el-button type="text" style="margin-left:10px"><a href="http://chuangzaoshi.com/" target="_blank">创造狮-导航集中营</a></el-button>
+          <el-button type="text"><a href="https://sketchfab.com/store" target="_blank">skechfab-3D模型</a></el-button>
+          <el-button type="text"><a href="https://shields.io/" target="_blank">徽章定制-常用于项目</a></el-button>
+
         </el-card>
       </el-col>
     </el-row>

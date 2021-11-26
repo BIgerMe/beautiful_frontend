@@ -10,7 +10,17 @@ export function categoryCY() {
 export function lists(data) {
   return request({
     url: '/z/blog/lists',
-    method: 'get',
+    method: 'post',
     data
   })
 }
+
+export function detail(data) {
+  return request({
+    url: '/z/blog/detail',
+    method: 'post',
+    data
+  })
+}
+
+

@@ -52,6 +52,7 @@
     "lodash": "^4.17.21",
     "maptalks": "^0.49.5",
     "mapv": "^2.0.62",
+    "mavon-editor": "^2.9.1",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "qs": "^6.10.1",

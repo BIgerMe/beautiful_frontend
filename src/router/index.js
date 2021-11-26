@@ -66,6 +66,14 @@ export const asyncRoutes = [
           title: '文章分享',
           permissions: ['admin'],
         },
+      },{
+        path: 'detail/:id',
+        name: 'blogDetail',
+        hidden: true,
+        component: () => import('@/views/blog/detail'),
+        meta: {
+          title: '文章详情',
+        },
       },
     ],
   },
