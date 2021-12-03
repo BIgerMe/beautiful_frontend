@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20">
-    <el-col :xs="24" :sm="24"  :md="4" :lg="4" :xl="4" style="max-height:80vh;">
+    <el-col :xs="0" :sm="24"  :md="4" :lg="4" :xl="4" style="max-height:80vh;">
       <a-affix :offset-top="140" >
         <el-scrollbar wrap-class="categoryList" wrap-style="color: red;" view-style="font-weight: bold;" view-class="view-box" :native="false">
           <el-card shadow="always">
@@ -111,7 +111,7 @@
             if(!_this.disabled){
               _this.load()
             }
-          }  
+          }
         }
       })
     },

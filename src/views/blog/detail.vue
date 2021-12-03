@@ -55,11 +55,22 @@
     },
   }
 </script>
-<style lang="scss" scoped>
+<style scoped>
  .v-note-wrapper{
     z-index:1!important;
-  }
-  .ant-card-meta-title{
+ }
+ .ant-card-meta-title{
     text-align: center !important;
+ }
+ .ant-card-bordered {
+    border: 0!important;
+ }
+ /*.v-show-content{
+   padding: 0;
+ }*/
+</style>
+<style>
+  .hljs{
+    background: #f6f8fa!important;
   }
 </style>

@@ -83,6 +83,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     name: 'Vab',
     alwaysShow: true,
+    hidden: true,
     meta: { title: '组件', icon: 'box-open' },
     children: [
       {
@@ -284,6 +285,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: 'noRedirect',
     name: 'PersonnelManagement',
+    hidden: true,
     meta: { title: '配置', icon: 'users-cog', permissions: ['admin'] },
     children: [
       {
@@ -314,6 +316,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: 'noRedirect',
     name: 'Mall',
+    hidden: true,
     meta: {
       title: '商城',
       icon: 'shopping-cart',
@@ -346,6 +349,7 @@ export const asyncRoutes = [
     component: EmptyLayout,
     redirect: 'noRedirect',
     name: 'Error',
+    hidden: true,
     meta: { title: '错误页', icon: 'bug' },
     children: [
       {
