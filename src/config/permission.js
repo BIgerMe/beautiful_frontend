@@ -7,7 +7,6 @@ import store from '@/store'
 import VabProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import getPageTitle from '@/utils/pageTitle'
-import { setAccessToken } from '@/utils/accessToken'
 import {
   authentication,
   loginInterception,
@@ -26,14 +25,14 @@ router.beforeResolve(async (to, from, next) => {
   if (progressBar) VabProgress.start()
 
   let hasToken = store.getters['user/accessToken']
-  if (!hasToken) {
-    setAccessToken('guest')
-    hasToken = store.getters['user/accessToken']
+  let username = store.getters['user/username']
+  if(hasToken && !username){
+    store.dispatch('user/getUserInfo')
   }
   if (!loginInterception) hasToken = true
   if (hasToken) {
     if (to.path === '/login') {
-      next({ path: '/' })
+      next()
       if (progressBar) VabProgress.done()
     } else {
       const hasPermissions =
@@ -69,15 +68,13 @@ router.beforeResolve(async (to, from, next) => {
       }
     }
   } else {
+    let path = to.path.split('/')
     if (routesWhiteList.indexOf(to.path) !== -1) {
       next()
-    } else {
-      if (recordRoute) {
-        next(`/login?redirect=${to.path}`)
-      } else {
-        next('/login')
-      }
-
+    }else if(path.length>3 && routesWhiteList.indexOf('/'+path[1]+'/'+path[2]) !== -1){ //带参数的2级路由
+      next()
+    }else{
+      next(`/login?redirect=${to.path}`)
       if (progressBar) VabProgress.done()
     }
   }

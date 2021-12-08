@@ -69,35 +69,32 @@ const actions = {
     }
   },
   async getUserInfo({ commit, state }) {
-    commit('setPermissions', ['admin'])
-    commit('setUsername', '迷路的菜鸟')
-    commit('setAvatar', 'http://head.xxroom.xyz/FvMguZxQ0n3eOdndhnQBv-HbQQVf')
-    return ['admin']
-    /*const { data } = await getUserInfo(state.accessToken)
+    const { data } = await getUserInfo(state.accessToken)
     if (!data) {
       Vue.prototype.$baseMessage('验证失败，请重新登录...', 'error')
       return false
     }
-    let { permissions, username, avatar } = data
-    console.log(permissions)
-    if (permissions && username && Array.isArray(permissions)) {
-      commit('setPermissions', permissions)
+    let { /*permissions, */username, avatar } = data
+    if (username) {
+      commit('setPermissions', ['admin'])
       commit('setUsername', username)
       commit('setAvatar', avatar)
-      return permissions
+      return true
     } else {
       Vue.prototype.$baseMessage('用户信息接口异常', 'error')
       return false
-    }*/
+    }
   },
   async logout({ dispatch }) {
     await logout(state.accessToken)
     await dispatch('resetAccessToken')
-    await resetRouter()
+    // await resetRouter()
   },
   resetAccessToken({ commit }) {
-    commit('setPermissions', [])
+    // commit('setPermissions', [])
     commit('setAccessToken', '')
+    commit('setUsername', '')
+    commit('setAvatar', '')
     removeAccessToken()
   },
 }

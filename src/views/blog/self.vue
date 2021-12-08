@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20">
-    <el-col :xs="0" :sm="24"  :md="4" :lg="4" :xl="4" style="max-height:80vh;">
+    <el-col :xs="0" :sm="24"  :md="3" :lg="3" :xl="3" style="max-height:80vh;">
       <a-affix :offset-top="140" >
         <el-scrollbar wrap-class="categoryList" wrap-style="color: red;" view-style="font-weight: bold;" view-class="view-box" :native="false">
           <el-card shadow="always">
@@ -20,58 +20,65 @@
         </el-scrollbar>
       </a-affix>
     </el-col>
-    <el-col :xs="24" :sm="24"  :md="14" :lg="14" :xl="14" >
+    <el-col :xs="24" :sm="24"  :md="7" :lg="7" :xl="7" >
       <el-card shadow="always">
         <a-affix :offset-top="120" >
           <div style="background:white;padding: 0 0 20px 0;">
-            <a-input-search v-model="listQuery.key" placeholder="搜索内容" style="width: 300px" @search="listQuery.page=1;getList()" />
+            <a-input-search v-model="listQuery.key" placeholder="搜索内容" style="width: 300px;min-width:90%" @search="listQuery.page=1;getList()" />
           </div>
         </a-affix>
         <a-card v-for="item in lists" class="blogCard">
-          <img v-if="item.cover" :src="item.cover" slot="cover" style='width: 100%;height: 200px;object-fit: cover;'>
+          <img v-if="item.cover" :src="item.cover" slot="cover" style='width: 100%;height: 100px;object-fit: cover;'>
           <a-card-meta>
             <template slot="title">
-              <h3><a><router-link :to="{name:'blogDetail',params:{id:item.id}}">{{item.title}}</router-link></a></h3>
+              <a-button type="link" @click="showBlogDetail(item.original_content)"><h3>{{item.title}}</h3></a-button>
               <div>
-                <a-tag><a>{{item.nickname}}</a></a-tag>
+                <a-tag color="blue" v-if="item.private == 1"><a>公开</a></a-tag>
+                <a-tag color="red" v-else><a>私有</a></a-tag>
                 <a-divider type="vertical" />
                 <a-tag v-for="c in item.category"><a>{{c}}</a></a-tag>
                 <a-divider type="vertical" />
                 <span style='font-family:"Droid Serif",Georgia,"Times New Roman","PingFang SC","Hiragino Sans GB","Source Han Sans CN","WenQuanYi Micro Hei","Microsoft Yahei",serif'>{{item.update_at}}</span>
               </div>
             </template>
+          </a-card-meta>
+        </a-card>
+      </el-card>
+    </el-col>
+    <el-col :xs="24" :sm="24"  :md="14" :lg="14" :xl="14">
+      <a-affix :offset-top="140" >
+        <el-scrollbar wrap-class="blogDetail" wrap-style="color: red;" view-style="font-weight: bold;" view-class="view-box" :native="false">
+        <el-card shadow="always">
+          <a-card-meta>
             <template slot="description">
+              <a-skeleton v-if="blogDetail == ''"></a-skeleton>
               <mavon-editor
+                v-else
                 :subfield = "false"
                 :defaultOpen = "'preview'"
                 :toolbarsFlag = "false"
                 :editable="false"
                 :scrollStyle="true"
                 :ishljs = "true"
-                :value="item.original_content"/>
+                :value="blogDetail"/>
             </template>
           </a-card-meta>
-        </a-card>
-      </el-card>
-    </el-col>
-    <el-col :xs="24" :sm="24"  :md="6" :lg="6" :xl="6">
-      <a-affix :offset-top="140">
-        <el-card shadow="always">
-          总是显示
         </el-card>
+      </el-scrollbar>
       </a-affix>
     </el-col>
   </el-row>
 </template>
 <script>
-  import { categoryCY , lists } from '@/api/blog'
+  import { selfCategoryCY , selfLists } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
   import 'mavon-editor/dist/css/index.css'
   export default {
-    name: 'blog',
+    name: 'blogSelf',
     components: { 'mavon-editor':mavonEditor },
     data() {
       return {
+        blogDetail:'',
         category:[],
         lists:[],
         total:0,
@@ -119,13 +126,13 @@
     methods: {
       async fetchData(){
         /*分类*/
-        let { data } = await categoryCY()
+        let { data } = await selfCategoryCY()
         this.category = data
         this.getList()
       },
       async getList(push=false){
         /*文章列表*/
-        const { data } = await lists(this.listQuery)
+        const { data } = await selfLists(this.listQuery)
         if(push){
           for (let i in data.data){
             this.lists.push(data.data[i])
@@ -144,6 +151,9 @@
       load() {
         this.listQuery.page = this.listQuery.page + 1
         this.getList(true)
+      },
+      showBlogDetail(value){
+        this.blogDetail = value
       }
     },
   }
@@ -155,6 +165,9 @@
   .el-scrollbar>>>.categoryList {
     max-height: 80vh;
   }
+  .el-scrollbar>>>.blogDetail {
+    max-height: 80vh;
+  }
   .blogCard{
     margin-top:16px;
     border-radius: 15px;
@@ -163,14 +176,14 @@
 
   .v-note-wrapper{
     z-index:1!important;
-    min-height:100px;
-    max-height: 450px;
+    /*min-height:100px;*/
+    /*max-height: 450px;*/
     overflow:hidden;
-    text-overflow:ellipsis;
+    /*text-overflow:ellipsis;*/
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 9;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
   a{
     color: black;

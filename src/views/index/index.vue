@@ -36,30 +36,28 @@
                 src="https://img.shields.io/badge/twitter--blue?logo=twitter&style=social"
               />
             </a>
-            
+
             <img
               style="margin-right: 10px"
               alt="wechat"
               src="https://img.shields.io/badge/wechat-iyeallday-blue?logo=wechat&style=plastic"
             />
-          
+
             <img
               style="margin-right: 10px"
               alt="email"
               src="https://img.shields.io/badge/Email-2260891938@qq.com-blue?style=plastic"
             />
-            
-            <p style="margin: auto!important;">你可以通过以上方式关注联系我，网站暂未引入用户概念，所有内容开放。</p>
           </div>
         </el-alert>
       </el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-        <el-card class="card" shadow="never">
+        <!--<el-card class="card" shadow="never">
           <video class="war3-homepage-video" style="width:100%" id="autoplayVideo" autoplay muted loop>
             <source src="http://video.xxroom.xyz/%E6%A3%AE%E6%9E%97.mp4" type="video/mp4" />
             <source src="http://video.xxroom.xyz/%E6%A8%B1%E8%8A%B1" type="video/webm" />
           </video>
-        </el-card>
+        </el-card>-->
 
         <el-card shadow="never">
           <el-col
@@ -71,7 +69,7 @@
             :lg="6"
             :xl="6"
           >
-          
+
           </el-col>
         </el-card>
       </el-col>
@@ -114,67 +112,6 @@
         nodeEnv: process.env.NODE_ENV,
         dependencies: dependencies,
         devDependencies: devDependencies,
-        config1: {
-          startVal: 0,
-          endVal: this.$baseLodash.random(20000, 60000),
-          decimals: 0,
-          prefix: '',
-          suffix: '',
-          separator: ',',
-          duration: 8000,
-        },
-        config2: {
-          startVal: 0,
-          endVal: this.$baseLodash.random(1000, 20000),
-          decimals: 0,
-          prefix: '',
-          suffix: '',
-          separator: ',',
-          duration: 8000,
-        },
-        config3: {
-          startVal: 0,
-          endVal: this.$baseLodash.random(1000, 20000),
-          decimals: 0,
-          prefix: '',
-          suffix: '',
-          separator: ',',
-          duration: 8000,
-        },
-        //访问量
-        fwl: {
-          grid: {
-            top: '4%',
-            left: '2%',
-            right: '4%',
-            bottom: '0%',
-            containLabel: true,
-          },
-          xAxis: [
-            {
-              type: 'category',
-              boundaryGap: false,
-              data: [],
-              axisTick: {
-                alignWithLabel: true,
-              },
-            },
-          ],
-          yAxis: [
-            {
-              type: 'value',
-            },
-          ],
-          series: [
-            {
-              name: '访问量',
-              type: 'line',
-              data: [],
-              smooth: true,
-              areaStyle: {},
-            },
-          ],
-        },
         //词云
         cy: {
           series: [{
@@ -318,40 +255,12 @@
             ]
           }],
         },
-
         //更新日志
         reverse: true,
         activities: [],
         noticeList: [],
         //其他信息
         userAgent: navigator.userAgent,
-        //卡片图标
-        iconList: [
-          {
-            icon: 'laptop-code',
-            title: '源码',
-            link: 'https://github.com/chuzhixin/vue-admin-beautiful',
-            color: '#b37feb',
-          },
-          {
-            icon: 'book',
-            title: '书籍',
-            link: '',
-            color: '#69c0ff',
-          },
-          {
-            icon: 'bullhorn',
-            title: '公告',
-            link: '',
-            color: '#ff85c0',
-          },
-          {
-            icon: 'coffee',
-            title: '休息一下',
-            link: '',
-            color: '#95de64',
-          },
-        ],
       }
     },
     created() {

@@ -23,4 +23,18 @@ export function detail(data) {
   })
 }
 
+export function selfCategoryCY() {
+  return request({
+    url: '/z/blog/selfCategoryCY',
+    method: 'get'
+  })
+}
+
+export function selfLists(data) {
+  return request({
+    url: '/z/blog/selfLists',
+    method: 'post',
+    data
+  })
+}
 

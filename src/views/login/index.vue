@@ -1,11 +1,5 @@
 <template>
   <div class="login-container">
-    <el-alert
-      title="beautiful boys and girls欢迎加入vue-admin-beautifulQQ群：972435319"
-      type="success"
-      :closable="false"
-      style="position: fixed"
-    ></el-alert>
     <el-row>
       <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="16">
         <div style="color: transparent">占位符</div>
@@ -18,8 +12,7 @@
           class="login-form"
           label-position="left"
         >
-          <div class="title">hello !</div>
-          <div class="title-tips">欢迎来到{{ title }}！</div>
+          <div class="title">登 录</div>
           <el-form-item style="margin-top: 40px" prop="username">
             <span class="svg-container svg-container-admin">
               <vab-icon :icon="['fas', 'user']" />
@@ -109,18 +102,10 @@
         },
         rules: {
           username: [
-            {
-              required: true,
-              trigger: 'blur',
-              validator: validateusername,
-            },
+            {required: true, trigger: 'blur', validator: validateusername,},
           ],
           password: [
-            {
-              required: true,
-              trigger: 'blur',
-              validator: validatePassword,
-            },
+            {required: true, trigger: 'blur', validator: validatePassword,},
           ],
         },
         loading: false,
@@ -143,11 +128,7 @@
       document.body.style.overflow = 'auto'
     },
     mounted() {
-      this.form.username = 'admin'
-      this.form.password = '123456'
-      /*setTimeout(() => {
-        this.handleLogin()
-      }, 3000)*/
+
     },
     methods: {
       handlePassword() {
