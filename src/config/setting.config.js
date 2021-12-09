@@ -9,11 +9,11 @@ const setting = {
   // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
   assetsDir: 'static',
   // 开发环境每次保存时是否输出为eslint编译警告
-  lintOnSave: true,
+  lintOnSave: false,
   // 进行编译的依赖
   transpileDependencies: [],
   //标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题）
-  title: '',
+  title: '一年今日最芳菲',
   //简写
   abbreviation: 'vab',
   //开发环境端口号
@@ -31,7 +31,9 @@ const setting = {
   // 路由模式，可选值为 history 或 hash
   routerMode: 'hash',
   //不经过token校验的路由
-  routesWhiteList: ['/login', '/register', '/404', '/401','/blog/index','/blog/detail'],
+  routesWhiteList: ['/login', '/register', '/404', '/401'],
+  //配置需要登录页，未登录跳转login页
+  loginPath: ['/blog/self', '/blog/create'],
   //加载时显示文字
   loadingText: '正在加载中...',
   //token名称
@@ -65,6 +67,6 @@ const setting = {
   //代码生成机生成在view下的文件夹名称
   templateFolder: 'project',
   //是否显示终端donation打印
-  donation: true,
+  donation: false,
 }
 module.exports = setting

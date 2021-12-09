@@ -13,6 +13,7 @@ import {
   progressBar,
   recordRoute,
   routesWhiteList,
+  loginPath,
 } from '@/config'
 
 VabProgress.configure({
@@ -26,7 +27,8 @@ router.beforeResolve(async (to, from, next) => {
 
   let hasToken = store.getters['user/accessToken']
   let username = store.getters['user/username']
-  if(hasToken && !username){
+  if (hasToken && !username) {
+    console.log(username)
     store.dispatch('user/getUserInfo')
   }
   if (!loginInterception) hasToken = true
@@ -39,7 +41,11 @@ router.beforeResolve(async (to, from, next) => {
         store.getters['user/permissions'] &&
         store.getters['user/permissions'].length > 0
       if (hasPermissions) {
-        next()
+        if (!username && loginPath.indexOf(to.path) !== -1) {
+          next({ path: '/login' })
+        } else {
+          next()
+        }
       } else {
         try {
           let permissions
@@ -71,9 +77,13 @@ router.beforeResolve(async (to, from, next) => {
     let path = to.path.split('/')
     if (routesWhiteList.indexOf(to.path) !== -1) {
       next()
-    }else if(path.length>3 && routesWhiteList.indexOf('/'+path[1]+'/'+path[2]) !== -1){ //带参数的2级路由
+    } else if (
+      path.length > 3 &&
+      routesWhiteList.indexOf('/' + path[1] + '/' + path[2]) !== -1
+    ) {
+      //带参数的2级路由
       next()
-    }else{
+    } else {
       next(`/login?redirect=${to.path}`)
       if (progressBar) VabProgress.done()
     }

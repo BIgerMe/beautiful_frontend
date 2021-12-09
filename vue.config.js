@@ -59,9 +59,9 @@ module.exports = {
         target: 'http://war3.xxroom.xyz/',
         changeOrigin: true,
         pathRewrite: {
-          ['^/']: ''
-        }
-      }
+          ['^/']: '',
+        },
+      },
     },
     after: mockServer(),
   },

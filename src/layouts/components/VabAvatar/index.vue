@@ -1,22 +1,22 @@
 <template>
-  <el-dropdown @command="handleCommand" v-if="accessToken">
+  <el-dropdown v-if="accessToken" @command="handleCommand">
     <span class="avatar-dropdown">
-        <el-avatar class="user-avatar" :src="avatar"></el-avatar>
-        <div class="user-name">
-          {{ username }}
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </div>
+      <el-avatar class="user-avatar" :src="avatar"></el-avatar>
+      <div class="user-name">
+        {{ username }}
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </div>
     </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
-  <el-dropdown @command="handleCommand" v-else>
+  <el-dropdown v-else @command="handleCommand">
     <span class="avatar-dropdown">
-        <div class="user-name">
-          未登录
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </div>
+      <div class="user-name">
+        未登录
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </div>
     </span>
 
     <el-dropdown-menu slot="dropdown">
@@ -33,7 +33,7 @@
     name: 'VabAvatar',
     computed: {
       ...mapGetters({
-        accessToken:'user/accessToken',
+        accessToken: 'user/accessToken',
         avatar: 'user/avatar',
         username: 'user/username',
       }),
@@ -46,7 +46,7 @@
             break
           case 'login':
             this.$router.push('/login')
-            break;
+            break
           case 'plus':
             window.open(
               'https://chu1204505056.gitee.io/admin-plus/?hmsr=homeAd&hmpl=&hmcu=&hmkw=&hmci='

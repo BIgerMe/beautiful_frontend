@@ -16,20 +16,14 @@
                 src="https://img.shields.io/github/stars/BIgerMe/beautiful_frontend?style=social&label=github&logo=github"
               />
             </a>
-            <a
-              target="_blank"
-              href="https://space.bilibili.com/279882228"
-            >
+            <a target="_blank" href="https://space.bilibili.com/279882228">
               <img
                 style="margin-right: 10px"
                 alt="bilibili"
                 src="https://img.shields.io/badge/bilibili--blue?logo=bilibili&style=social"
               />
             </a>
-            <a
-              target="_blank"
-              href="https://twitter.com/m2UzmUjSYUG24Wh"
-            >
+            <a target="_blank" href="https://twitter.com/m2UzmUjSYUG24Wh">
               <img
                 style="margin-right: 10px"
                 alt="twitter"
@@ -58,32 +52,29 @@
             <source src="http://video.xxroom.xyz/%E6%A8%B1%E8%8A%B1" type="video/webm" />
           </video>
         </el-card>-->
-
-        <el-card shadow="never">
-          <el-col
-            v-for="(item, index) in iconList"
-            :key="index"
-            :xs="24"
-            :sm="12"
-            :md="6"
-            :lg="6"
-            :xl="6"
-          >
-
-          </el-col>
-        </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="12" :lg="7" :xl="7">
         <el-card shadow="never">
-          <div style="width:100%;height:300px" id="cy"></div>
+          <div id="cy" style="width: 100%; height: 300px"></div>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="12" :lg="5" :xl="5">
         <el-card shadow="never">
-          <el-button type="text" style="margin-left:10px"><a href="http://chuangzaoshi.com/" target="_blank">创造狮-导航集中营</a></el-button>
-          <el-button type="text"><a href="https://sketchfab.com/store" target="_blank">skechfab-3D模型</a></el-button>
-          <el-button type="text"><a href="https://shields.io/" target="_blank">徽章定制-常用于项目</a></el-button>
-
+          <el-button type="text" style="margin-left: 10px">
+            <a href="http://chuangzaoshi.com/" target="_blank">
+              创造狮-导航集中营
+            </a>
+          </el-button>
+          <el-button type="text">
+            <a href="https://sketchfab.com/store" target="_blank">
+              skechfab-3D模型
+            </a>
+          </el-button>
+          <el-button type="text">
+            <a href="https://shields.io/" target="_blank">
+              徽章定制-常用于项目
+            </a>
+          </el-button>
         </el-card>
       </el-col>
     </el-row>
@@ -97,7 +88,7 @@
   import Plan from './components/Plan'
   import VersionInformation from './components/VersionInformation'
   import * as echarts from 'echarts'
-  import 'echarts-wordcloud';
+  import 'echarts-wordcloud'
   export default {
     name: 'Index',
     components: {
@@ -114,146 +105,152 @@
         devDependencies: devDependencies,
         //词云
         cy: {
-          series: [{
-            type: 'wordCloud',
-            shape: 'circle',
-            // maskImage: maskImage,
-            maskImage: '',
-            left: 'center',
-            top: 'center',
-            width: '100%',
-            height: '100%',
-            right: null,
-            bottom: null,
-            sizeRange: [10, 60],
-            rotationRange: [-45, 90],
-            autoSize: {
-              enable: true,
-              minSize: 10
-            },
-            textPadding: 0,
-            drawOutOfBound: false,
-            textStyle: {
-              fontFamily: 'sans-serif',
-              fontWeight: 'bold',
-              // Color can be a callback function or a color string
-              color: function () {
-                // Random color
-                return 'rgb(' + [
-                  Math.round(Math.random() * 160),
-                  Math.round(Math.random() * 160),
-                  Math.round(Math.random() * 160)
-                ].join(',') + ')';
-              }
-            },
-            emphasis: {
-              focus: 'self',
-
+          series: [
+            {
+              type: 'wordCloud',
+              shape: 'circle',
+              // maskImage: maskImage,
+              maskImage: '',
+              left: 'center',
+              top: 'center',
+              width: '100%',
+              height: '100%',
+              right: null,
+              bottom: null,
+              sizeRange: [10, 60],
+              rotationRange: [-45, 90],
+              autoSize: {
+                enable: true,
+                minSize: 10,
+              },
+              textPadding: 0,
+              drawOutOfBound: false,
               textStyle: {
-                shadowBlur: 10,
-                shadowColor: '#333'
-              }
-            },
-            data: [
-              {
-                name: 'vue-admin-beautiful',
-                value: 15000,
+                fontFamily: 'sans-serif',
+                fontWeight: 'bold',
+                // Color can be a callback function or a color string
+                color: function () {
+                  // Random color
+                  return (
+                    'rgb(' +
+                    [
+                      Math.round(Math.random() * 160),
+                      Math.round(Math.random() * 160),
+                      Math.round(Math.random() * 160),
+                    ].join(',') +
+                    ')'
+                  )
+                },
               },
-              {
-                name: 'element',
-                value: 10081,
-              },
-              {
-                name: 'beautiful',
-                value: 9386,
-              },
+              emphasis: {
+                focus: 'self',
 
-              {
-                name: 'vue',
-                value: 6500,
+                textStyle: {
+                  shadowBlur: 10,
+                  shadowColor: '#333',
+                },
               },
-              {
-                name: 'chuzhixin',
-                value: 6000,
-              },
-              {
-                name: 'good',
-                value: 4500,
-              },
-              {
-                name: 'success',
-                value: 3800,
-              },
-              {
-                name: 'never',
-                value: 3000,
-              },
-              {
-                name: 'boy',
-                value: 2500,
-              },
-              {
-                name: 'girl',
-                value: 2300,
-              },
-              {
-                name: 'github',
-                value: 2000,
-              },
-              {
-                name: 'hbuilder',
-                value: 1900,
-              },
-              {
-                name: 'dcloud',
-                value: 1800,
-              },
-              {
-                name: 'china',
-                value: 1700,
-              },
-              {
-                name: '1204505056',
-                value: 1600,
-              },
-              {
-                name: '972435319',
-                value: 1500,
-              },
-              {
-                name: 'young',
-                value: 1200,
-              },
-              {
-                name: 'old',
-                value: 1100,
-              },
-              {
-                name: 'vuex',
-                value: 900,
-              },
-              {
-                name: 'router',
-                value: 800,
-              },
-              {
-                name: 'money',
-                value: 700,
-              },
-              {
-                name: 'qingdao',
-                value: 800,
-              },
-              {
-                name: 'yantai',
-                value: 9000,
-              },
-              {
-                name: 'author is very cool',
-                value: 9200,
-              },
-            ]
-          }],
+              data: [
+                {
+                  name: 'vue-admin-beautiful',
+                  value: 15000,
+                },
+                {
+                  name: 'element',
+                  value: 10081,
+                },
+                {
+                  name: 'beautiful',
+                  value: 9386,
+                },
+
+                {
+                  name: 'vue',
+                  value: 6500,
+                },
+                {
+                  name: 'chuzhixin',
+                  value: 6000,
+                },
+                {
+                  name: 'good',
+                  value: 4500,
+                },
+                {
+                  name: 'success',
+                  value: 3800,
+                },
+                {
+                  name: 'never',
+                  value: 3000,
+                },
+                {
+                  name: 'boy',
+                  value: 2500,
+                },
+                {
+                  name: 'girl',
+                  value: 2300,
+                },
+                {
+                  name: 'github',
+                  value: 2000,
+                },
+                {
+                  name: 'hbuilder',
+                  value: 1900,
+                },
+                {
+                  name: 'dcloud',
+                  value: 1800,
+                },
+                {
+                  name: 'china',
+                  value: 1700,
+                },
+                {
+                  name: '1204505056',
+                  value: 1600,
+                },
+                {
+                  name: '972435319',
+                  value: 1500,
+                },
+                {
+                  name: 'young',
+                  value: 1200,
+                },
+                {
+                  name: 'old',
+                  value: 1100,
+                },
+                {
+                  name: 'vuex',
+                  value: 900,
+                },
+                {
+                  name: 'router',
+                  value: 800,
+                },
+                {
+                  name: 'money',
+                  value: 700,
+                },
+                {
+                  name: 'qingdao',
+                  value: 800,
+                },
+                {
+                  name: 'yantai',
+                  value: 9000,
+                },
+                {
+                  name: 'author is very cool',
+                  value: 9200,
+                },
+              ],
+            },
+          ],
         },
         //更新日志
         reverse: true,
@@ -263,12 +260,12 @@
         userAgent: navigator.userAgent,
       }
     },
-    created() {
-      this.fetchData()
-    },
     watch: {
       // 如果路由有变化，会再次执行该方法
-      '$route': 'changeRoute'
+      $route: 'changeRoute',
+    },
+    created() {
+      this.fetchData()
     },
     beforeDestroy() {
       clearInterval(this.timer)
@@ -282,29 +279,29 @@
       handleChangeTheme() {
         this.$baseEventBus.$emit('theme')
       },
-      async changeRoute(){
-        if( this.$route.name === 'Index' ){
+      async changeRoute() {
+        if (this.$route.name === 'Index') {
           setTimeout(function () {
             let video = document.getElementById('autoplayVideo')
-            video.play()
-          }, 500);
+            // video.play()
+          }, 500)
         }
       },
       async fetchData() {
         const { data } = await categoryCY()
         let cyData = []
-        for(let index in data){
-          cyData.push({'name': index,'value': data[index]})
+        for (let index in data) {
+          cyData.push({ name: index, value: data[index] })
         }
         let maskImage = new Image()
-        let cyChart = echarts.init(document.getElementById('cy'));
+        let cyChart = echarts.init(document.getElementById('cy'))
         maskImage.src = require('@/assets/mask/twitter.png')
-        maskImage.onload = ()=>{
+        maskImage.onload = () => {
           this.cy.series[0].data = cyData
           this.cy.series[0].maskImage = maskImage
           console.log(this.cy)
           cyChart.setOption(this.cy)
-          cyChart.on('click',function(params){
+          cyChart.on('click', function (params) {
             console.log(params)
           })
         }

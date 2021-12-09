@@ -102,10 +102,10 @@
         },
         rules: {
           username: [
-            {required: true, trigger: 'blur', validator: validateusername,},
+            { required: true, trigger: 'blur', validator: validateusername },
           ],
           password: [
-            {required: true, trigger: 'blur', validator: validatePassword,},
+            { required: true, trigger: 'blur', validator: validatePassword },
           ],
         },
         loading: false,
@@ -127,9 +127,7 @@
     beforeDestroy() {
       document.body.style.overflow = 'auto'
     },
-    mounted() {
-
-    },
+    mounted() {},
     methods: {
       handlePassword() {
         this.passwordType === 'password'
@@ -168,8 +166,7 @@
 <style lang="scss" scoped>
   .login-container {
     height: 100vh;
-    background: url('~@/assets/login_images/background.jpg') center center fixed
-      no-repeat;
+    background: url('~@/assets/login_images/background.jpg') center center fixed no-repeat;
     background-size: cover;
 
     .title {

@@ -203,8 +203,6 @@
 <style lang="scss" scoped>
   .register-container {
     height: 100vh;
-    background: url('~@/assets/login_images/background.jpg') center center fixed
-      no-repeat;
     background-size: cover;
 
     .title {

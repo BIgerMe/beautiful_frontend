@@ -68,7 +68,8 @@ export const asyncRoutes = [
         meta: {
           title: '所有文章',
         },
-      },{
+      },
+      {
         path: 'detail/:id',
         name: 'blogDetail',
         hidden: true,
@@ -76,12 +77,22 @@ export const asyncRoutes = [
         meta: {
           title: '文章详情',
         },
-      },{
+      },
+      {
         path: 'self',
         name: 'blogSelf',
         component: () => import('@/views/blog/self'),
         meta: {
           title: '我的文章',
+        },
+      },
+      {
+        path: 'create',
+        name: 'createBlog',
+        hidden: true,
+        component: () => import('@/views/blog/create'),
+        meta: {
+          title: '写新文章',
         },
       },
     ],
@@ -93,29 +104,29 @@ export const asyncRoutes = [
     name: 'stock',
     meta: {
       title: '金融信息',
-      icon: 'chart'
+      icon: 'chart',
     },
     children: [
       {
         path: 'stock_basic',
         component: () => import('@/views/stock/stock-basic'),
         name: 'StockBasic',
-        meta: { title: '股票基础信息', noCache: true }
+        meta: { title: '股票基础信息', noCache: true },
       },
       {
         path: 'share-float',
         component: () => import('@/views/stock/share-float'),
         name: 'ShareFloat',
-        meta: { title: '限售股解禁', noCache: true }
+        meta: { title: '限售股解禁', noCache: true },
       },
       {
         path: 'stock-detail/:ts_code',
         component: () => import('@/views/stock/stock-detail'),
         name: 'StockDetail',
         hidden: true,
-        meta: { title: '股票详情页', icon: 'detail', noCache: true }
-      }
-    ]
+        meta: { title: '股票详情页', icon: 'detail', noCache: true },
+      },
+    ],
   },
 ]
 
