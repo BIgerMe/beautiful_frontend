@@ -85,16 +85,12 @@
   import VabChart from '@/plugins/echarts'
   import { dependencies, devDependencies } from '../../../package.json'
   import { categoryCY } from '@/api/blog'
-  import Plan from './components/Plan'
-  import VersionInformation from './components/VersionInformation'
   import * as echarts from 'echarts'
   import 'echarts-wordcloud'
   export default {
     name: 'Index',
     components: {
       VabChart,
-      Plan,
-      VersionInformation,
     },
     data() {
       return {

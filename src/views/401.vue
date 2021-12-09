@@ -9,21 +9,6 @@
               class="pic-error-parent"
               src="@/assets/error_images/401.png"
             />
-            <img
-              alt="401"
-              class="pic-error-child left"
-              src="@/assets/error_images/cloud.png"
-            />
-            <img
-              alt="401"
-              class="pic-error-child"
-              src="@/assets/error_images/cloud.png"
-            />
-            <img
-              alt="401"
-              class="pic-error-child"
-              src="@/assets/error_images/cloud.png"
-            />
           </div>
         </el-col>
 
