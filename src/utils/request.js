@@ -16,7 +16,7 @@ import qs from 'qs'
 import router from '@/router'
 import { isArray } from '@/utils/validate'
 
-let loadingInstance
+// let loadingInstance
 
 /**
  * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
@@ -67,8 +67,8 @@ instance.interceptors.request.use(
         'application/x-www-form-urlencoded;charset=UTF-8'
     )
       config.data = qs.stringify(config.data)
-    if (debounce.some((item) => config.url.includes(item)))
-      loadingInstance = Vue.prototype.$baseLoading()
+    /*if (debounce.some((item) => config.url.includes(item)))
+      loadingInstance = Vue.prototype.$baseLoading()*/
     return config
   },
   (error) => {
@@ -78,7 +78,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response) => {
-    if (loadingInstance) loadingInstance.close()
+    // if (loadingInstance) loadingInstance.close()
 
     const { data, config } = response
     const { code, msg } = data
@@ -98,7 +98,7 @@ instance.interceptors.response.use(
     }
   },
   (error) => {
-    if (loadingInstance) loadingInstance.close()
+    // if (loadingInstance) loadingInstance.close()
     const { response, message } = error
     if (error.response && error.response.data) {
       const { status, data } = response

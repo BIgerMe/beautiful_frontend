@@ -12,7 +12,6 @@
           class="login-form"
           label-position="left"
         >
-          <div class="title">登 录</div>
           <el-form-item style="margin-top: 40px" prop="username">
             <span class="svg-container svg-container-admin">
               <vab-icon :icon="['fas', 'user']" />
@@ -49,17 +48,12 @@
               <vab-icon :icon="['fas', 'eye']"></vab-icon>
             </span>
           </el-form-item>
-          <el-button
-            :loading="loading"
-            class="login-btn"
-            type="primary"
-            @click="handleLogin"
-          >
+          <el-button :loading="loading" class="login-btn" @click="handleLogin">
             登录
           </el-button>
-          <router-link to="/register">
+          <!-- <router-link to="/register">
             <div style="margin-top: 20px">注册</div>
-          </router-link>
+          </router-link>-->
         </el-form>
       </el-col>
     </el-row>
@@ -166,7 +160,8 @@
 <style lang="scss" scoped>
   .login-container {
     height: 100vh;
-    /*background: url('~@/assets/login_images/background.jpg') center center fixed no-repeat;*/
+    background: url('http://head.xxroom.xyz/lqRIRuUiCunOpaivwT6T_KsS_ouk')
+      center center fixed no-repeat;
     background-size: cover;
 
     .title {
@@ -190,7 +185,8 @@
       height: 60px;
       margin-top: 5px;
       border: 0;
-
+      color: white !important;
+      background: #11485aa1 !important;
       &:hover {
         opacity: 0.9;
       }
