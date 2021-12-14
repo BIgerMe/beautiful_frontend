@@ -3,7 +3,7 @@
  * @description 路由拦截状态管理，目前两种模式：all模式与intelligence模式，其中partialRoutes是菜单暂未使用
  */
 import { asyncRoutes, constantRoutes } from '@/router'
-import { getRouterList } from '@/api/router'
+// import { getRouterList } from '@/api/router'
 import { convertRouter, filterAsyncRoutes } from '@/utils/handleRoutes'
 
 const state = () => ({
@@ -16,9 +16,6 @@ const getters = {
 }
 const mutations = {
   setRoutes(state, routes) {
-    state.routes = constantRoutes.concat(routes)
-  },
-  setAllRoutes(state, routes) {
     state.routes = constantRoutes.concat(routes)
   },
   setPartialRoutes(state, routes) {
@@ -34,13 +31,6 @@ const actions = {
     )
     commit('setRoutes', finallyAsyncRoutes)
     return finallyAsyncRoutes
-  },
-  async setAllRoutes({ commit }) {
-    let { data } = await getRouterList()
-    data.push({ path: '*', redirect: '/404', hidden: true })
-    let accessRoutes = convertRouter(data)
-    commit('setAllRoutes', accessRoutes)
-    return accessRoutes
   },
   setPartialRoutes({ commit }, accessRoutes) {
     commit('setPartialRoutes', accessRoutes)

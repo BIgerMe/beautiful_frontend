@@ -295,7 +295,6 @@
         maskImage.onload = () => {
           this.cy.series[0].data = cyData
           this.cy.series[0].maskImage = maskImage
-          console.log(this.cy)
           cyChart.setOption(this.cy)
           cyChart.on('click', function (params) {
             console.log(params)

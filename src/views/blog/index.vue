@@ -95,14 +95,33 @@
       </el-card>
     </el-col>
     <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
+
       <a-affix :offset-top="140">
-        <el-card shadow="always">总是显示</el-card>
+        <el-scrollbar
+          wrap-class="categoryList"
+          wrap-style="color: red;"
+          view-style="font-weight: bold;"
+          view-class="view-box"
+          :native="false"
+        >
+          <el-card shadow="always">
+            <div v-for="(category,key) in navList">
+              <a-divider orientation="left" style="font-size: 12px">
+                {{key}}
+              </a-divider>
+              <a v-for="item in category" :href="item.href" target='_blank'>
+                <img style="width:40px;height: 40px;border-radius: 50%;margin: 5px" :src="item.logo" :title="item.title" :alt="item.title">
+              </a>
+            </div>
+          </el-card>
+        </el-scrollbar>
       </a-affix>
     </el-col>
   </el-row>
 </template>
 <script>
   import { categoryCY, lists } from '@/api/blog'
+  import { getList } from '@/api/navigation'
   import { mavonEditor } from 'mavon-editor'
   import 'mavon-editor/dist/css/index.css'
   export default {
@@ -112,6 +131,7 @@
       return {
         category: [],
         lists: [],
+        navList:[],
         total: 0,
         listQuery: {
           category: '',
@@ -170,6 +190,7 @@
         let { data } = await categoryCY()
         this.category = data
         this.getList()
+        this.getNavList()
       },
       async getList(push = false) {
         /*文章列表*/
@@ -182,6 +203,11 @@
           this.lists = data.data
         }
         this.total = data.total
+      },
+      async getNavList() {
+        /*文章列表*/
+        const { data } = await getList([])
+        this.navList = data
       },
       changeCategory(e) {
         this.listQuery.category = e.key

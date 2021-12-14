@@ -28,7 +28,6 @@
               placeholder="请输入用户名"
               auto-complete="off"
             >
-              <vab-icon slot="prefix" :icon="['fas', 'user-alt']"></vab-icon>
             </el-input>
           </el-form-item>
           <el-form-item prop="phone">
@@ -40,7 +39,6 @@
               show-word-limit
               autocomplete="off"
             >
-              <vab-icon slot="prefix" :icon="['fas', 'mobile-alt']"></vab-icon>
             </el-input>
           </el-form-item>
           <el-form-item prop="phoneCode" style="position: relative">
@@ -49,10 +47,6 @@
               type="text"
               placeholder="手机验证码"
             >
-              <vab-icon
-                slot="prefix"
-                :icon="['fas', 'envelope-open']"
-              ></vab-icon>
             </el-input>
             <el-button
               type="primary"
@@ -70,7 +64,6 @@
               placeholder="设置密码"
               autocomplete="new-password"
             >
-              <vab-icon slot="prefix" :icon="['fas', 'unlock']"></vab-icon>
             </el-input>
           </el-form-item>
           <el-form-item>

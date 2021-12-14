@@ -28,7 +28,6 @@ router.beforeResolve(async (to, from, next) => {
   let hasToken = store.getters['user/accessToken']
   let username = store.getters['user/username']
   if (hasToken && !username) {
-    console.log(username)
     store.dispatch('user/getUserInfo')
   }
   if (!loginInterception) hasToken = true
@@ -60,8 +59,6 @@ router.beforeResolve(async (to, from, next) => {
           let accessRoutes = []
           if (authentication === 'intelligence') {
             accessRoutes = await store.dispatch('routes/setRoutes', permissions)
-          } else if (authentication === 'all') {
-            accessRoutes = await store.dispatch('routes/setAllRoutes')
           }
           accessRoutes.forEach((item) => {
             router.addRoute(item)

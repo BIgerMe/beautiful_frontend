@@ -38,6 +38,9 @@
         username: 'user/username',
       }),
     },
+    created(){
+      console.log(123)
+    },
     methods: {
       handleCommand(command) {
         switch (command) {

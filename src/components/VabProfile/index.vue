@@ -17,7 +17,6 @@
           :href="item.url"
           target="_blank"
         >
-          <vab-icon :icon="['fas', item.icon]" />
         </a>
       </div>
     </div>

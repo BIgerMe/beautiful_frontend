@@ -1,17 +1,17 @@
 /* 公共引入,勿随意修改,修改时需经过确认 */
 import Vue from 'vue'
 import './element'
-import './support'
+// import './support'
 import '@/styles/vab.scss'
 import '@/remixIcon'
-import '@/colorfulIcon'
+// import '@/colorfulIcon'
 import '@/config/permission'
 // import '@/utils/errorLog'
-import './vabIcon'
+// import './vabIcon'
 import VabPermissions from 'zx-layouts/Permissions'
 import Vab from '@/utils/vab'
-import VabCount from 'zx-count'
+// import VabCount from 'zx-count'
 
 Vue.use(Vab)
 Vue.use(VabPermissions)
-Vue.use(VabCount)
+// Vue.use(VabCount)

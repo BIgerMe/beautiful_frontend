@@ -39,8 +39,8 @@
                 getList()
               "
             />
-            &nbsp;
-            <a-button type="primary" icon="plus" />
+            &nbsp
+            <router-link :to="{ name: 'createBlog'}"><a-button type="primary" icon="plus" /></router-link>
           </div>
         </a-affix>
         <a-card v-for="item in lists" class="blogCard">

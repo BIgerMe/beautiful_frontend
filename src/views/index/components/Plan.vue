@@ -1,19 +1,10 @@
 <template>
   <el-card shadow="hover">
     <template #header>
-      <vab-icon icon="send-plane-2-line" />
-      <!-- 计划 -->
-      <el-tag class="card-header-tag" type="success">
-        祝用框架的小伙伴都能住上别墅，开上保时捷
-      </el-tag>
     </template>
     <el-table :data="tableData" row-key="title" height="283px">
       <el-table-column align="center" label="拖拽" width="50px">
         <template #default="{}">
-          <vab-icon
-            style="cursor: pointer"
-            :icon="['fas', 'arrows-alt']"
-          ></vab-icon>
         </template>
       </el-table-column>
       <el-table-column width="20px" />

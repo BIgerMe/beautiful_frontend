@@ -1,10 +1,5 @@
 <template>
   <span v-if="themeBar">
-    <vab-icon
-      title="主题配置"
-      :icon="['fas', 'palette']"
-      @click="handleOpenThemeBar"
-    />
     <el-drawer
       title="主题配置"
       :visible.sync="drawerVisible"

@@ -14,7 +14,6 @@
         >
           <el-form-item style="margin-top: 40px" prop="username">
             <span class="svg-container svg-container-admin">
-              <vab-icon :icon="['fas', 'user']" />
             </span>
             <el-input
               v-model.trim="form.username"
@@ -26,7 +25,6 @@
           </el-form-item>
           <el-form-item prop="password">
             <span class="svg-container">
-              <vab-icon :icon="['fas', 'lock']" />
             </span>
             <el-input
               :key="passwordType"
@@ -42,10 +40,8 @@
               class="show-password"
               @click="handlePassword"
             >
-              <vab-icon :icon="['fas', 'eye-slash']"></vab-icon>
             </span>
             <span v-else class="show-password" @click="handlePassword">
-              <vab-icon :icon="['fas', 'eye']"></vab-icon>
             </span>
           </el-form-item>
           <el-button :loading="loading" class="login-btn" @click="handleLogin">
