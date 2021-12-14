@@ -70,6 +70,7 @@ const actions = {
   },
   async getUserInfo({ commit, state }) {
     const { data } = await getUserInfo(state.accessToken)
+    console.log(data)
     if (!data) {
       Vue.prototype.$baseMessage('验证失败，请重新登录...', 'error')
       return false

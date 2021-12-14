@@ -49,7 +49,6 @@
 <script>
   import { StockBasicList } from '@/api/stock'
   import Pagination from '@/components/Pagination'
-  import 'jquery'
 
   export default {
     name: 'StockBasic',

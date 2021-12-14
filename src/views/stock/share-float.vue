@@ -87,7 +87,6 @@
 <script>
   import { ShareFloatList } from '@/api/stock'
   import Pagination from '@/components/Pagination'
-  import 'jquery'
   // import waves from '@/directive/waves' // waves directive
 
   export default {
