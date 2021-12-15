@@ -82,23 +82,14 @@
 </template>
 
 <script>
-  import VabChart from '@/plugins/echarts'
-  import { dependencies, devDependencies } from '../../../package.json'
   import { categoryCY } from '@/api/blog'
   import * as echarts from 'echarts'
   import 'echarts-wordcloud'
   export default {
     name: 'Index',
-    components: {
-      VabChart,
-    },
+    components: {},
     data() {
       return {
-        timer: 0,
-        updateTime: process.env.VUE_APP_UPDATE_TIME,
-        nodeEnv: process.env.NODE_ENV,
-        dependencies: dependencies,
-        devDependencies: devDependencies,
         //词云
         cy: {
           series: [
@@ -146,114 +137,9 @@
                   shadowColor: '#333',
                 },
               },
-              data: [
-                {
-                  name: 'vue-admin-beautiful',
-                  value: 15000,
-                },
-                {
-                  name: 'element',
-                  value: 10081,
-                },
-                {
-                  name: 'beautiful',
-                  value: 9386,
-                },
-
-                {
-                  name: 'vue',
-                  value: 6500,
-                },
-                {
-                  name: 'chuzhixin',
-                  value: 6000,
-                },
-                {
-                  name: 'good',
-                  value: 4500,
-                },
-                {
-                  name: 'success',
-                  value: 3800,
-                },
-                {
-                  name: 'never',
-                  value: 3000,
-                },
-                {
-                  name: 'boy',
-                  value: 2500,
-                },
-                {
-                  name: 'girl',
-                  value: 2300,
-                },
-                {
-                  name: 'github',
-                  value: 2000,
-                },
-                {
-                  name: 'hbuilder',
-                  value: 1900,
-                },
-                {
-                  name: 'dcloud',
-                  value: 1800,
-                },
-                {
-                  name: 'china',
-                  value: 1700,
-                },
-                {
-                  name: '1204505056',
-                  value: 1600,
-                },
-                {
-                  name: '972435319',
-                  value: 1500,
-                },
-                {
-                  name: 'young',
-                  value: 1200,
-                },
-                {
-                  name: 'old',
-                  value: 1100,
-                },
-                {
-                  name: 'vuex',
-                  value: 900,
-                },
-                {
-                  name: 'router',
-                  value: 800,
-                },
-                {
-                  name: 'money',
-                  value: 700,
-                },
-                {
-                  name: 'qingdao',
-                  value: 800,
-                },
-                {
-                  name: 'yantai',
-                  value: 9000,
-                },
-                {
-                  name: 'author is very cool',
-                  value: 9200,
-                },
-              ],
             },
           ],
         },
-        //更新日志
-        reverse: true,
-        activities: [],
-        noticeList: [],
-        //其他信息
-        userAgent: navigator.userAgent,
       }
     },
     watch: {
@@ -263,18 +149,9 @@
     created() {
       this.fetchData()
     },
-    beforeDestroy() {
-      clearInterval(this.timer)
-    },
+    beforeDestroy() {},
     mounted() {},
     methods: {
-      handleClick(e) {
-        this.$baseMessage(`点击了${e.name},这里可以写跳转`)
-      },
-      handleZrClick(e) {},
-      handleChangeTheme() {
-        this.$baseEventBus.$emit('theme')
-      },
       async changeRoute() {
         if (this.$route.name === 'Index') {
           setTimeout(function () {
