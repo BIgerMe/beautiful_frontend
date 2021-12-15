@@ -1,5 +1,4 @@
 /**
- * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
  * @description 公共布局及样式自动引入
  */
 

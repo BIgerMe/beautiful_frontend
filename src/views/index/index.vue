@@ -53,28 +53,22 @@
           </video>
         </el-card>-->
       </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="7" :xl="7">
-        <el-card shadow="never">
-          <div id="cy" style="width: 100%; height: 300px"></div>
-        </el-card>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="5" :xl="5">
-        <el-card shadow="never">
-          <el-button type="text" style="margin-left: 10px">
-            <a href="http://chuangzaoshi.com/" target="_blank">
-              创造狮-导航集中营
-            </a>
-          </el-button>
-          <el-button type="text">
-            <a href="https://sketchfab.com/store" target="_blank">
-              skechfab-3D模型
-            </a>
-          </el-button>
-          <el-button type="text">
-            <a href="https://shields.io/" target="_blank">
-              徽章定制-常用于项目
-            </a>
-          </el-button>
+      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+        <el-card shadow="always">
+          <div v-for="(category,key) in navList">
+            <a-divider orientation="left" style="font-size: 18px">
+              {{key}}
+            </a-divider>
+            <el-col v-for="item in category" :xs="24" :sm="8" :md="4" :lg="4" :xl="4">
+              <el-card>
+                <a :href="item.href" target='_blank' style="color: black">
+                  <img style="width:40px;height: 40px;border-radius: 50%;margin: 5px" :src="item.logo" :title="item.title" :alt="item.title">
+                    {{item.title}}
+                </a>
+                <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color: #00000073">{{item.content}}</p>
+              </el-card>
+            </el-col>
+          </div>
         </el-card>
       </el-col>
     </el-row>
@@ -82,69 +76,18 @@
 </template>
 
 <script>
-  import { categoryCY } from '@/api/blog'
-  import * as echarts from 'echarts'
-  import 'echarts-wordcloud'
+  import { getList } from '@/api/navigation'
   export default {
     name: 'Index',
     components: {},
     data() {
       return {
-        //词云
-        cy: {
-          series: [
-            {
-              type: 'wordCloud',
-              shape: 'circle',
-              // maskImage: maskImage,
-              maskImage: '',
-              left: 'center',
-              top: 'center',
-              width: '100%',
-              height: '100%',
-              right: null,
-              bottom: null,
-              sizeRange: [10, 60],
-              rotationRange: [-45, 90],
-              autoSize: {
-                enable: true,
-                minSize: 10,
-              },
-              textPadding: 0,
-              drawOutOfBound: false,
-              textStyle: {
-                fontFamily: 'sans-serif',
-                fontWeight: 'bold',
-                // Color can be a callback function or a color string
-                color: function () {
-                  // Random color
-                  return (
-                    'rgb(' +
-                    [
-                      Math.round(Math.random() * 160),
-                      Math.round(Math.random() * 160),
-                      Math.round(Math.random() * 160),
-                    ].join(',') +
-                    ')'
-                  )
-                },
-              },
-              emphasis: {
-                focus: 'self',
-
-                textStyle: {
-                  shadowBlur: 10,
-                  shadowColor: '#333',
-                },
-              },
-            },
-          ],
-        },
+        navList:[],
       }
     },
     watch: {
       // 如果路由有变化，会再次执行该方法
-      $route: 'changeRoute',
+      // $route: 'changeRoute',
     },
     created() {
       this.fetchData()
@@ -161,22 +104,12 @@
         }
       },
       async fetchData() {
-        const { data } = await categoryCY()
-        let cyData = []
-        for (let index in data) {
-          cyData.push({ name: index, value: data[index] })
-        }
-        let maskImage = new Image()
-        let cyChart = echarts.init(document.getElementById('cy'))
-        maskImage.src = require('@/assets/mask/twitter.png')
-        maskImage.onload = () => {
-          this.cy.series[0].data = cyData
-          this.cy.series[0].maskImage = maskImage
-          cyChart.setOption(this.cy)
-          cyChart.on('click', function (params) {
-            console.log(params)
-          })
-        }
+        await this.getNavList()
+      },
+      async getNavList() {
+        /*文章列表*/
+        const { data } = await getList([])
+        this.navList = data
       },
     },
   }

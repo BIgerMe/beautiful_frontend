@@ -94,36 +94,23 @@
         </a-card>
       </el-card>
     </el-col>
-    <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
-
+    <el-col class="hidden-sm-and-down" :md="6" :lg="6" :xl="6">
       <a-affix :offset-top="140">
-        <el-scrollbar
-          wrap-class="categoryList"
-          wrap-style="color: red;"
-          view-style="font-weight: bold;"
-          view-class="view-box"
-          :native="false"
-        >
-          <el-card shadow="always">
-            <div v-for="(category,key) in navList">
-              <a-divider orientation="left" style="font-size: 12px">
-                {{key}}
-              </a-divider>
-              <a v-for="item in category" :href="item.href" target='_blank'>
-                <img style="width:40px;height: 40px;border-radius: 50%;margin: 5px" :src="item.logo" :title="item.title" :alt="item.title">
-              </a>
-            </div>
-          </el-card>
-        </el-scrollbar>
+        <el-card shadow="never" align="center">
+          <div id="cy" style="width: 300px; height: 300px;"></div>
+        </el-card>
       </a-affix>
     </el-col>
   </el-row>
 </template>
 <script>
   import { categoryCY, lists } from '@/api/blog'
-  import { getList } from '@/api/navigation'
   import { mavonEditor } from 'mavon-editor'
   import 'mavon-editor/dist/css/index.css'
+  import * as echarts from 'echarts'
+  import 'echarts-wordcloud'
+  import 'element-ui/lib/theme-chalk/display.css';
+
   export default {
     name: 'Blog',
     components: { 'mavon-editor': mavonEditor },
@@ -131,13 +118,61 @@
       return {
         category: [],
         lists: [],
-        navList:[],
         total: 0,
         listQuery: {
           category: '',
           key: '',
           page: 1,
           pageSize: 5,
+        },
+        cy: {
+          series: [
+            {
+              type: 'wordCloud',
+              shape: 'circle',
+              // maskImage: maskImage,
+              maskImage: '',
+              left: 'center',
+              top: 'center',
+              width: '100%',
+              height: '100%',
+              right: null,
+              bottom: null,
+              sizeRange: [10, 60],
+              rotationRange: [-45, 90],
+              autoSize: {
+                enable: true,
+                minSize: 10,
+              },
+              textPadding: 0,
+              drawOutOfBound: false,
+              textStyle: {
+                fontFamily: 'sans-serif',
+                fontWeight: 'bold',
+                // Color can be a callback function or a color string
+                color: function () {
+                  // Random color
+                  return (
+                    'rgb(' +
+                    [
+                      Math.round(Math.random() * 160),
+                      Math.round(Math.random() * 160),
+                      Math.round(Math.random() * 160),
+                    ].join(',') +
+                    ')'
+                  )
+                },
+              },
+              emphasis: {
+                focus: 'self',
+
+                textStyle: {
+                  shadowBlur: 10,
+                  shadowColor: '#333',
+                },
+              },
+            },
+          ],
         },
         loading: false,
       }
@@ -189,8 +224,8 @@
         /*分类*/
         let { data } = await categoryCY()
         this.category = data
-        this.getList()
-        this.getNavList()
+        this.setCy()
+        await this.getList()
       },
       async getList(push = false) {
         /*文章列表*/
@@ -204,12 +239,26 @@
         }
         this.total = data.total
       },
-      async getNavList() {
-        /*文章列表*/
-        const { data } = await getList([])
-        this.navList = data
+      setCy(){
+        let cyData = []
+        for (let index in this.category) {
+          cyData.push({ name: index, value: this.category[index] })
+        }
+        let maskImage = new Image()
+        let cyChart = echarts.init(document.getElementById('cy'))
+        maskImage.src = require('@/assets/mask/twitter.png')
+        maskImage.onload = () => {
+          this.cy.series[0].data = cyData
+          this.cy.series[0].maskImage = maskImage
+          cyChart.setOption(this.cy)
+          cyChart.on('click', (params)=> {
+            console.log(params.data)
+            this.changeCategory({'key':params.data.name})
+          })
+        }
       },
       changeCategory(e) {
+        console.log(e)
         this.listQuery.category = e.key
         this.listQuery.page = 1
         window.scrollTo(0, 0)
