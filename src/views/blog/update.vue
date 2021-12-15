@@ -46,7 +46,7 @@
 
 <script>
   import { uploadImg } from '@/api/qiniu'
-  import { createBlog } from '@/api/blog'
+  import { updateBlog,detail } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
   import 'mavon-editor/dist/css/index.css'
   import Vue from "vue";
@@ -61,7 +61,7 @@
         form:{
           title:'',
           category:[],
-          private:'0',
+          private:'',
           cover:'',
           original_content: '',
         },
@@ -102,7 +102,14 @@
         }
       }
     },
+    created() {
+      this.fetchData()
+    },
     methods: {
+      async fetchData() {
+        const { data } = await detail({ id: this.$route.params.id })
+        this.form = data.data
+      },
       // 绑定@imgAdd event
       async $imgAdd(pos, $file){
         // 第一步.将图片上传到服务器.
@@ -147,9 +154,8 @@ img{
         funDownload(html,this.form.title+'.html')
       },
       async onSubmit(){
-        await createBlog(this.form)
-        Vue.prototype.$baseNotify(`新增成功`)
-        this.$router.replace('/blog/self')
+        await updateBlog(this.form)
+        Vue.prototype.$baseNotify(`更新成功`)
       }
     },
   }

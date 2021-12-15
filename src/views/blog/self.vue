@@ -58,6 +58,11 @@
               >
                 <h3>{{ item.title }}</h3>
               </a-button>
+              <router-link
+                :to="{ name: 'updateBlog', params: { id: item.id } }"
+              >
+                <a-button style="float: right" type="dashed" shape="circle" icon="edit" />
+              </router-link>
               <div>
                 <a-tag v-if="item.private == 1" color="blue"><a>公开</a></a-tag>
                 <a-tag v-else color="red"><a>私有</a></a-tag>

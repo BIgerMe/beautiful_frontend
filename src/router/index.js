@@ -95,6 +95,15 @@ export const asyncRoutes = [
           title: '写新文章',
         },
       },
+      {
+        path: 'update/:id',
+        name: 'updateBlog',
+        hidden: true,
+        component: () => import('@/views/blog/update'),
+        meta: {
+          title: '更新文章',
+        },
+      },
     ],
   },
   {

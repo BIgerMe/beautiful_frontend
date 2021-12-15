@@ -37,3 +37,18 @@ export function selfLists(data) {
     data,
   })
 }
+
+export function createBlog(data) {
+  return request({
+    url: '/z/blog/create',
+    method: 'post',
+    data,
+  })
+}
+export function updateBlog(data) {
+  return request({
+    url: '/z/blog/update',
+    method: 'post',
+    data,
+  })
+}
