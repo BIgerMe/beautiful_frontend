@@ -109,7 +109,7 @@
   import 'mavon-editor/dist/css/index.css'
   import * as echarts from 'echarts'
   import 'echarts-wordcloud'
-  import 'element-ui/lib/theme-chalk/display.css';
+  // import 'element-ui/lib/theme-chalk/display.css';
 
   export default {
     name: 'Blog',
