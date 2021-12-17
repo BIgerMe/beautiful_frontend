@@ -4,7 +4,6 @@
       <!--缓存排除name: blog的页面-->
       <keep-alive
         :include="cachedRoutes"
-        exclude="blog,blogSelf"
         :max="keepAliveMaxNum"
       >
         <router-view :key="key" class="app-main-height" />
@@ -45,6 +44,7 @@
             cachedRoutesArr.push(item.name)
           }
         })
+        console.log(cachedRoutesArr)
         return cachedRoutesArr
       },
       key() {

@@ -1,6 +1,6 @@
 <template>
-  <el-row :gutter="20">
-    <el-col :xs="0" :sm="24" :md="3" :lg="3" :xl="3" style="max-height: 80vh">
+  <a-row :gutter="20">
+    <a-col :xs="0" :sm="24" :md="3" :lg="3" :xl="3" class="left" style="max-height: 80vh">
       <a-affix :offset-top="140">
         <el-scrollbar
           wrap-class="categoryList"
@@ -25,10 +25,10 @@
           </el-card>
         </el-scrollbar>
       </a-affix>
-    </el-col>
-    <el-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7">
+    </a-col>
+    <a-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7">
       <el-card shadow="always">
-        <a-affix :offset-top="120">
+        <a-affix :offset-top="120" class="center">
           <div style="background: white; padding: 0 0 20px 0">
             <a-input-search
               v-model="listQuery.key"
@@ -40,7 +40,7 @@
               "
             />
             &nbsp
-            <router-link :to="{ name: 'createBlog'}"><a-button type="primary" icon="plus" /></router-link>
+            <router-link :to="{ name: 'CreateBlog'}"><a-button type="primary" icon="plus" /></router-link>
           </div>
         </a-affix>
         <a-card v-for="item in lists" class="blogCard">
@@ -59,7 +59,7 @@
                 <h3>{{ item.title }}</h3>
               </a-button>
               <router-link
-                :to="{ name: 'updateBlog', params: { id: item.id } }"
+                :to="{ name: 'UpdateBlog', params: { id: item.id } }"
               >
                 <a-button style="float: right" type="dashed" shape="circle" icon="edit" />
               </router-link>
@@ -85,8 +85,8 @@
           </a-card-meta>
         </a-card>
       </el-card>
-    </el-col>
-    <el-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
+    </a-col>
+    <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14" class="right">
       <a-affix :offset-top="140">
         <el-scrollbar
           wrap-class="blogDetail"
@@ -114,8 +114,8 @@
           </el-card>
         </el-scrollbar>
       </a-affix>
-    </el-col>
-  </el-row>
+    </a-col>
+  </a-row>
 </template>
 <script>
   import { selfCategoryCY, selfLists } from '@/api/blog'
@@ -217,6 +217,14 @@
   }
 </script>
 <style scoped>
+  .left> div,.right>div{
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .center{
+    width:100% !important;
+    height: auto!important;
+  }
   .ant-menu-inline,
   .ant-menu-vertical,
   .ant-menu-vertical-left {

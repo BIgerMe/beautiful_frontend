@@ -63,7 +63,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        name: 'blog',
+        name: 'Blog',
         component: () => import('@/views/blog/index'),
         meta: {
           title: '所有文章',
@@ -71,7 +71,7 @@ export const asyncRoutes = [
       },
       {
         path: 'detail/:id',
-        name: 'blogDetail',
+        name: 'BlogDetail',
         hidden: true,
         component: () => import('@/views/blog/detail'),
         meta: {
@@ -80,7 +80,7 @@ export const asyncRoutes = [
       },
       {
         path: 'self',
-        name: 'blogSelf',
+        name: 'BlogSelf',
         component: () => import('@/views/blog/self'),
         meta: {
           title: '我的文章',
@@ -88,7 +88,7 @@ export const asyncRoutes = [
       },
       {
         path: 'create',
-        name: 'createBlog',
+        name: 'CreateBlog',
         hidden: true,
         component: () => import('@/views/blog/create'),
         meta: {
@@ -97,7 +97,7 @@ export const asyncRoutes = [
       },
       {
         path: 'update/:id',
-        name: 'updateBlog',
+        name: 'UpdateBlog',
         hidden: true,
         component: () => import('@/views/blog/update'),
         meta: {
@@ -117,7 +117,7 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'stock_basic',
+        path: 'stock-basic',
         component: () => import('@/views/stock/stock-basic'),
         name: 'StockBasic',
         meta: { title: '股票基础信息', noCache: true },

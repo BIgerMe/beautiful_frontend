@@ -1,6 +1,6 @@
 <template>
-  <el-row :gutter="20">
-    <el-col :xs="0" :sm="24" :md="4" :lg="4" :xl="4" style="max-height: 80vh">
+  <a-row :gutter="20">
+    <a-col :xs="0" :sm="24" :md="4" :lg="4" :xl="4" class="left" style="max-height: 80vh;">
       <a-affix :offset-top="140">
         <el-scrollbar
           wrap-class="categoryList"
@@ -25,10 +25,10 @@
           </el-card>
         </el-scrollbar>
       </a-affix>
-    </el-col>
-    <el-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
+    </a-col>
+    <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
       <el-card shadow="always">
-        <a-affix :offset-top="120">
+        <a-affix :offset-top="120" class="center">
           <div style="background: white; padding: 0 0 20px 0">
             <a-input-search
               v-model="listQuery.key"
@@ -53,7 +53,7 @@
               <h3>
                 <a>
                   <router-link
-                    :to="{ name: 'blogDetail', params: { id: item.id } }"
+                    :to="{ name: 'BlogDetail', params: { id: item.id } }"
                   >
                     {{ item.title }}
                   </router-link>
@@ -93,15 +93,15 @@
           </a-card-meta>
         </a-card>
       </el-card>
-    </el-col>
-    <el-col class="hidden-sm-and-down" :md="6" :lg="6" :xl="6">
+    </a-col>
+    <a-col class="hidden-sm-and-down right" :md="6" :lg="6" :xl="6" >
       <a-affix :offset-top="140">
         <el-card shadow="never" align="center">
           <div id="cy" style="width: 300px; height: 300px;"></div>
         </el-card>
       </a-affix>
-    </el-col>
-  </el-row>
+    </a-col>
+  </a-row>
 </template>
 <script>
   import { categoryCY, lists } from '@/api/blog'
@@ -272,6 +272,14 @@
   }
 </script>
 <style scoped>
+  .left> div,.right>div{
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .center{
+    width:100% !important;
+    height: auto!important;
+  }
   .ant-menu-inline,
   .ant-menu-vertical,
   .ant-menu-vertical-left {
