@@ -147,8 +147,7 @@
         return this.loading || this.noMore
       },
     },
-    created() {
-      this.fetchData()
+    activated() {
       let _this = this
       this.$nextTick(() => {
         // this.initScroll()
@@ -167,11 +166,11 @@
             //写后台加载数据的函数
             console.log(
               '距顶部' +
-                scrollTop +
-                '可视区高度' +
-                windowHeight +
-                '滚动条总高度' +
-                scrollHeight
+              scrollTop +
+              '可视区高度' +
+              windowHeight +
+              '滚动条总高度' +
+              scrollHeight
             )
             if (!_this.disabled) {
               _this.load()
@@ -179,6 +178,9 @@
           }
         }
       })
+    },
+    created() {
+      this.fetchData()
     },
     mounted() {},
     methods: {
