@@ -16,12 +16,14 @@ import { title, tokenName } from '@/config'
 const state = () => ({
   accessToken: getAccessToken(),
   username: '',
+  nickname: '',
   avatar: '',
   permissions: [],
 })
 const getters = {
   accessToken: (state) => state.accessToken,
   username: (state) => state.username,
+  nickname: (state) => state.nickname,
   avatar: (state) => state.avatar,
   permissions: (state) => state.permissions,
 }
@@ -32,6 +34,9 @@ const mutations = {
   },
   setUsername(state, username) {
     state.username = username
+  },
+  setNickname(state, nickname) {
+    state.nickname = nickname
   },
   setAvatar(state, avatar) {
     state.avatar = avatar
@@ -75,11 +80,12 @@ const actions = {
       Vue.prototype.$baseMessage('验证失败，请重新登录...', 'error')
       return false
     }
-    let { /*permissions, */ username, avatar } = data
+    let { /*permissions, */ username, nickname, avatar } = data
     if (username) {
       let permissions = ['admin']
       commit('setPermissions', permissions)
       commit('setUsername', username)
+      commit('setNickname', nickname)
       commit('setAvatar', avatar)
       return permissions
     } else {
@@ -96,6 +102,7 @@ const actions = {
     // commit('setPermissions', [])
     commit('setAccessToken', '')
     commit('setUsername', '')
+    commit('setNickname', '')
     commit('setAvatar', '')
     removeAccessToken()
   },
