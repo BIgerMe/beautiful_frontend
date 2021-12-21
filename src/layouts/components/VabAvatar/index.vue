@@ -8,6 +8,7 @@
       </div>
     </span>
     <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item v-if="accessToken && (username==='xiaoming' || username==='2665955305@qq.com')" command="baby" divided>小棉袄</el-dropdown-item>
       <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
@@ -48,6 +49,9 @@
             break
           case 'login':
             this.$router.push('/login')
+            break
+          case 'baby':
+            this.$router.push('/baby')
             break
           case 'plus':
             window.open(

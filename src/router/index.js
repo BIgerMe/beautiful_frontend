@@ -51,6 +51,15 @@ export const asyncRoutes = [
           affix: true,
         },
       },
+      {
+        path: 'baby',
+        name: 'Baby',
+        hidden: true,
+        component: () => import('@/views/baby/index'),
+        meta: {
+          title: '小棉袄',
+        },
+      },
     ],
   },
   {
