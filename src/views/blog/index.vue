@@ -9,7 +9,7 @@
           view-class="view-box"
           :native="false"
         >
-          <el-card shadow="always">
+          <el-card class="md-card no-shadow">
             <a-menu
               style="width: auto"
               :default-selected-keys="['']"
@@ -46,7 +46,6 @@
             v-if="item.cover"
             slot="cover"
             :src="item.cover"
-            style="width: 100%; height: 200px; object-fit: cover"
           />
           <a-card-meta>
             <template slot="title">
@@ -96,7 +95,7 @@
     </a-col>
     <a-col class="hidden-sm-and-down right" :md="6" :lg="6" :xl="6" >
       <a-affix :offset-top="140">
-        <el-card shadow="never" align="center">
+        <el-card align="center" class="md-card">
           <div id="cy" style="width: 300px; height: 300px;"></div>
         </el-card>
       </a-affix>
@@ -266,7 +265,8 @@
     },
   }
 </script>
-<style scoped>
+<style type="scss" scoped>
+  @import "~@/styles/themes/neumorphism.scss";
   .left> div,.right>div{
     width: 100% !important;
     height: 100% !important;
@@ -283,12 +283,6 @@
   .el-scrollbar >>> .categoryList {
     max-height: 80vh;
   }
-  .blogCard {
-    margin-top: 16px;
-    border-radius: 15px;
-    box-shadow: 3px 3px #4b4a50, -1em 0 0.4em black;
-  }
-
   .v-note-wrapper {
     z-index: 1 !important;
     min-height: 100px;
@@ -305,5 +299,10 @@
   }
   a:hover {
     color: #1890ff;
+  }
+</style>
+<style>
+  .hljs {
+    background: #f6f8fa !important;
   }
 </style>

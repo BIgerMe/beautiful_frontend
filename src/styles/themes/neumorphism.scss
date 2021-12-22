@@ -1,0 +1,28 @@
+/*新拟态SCSS*/
+.md-card{
+  margin-top: 10px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:  -8px -8px 11px #cfcfcf,
+  8px 8px 11px #ffffff;
+  img{
+    border-top-left-radius: 20px!important;
+    border-top-right-radius: 20px!important;
+  }
+}
+
+.blogCard {
+  margin-top: 16px;
+  border-radius: 39px;
+  background: #ffffff;
+  box-shadow:  -8px -8px 11px #cfcfcf,
+  8px 8px 11px #ffffff;
+  img{
+    border-top-left-radius: 39px!important;
+    border-top-right-radius: 39px!important;
+  }
+}
+/*消除阴影*/
+.no-shadow{
+  box-shadow:none!important;
+}

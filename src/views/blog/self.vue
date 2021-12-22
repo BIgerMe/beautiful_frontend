@@ -9,7 +9,7 @@
           view-class="view-box"
           :native="false"
         >
-          <el-card shadow="always">
+          <el-card class="md-card no-shadow">
             <a-menu
               style="width: auto"
               :default-selected-keys="['']"
@@ -43,7 +43,7 @@
             <router-link :to="{ name: 'CreateBlog'}"><a-button type="primary" icon="plus" /></router-link>
           </div>
         </a-affix>
-        <a-card v-for="item in lists" class="blogCard">
+        <a-card v-for="item in lists" class="md-card">
           <img
             v-if="item.cover"
             slot="cover"
@@ -218,7 +218,8 @@
     },
   }
 </script>
-<style scoped>
+<style type="text/css" scoped>
+  @import "~@/styles/themes/neumorphism.scss";
   .left> div,.right>div{
     width: 100% !important;
     height: 100% !important;
@@ -237,11 +238,6 @@
   }
   .el-scrollbar >>> .blogDetail {
     max-height: 80vh;
-  }
-  .blogCard {
-    margin-top: 16px;
-    border-radius: 15px;
-    box-shadow: 3px 3px #4b4a50, -1em 0 0.4em black;
   }
 
   .v-note-wrapper {

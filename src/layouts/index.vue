@@ -192,7 +192,7 @@
           .app-main-container {
             margin-top: $base-padding;
             margin-bottom: $base-padding;
-            background: $base-color-white;
+            background: $base-color-transparent;
           }
         }
       }
@@ -252,7 +252,7 @@
           .app-main-container {
             width: calc(100% - #{$base-padding} - #{$base-padding});
             margin: $base-padding auto;
-            background: $base-color-white;
+            background: $base-color-transparent;
             border-radius: $base-border-radius;
           }
         }

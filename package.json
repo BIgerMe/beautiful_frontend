@@ -48,6 +48,7 @@
     "echarts": "^5.2.1",
     "echarts-wordcloud": "^2.0.0",
     "mavon-editor": "^2.10.0",
+    "neumorphism": "^1.0.3",
     "npm": "^8.2.0",
     "nprogress": "^0.2.0",
     "qs": "^6.10.1",
