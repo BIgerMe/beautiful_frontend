@@ -46,6 +46,7 @@
             v-if="item.cover"
             slot="cover"
             :src="item.cover"
+            class="cover"
           />
           <a-card-meta>
             <template slot="title">

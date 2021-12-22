@@ -60,6 +60,15 @@ export const asyncRoutes = [
           title: '小棉袄',
         },
       },
+      {
+        path: '3d',
+        name: '3d',
+        hidden: true,
+        component: () => import('@/views/baby/3d'),
+        meta: {
+          title: '3d',
+        },
+      },
     ],
   },
   {
