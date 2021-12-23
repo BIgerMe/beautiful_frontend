@@ -2,7 +2,7 @@
   <div>
     <div class="app-container">
       <div class="filter-container">
-        <el-descriptions title="基础信息" border :column="4" size="middle">
+        <el-descriptions  title="基础信息" border :column="4" size="middle">
           <el-descriptions-item
             label-class-name="my-label"
             content-class-name="my-content"
@@ -32,7 +32,7 @@
           </el-descriptions-item>
         </el-descriptions>
         <br />
-        <el-card v-if="share_float.length > 0">
+        <el-card v-if="share_float.length > 0" class="md-card">
           <div slot="header" class="clearfix">
             <span>解禁信息</span>
           </div>
@@ -55,6 +55,7 @@
         <el-card
           v-if="repurchase.length > 0"
           style="max-height: 300px; overflow-y: auto"
+          class="md-card"
         >
           <div slot="header" class="clearfix">
             <span>逆回购</span>
@@ -78,26 +79,28 @@
         </el-card>
         <br />
         <div>
-          <el-col :lg="12" :xs="24">
-            <el-card shadow="hover">
-              <daily :ts_code="ts_code" height="400px" width="100%" />
-            </el-card>
-          </el-col>
-          <el-col :lg="12" :xs="24">
-            <el-card shadow="hover">
-              <weekly :ts_code="ts_code" height="400px" width="100%" />
-            </el-card>
-          </el-col>
-          <el-col :lg="12" :xs="24">
-            <el-card class="box-card" shadow="hover">
-              <monthly :ts_code="ts_code" height="400px" width="100%" />
-            </el-card>
-          </el-col>
-          <el-col :lg="12" :xs="24">
-            <el-card class="box-card" shadow="hover">
-              <holderNumber :ts_code="ts_code" height="400px" width="100%" />
-            </el-card>
-          </el-col>
+          <el-row :gutter="15">
+            <el-col :lg="12" :xs="24">
+              <el-card class="md-card">
+                <daily :ts_code="ts_code" height="400px" width="100%" />
+              </el-card>
+            </el-col>
+            <el-col :lg="12" :xs="24">
+              <el-card class="md-card">
+                <weekly :ts_code="ts_code" height="400px" width="100%" />
+              </el-card>
+            </el-col>
+            <el-col :lg="12" :xs="24">
+              <el-card class="md-card">
+                <monthly :ts_code="ts_code" height="400px" width="100%" />
+              </el-card>
+            </el-col>
+            <el-col :lg="12" :xs="24">
+              <el-card class="md-card">
+                <holderNumber :ts_code="ts_code" height="400px" width="100%" />
+              </el-card>
+            </el-col>
+          </el-row>
         </div>
       </div>
     </div>
@@ -141,19 +144,7 @@
   }
 </script>
 
-<style>
-  .chart-container {
-    position: relative;
-    width: 100%;
-    height: calc(150vh - 84px);
-  }
-  .my-label {
-    background: #e1f3d8;
-  }
-  .my-content {
-    background: #fde2e2;
-  }
-  .el-timeline-item {
-    padding-bottom: 5px !important;
-  }
+<style type="scss" scoped>
+  @import "~@/styles/themes/neumorphism.scss";
+
 </style>

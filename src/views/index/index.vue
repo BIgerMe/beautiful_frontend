@@ -45,22 +45,14 @@
           </div>
         </el-alert>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-        <!--<el-card class="card" shadow="never">
-          <video class="war3-homepage-video" style="width:100%" id="autoplayVideo" autoplay muted loop>
-            <source src="http://video.xxroom.xyz/%E6%A3%AE%E6%9E%97.mp4" type="video/mp4" />
-            <source src="http://video.xxroom.xyz/%E6%A8%B1%E8%8A%B1" type="video/webm" />
-          </video>
-        </el-card>-->
-      </el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-card shadow="always">
+        <el-card class="md-card">
           <div v-for="(category,key) in navList">
             <a-divider orientation="left" style="font-size: 18px">
               {{key}}
             </a-divider>
             <el-col v-for="item in category" :xs="24" :sm="8" :md="4" :lg="4" :xl="4">
-              <el-card>
+              <el-card class="md-card">
                 <a :href="item.href" target='_blank' style="color: black">
                   <img style="width:40px;height: 40px;border-radius: 50%;margin: 5px" :src="item.logo" :title="item.title" :alt="item.title">
                     {{item.title}}
