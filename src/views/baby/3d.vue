@@ -1,49 +1,98 @@
 <template>
-  <div class="index-container">
-
-  </div>
+  <div id="horse" class="index-container"></div>
 </template>
 
 <script>
   import * as THREE from 'three'
+  import Stats from '@/utils/statsModule'
+  // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+
   export default {
     name: 'Baby',
-    components: {  },
+    components: {},
     data() {
-      return {
-
-      }
+      return {}
     },
     created() {},
     mounted() {
-      let scene = new THREE.Scene()
-      let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)
-      let renderer = new THREE.WebGLRenderer({
-        alpha: true,// 默认情况下为黑色场景，此处设置为透明（即白色场景）
-      });
-      // 设置渲染器为全屏
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      // 添加到网页中
-      // document.body.appendChild(renderer.domElement);
-      console.log(document.getElementsByClassName('app-main-container'))
-      document.getElementsByClassName('index-container')[0].appendChild(renderer.domElement);
-      var geometry = new THREE.BoxGeometry(1,1,1); // 创建一个长宽高都为1个单位的立方体
-      var material = new THREE.MeshBasicMaterial({color: 0x00ff00}); // 创建材质，对光照无感
-      var cube = new THREE.Mesh(geometry, material); // 创建一个立方体网格（mesh）,将材质包裹在立方体上
-      scene.add(cube); // 将立方体网格添加到场景中
-
-      camera.position.z = 5; // 指定相机位置
-      function render() {
-        requestAnimationFrame(render); // 让浏览器执行参数中的函数，不断循环（浏览器一个新的API）
-        renderer.render(scene, camera); // 结合场景和相机进行渲染，即用摄像机拍下此刻的场景
-      }
-      render();
-
+      this.horse()
     },
     methods: {
+      horse() {
+        let container, stats
+        let camera, scene, renderer
+        let mesh, mixer
+        const radius = 600
+        let theta = 0
+        let prevTime = Date.now()
+        function init() {
+          // container = document.createElement( 'div' );
+          // document.body.appendChild( container );
+          container = document.getElementById('horse')
+          camera = new THREE.PerspectiveCamera(
+            50,
+            window.innerWidth / window.innerHeight,
+            1,
+            10000
+          )
+          camera.position.y = 300
+          scene = new THREE.Scene()
+          scene.background = new THREE.Color(0xf0f0f0)
+
+          const light1 = new THREE.DirectionalLight(0xefefff, 1.5)
+          light1.position.set(1, 1, 1).normalize()
+          scene.add(light1)
+
+          const light2 = new THREE.DirectionalLight(0xffefef, 1.5)
+          light2.position.set(-1, -1, -1).normalize()
+          scene.add(light2)
+
+          const loader = new GLTFLoader()
+          loader.load('./static/three/gltf/Horse.glb', function (gltf) {
+            mesh = gltf.scene.children[0]
+            mesh.scale.set(1.5, 1.5, 1.5)
+            scene.add(mesh)
+            mixer = new THREE.AnimationMixer(mesh)
+            mixer.clipAction(gltf.animations[0]).setDuration(1).play()
+          })
+
+          renderer = new THREE.WebGLRenderer()
+          renderer.setPixelRatio(window.devicePixelRatio)
+          // renderer.setSize( window.innerWidth, window.innerHeight );
+          renderer.setSize(1440, 810)
+          renderer.outputEncoding = THREE.sRGBEncoding
+          container.appendChild(renderer.domElement)
+          stats = new Stats()
+          container.appendChild(stats.dom)
+          window.addEventListener('resize', onWindowResize)
+        }
+        function onWindowResize() {
+          camera.aspect = window.innerWidth / window.innerHeight
+          camera.updateProjectionMatrix()
+          renderer.setSize(window.innerWidth, window.innerHeight)
+        }
+        function animate() {
+          requestAnimationFrame(animate)
+          render()
+          stats.update()
+        }
+        function render() {
+          theta += 0.1
+          camera.position.x = radius * Math.sin(THREE.MathUtils.degToRad(theta))
+          camera.position.z = radius * Math.cos(THREE.MathUtils.degToRad(theta))
+          camera.lookAt(0, 150, 0)
+          if (mixer) {
+            const time = Date.now()
+            mixer.update((time - prevTime) * 0.001)
+            prevTime = time
+          }
+          renderer.render(scene, camera)
+        }
+        init()
+        animate()
+      },
     },
   }
 </script>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
