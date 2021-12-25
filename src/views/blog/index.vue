@@ -60,23 +60,27 @@
                 </a>
               </h3>
               <div>
-                <a-tag>
+                <el-tag effect="plain" type="info">
                   <a>{{ item.nickname }}</a>
-                </a-tag>
+                </el-tag>
                 <a-divider type="vertical" />
-                <a-tag v-for="c in item.category">
+                <el-tag v-for="c in item.category" effect="plain" type="info">
                   <a>{{ c }}</a>
-                </a-tag>
+                </el-tag>
                 <a-divider type="vertical" />
                 <span
                   style="
                     font-family: 'Droid Serif', Georgia, 'Times New Roman',
                       'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
-                      'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;
+                      'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;color: #0808087d;
                   "
                 >
                   {{ item.update_at }}
                 </span>
+                <a-divider type="vertical" />
+                <a-icon type="eye" />&nbsp;{{item.view}}
+                &emsp;
+                <a-icon type="message" />&nbsp;{{item.comment}}
               </div>
             </template>
             <template slot="description">

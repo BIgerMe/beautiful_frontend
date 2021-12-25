@@ -19,11 +19,15 @@
                   style="
                     font-family: 'Droid Serif', Georgia, 'Times New Roman',
                       'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
-                      'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;
+                      'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;color: #0808087d;
                   "
                 >
                   {{ detail.update_at }}
                 </span>
+                <a-divider type="vertical" />
+                <a-icon type="eye" />&nbsp;{{detail.view}}
+                &emsp;
+                <a-icon type="message" />&nbsp;{{detail.comment}}
               </div>
             </template>
             <template slot="description">
