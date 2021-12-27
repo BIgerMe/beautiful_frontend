@@ -39,14 +39,14 @@ export const asyncRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/index',
+    redirect: '/blog/index',
     children: [
       {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/index/index'),
         meta: {
-          title: '首页',
+          title: '导航',
           icon: 'home',
           affix: true,
         },

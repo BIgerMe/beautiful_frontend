@@ -9,7 +9,8 @@
     >
       <el-input type="textarea" v-model="secondComment.content" />
     </a-modal>
-    <a-comment :avatar="avatar">
+    <a-comment>
+      <a-avatar slot="avatar" v-if="avatar !== ''" :src="avatar"></a-avatar>
       <div slot="content">
         <a-form-item>
           <a-textarea :rows="4" :value="value" @change="handleChange" />
@@ -93,7 +94,7 @@
         if (!this.value) {
           return;
         }
-        this.submitting = true;
+        // this.submitting = true;
         let data = {blog_id:this.blogID,content:this.value}
         await createComment(data)
         setTimeout(() => {
@@ -120,12 +121,12 @@
         this.visible = true;
       },
       async handleOk() {
-        this.confirmLoading = true;
+        // this.confirmLoading = true;
         await createComment(this.secondComment)
         setTimeout(() => {
           this.getCommentsList()
           this.visible = false;
-          this.confirmLoading = false;
+          // this.confirmLoading = false;
         }, 2000);
       },
       handleCancel(e) {
