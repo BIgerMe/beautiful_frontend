@@ -3,8 +3,7 @@ import axios from 'axios'
 import {
   baseURL,
   contentType,
-  debounce,
-  invalidCode,
+   invalidCode,
   noPermissionCode,
   requestTimeout,
   successCode,
@@ -15,8 +14,6 @@ import store from '@/store'
 import qs from 'qs'
 import router from '@/router'
 import { isArray } from '@/utils/validate'
-
-// let loadingInstance
 
 /**
  * @author chuzhixin 1204505056@qq.com （不想保留author可删除）

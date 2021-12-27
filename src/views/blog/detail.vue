@@ -45,50 +45,9 @@
         </a-card>
       </el-col>
       <el-col :span="24">
-      <comments></comments>
-      <!--  <a-comment>
-          <a-avatar
-            slot="avatar"
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-            alt="Han Solo"
-          />
-          <div slot="content">
-            <a-form-item>
-              <a-textarea :rows="4" :value="value" @change="handleChange" />
-            </a-form-item>
-            <a-form-item>
-              <a-button html-type="submit" :loading="submitting" type="primary" @click="handleSubmit">
-                添加评论
-              </a-button>
-            </a-form-item>
-          </div>
-        </a-comment>
-        <template>
-          <a-comment v-for="item in comments">
-            <span slot="actions" key="comment-nested-reply-to">Reply to</span>
-            <a slot="author">{{item.nickname}}</a>
-            <a-avatar
-              slot="avatar"
-              :src="item.avatar"
-              :alt="item.nickname"
-            />
-            <p slot="content">
-              {{item.content}}
-            </p>
-            <a-comment v-for="item_c in item.comments">
-              <span slot="actions">Reply to</span>
-              <a slot="author">{{item_c.nickname}}</a>
-              <a-avatar
-                slot="avatar"
-                :src="item.avatar"
-                :alt="item.nickname"
-              />
-              <p slot="content">
-                {{item.content}}
-              </p>
-            </a-comment>
-          </a-comment>
-        </template>-->
+        <a-card class="md-card">
+          <comments :blogID="$route.params.id"></comments>
+        </a-card>
       </el-col>
     </el-row>
   </div>
@@ -105,41 +64,6 @@
     data() {
       return {
         detail: {},
-        comments: [
-          {
-            nickname:'xiaoming',
-            datetime:'2021-12-26',
-            avatar:'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-            content:'test ads asd asd asd a',
-            comments:[
-              {
-                nickname:'xiaoming',
-                datetime:'2021-12-26',
-                avatar:'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                content:'test ads asd asd asd a',
-              }
-            ]
-          },
-          {
-            nickname:'xiaoming',
-            datetime:'2021-12-26',
-            avatar:'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-            content:'test ads asd asd asd a',
-            comments:[
-              {
-                nickname:'xiaoming',
-                datetime:'2021-12-26',
-                avatar:'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                content:'test ads asd asd asd a',
-              }
-            ]
-          },
-        ],
-        likes: 0,
-        dislikes: 0,
-        action: null,
-        submitting: false,
-        value: '',
       }
     },
     created() {
@@ -150,30 +74,6 @@
       async fetchData() {
         const { data } = await detail({ id: this.$route.params.id })
         this.detail = data.data
-      },
-      handleSubmit() {
-        if (!this.value) {
-          return;
-        }
-
-        this.submitting = true;
-
-        setTimeout(() => {
-          this.submitting = false;
-          this.comments = [
-            {
-              nickname: 'Han Solo',
-              avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-              content: this.value,
-              datetime: '2021-12-26',
-            },
-            ...this.comments,
-          ];
-          this.value = '';
-        }, 1000);
-      },
-      handleChange(e) {
-        this.value = e.target.value;
       },
     },
   }

@@ -7,14 +7,9 @@
       @ok="handleOk"
       @cancel="handleCancel"
     >
-      <el-input type="textarea" v-model="commentsValue" />
+      <el-input type="textarea" v-model="secondComment.content" />
     </a-modal>
-    <a-comment>
-      <a-avatar
-        slot="avatar"
-        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-        alt="Han Solo"
-      />
+    <a-comment :avatar="avatar">
       <div slot="content">
         <a-form-item>
           <a-textarea :rows="4" :value="value" @change="handleChange" />
@@ -34,13 +29,13 @@
     >
       <a-list-item slot="renderItem" slot-scope="item, index">
         <a-comment
-          :author="item.author"
+          :author="item.nickname"
           :avatar="item.avatar"
           :content="item.content"
           :datetime="item.datetime">
           <span slot="actions" key="comment-nested-reply-to" @click="showModal(item)">回复</span>
           <a-comment v-for="item_c in item.comments"
-            :author="item_c.author"
+            :author="item_c.to_nickname === '' ? item_c.nickname : item_c.nickname+' 回复 '+ item_c.to_nickname"
             :avatar="item_c.avatar"
             :content="item_c.content"
             :datetime="item_c.datetime"
@@ -55,48 +50,58 @@
 
 <script>
   import moment from 'moment'
+  import { createComment, commentsList } from "@/api/blog";
+  import { mapGetters} from 'vuex'
   export default {
     name: "comments",
+    props:{
+      blogID:{
+        type: String,
+        default: '',
+      },
+    },
     data() {
       return {
-        comments: [
-          {
-            nickname:'xiaoming',
-            datetime:'2021-12-26',
-            avatar:'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-            content:'test ads asd asd asd a',
-            comments:[
-              {
-                nickname:'xiaoming',
-                datetime:'2021-12-26',
-                avatar:'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                content:'test ads asd asd asd a',
-              }
-            ]
-          },
-        ],
+        comments: [],
         submitting: false,
         value: '',
-        commentsValue:'',
+        secondComment:{
+          blog_id:this.blogID,
+          content:'',
+        },
         visible: false,
         confirmLoading: false,
         moment,
       };
     },
+    created() {
+      this.getCommentsList()
+    },
+    computed: {
+      ...mapGetters({
+        avatar: 'user/avatar',
+        nickname: 'user/nickname',
+      }),
+    },
     methods: {
-      handleSubmit() {
+      async getCommentsList(){
+        const { data } = await commentsList({id:this.blogID});
+        this.comments = data
+      },
+      async handleSubmit() {
+
         if (!this.value) {
           return;
         }
-
         this.submitting = true;
-
+        let data = {blog_id:this.blogID,content:this.value}
+        await createComment(data)
         setTimeout(() => {
           this.submitting = false;
           this.comments = [
             {
-              author: 'Han Solo',
-              avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+              author: this.nickname,
+              avatar: this.avatar,
               content: this.value,
               datetime: moment().fromNow(),
             },
@@ -109,18 +114,21 @@
         this.value = e.target.value;
       },
       showModal(item) {
+        this.secondComment.to_user_id = item.user_id
+        this.secondComment.base_id =  item.base_id == 0 ? item.id : item.base_id
+
         this.visible = true;
       },
-      handleOk(e) {
-        this.ModalText = 'The modal will be closed after two seconds';
+      async handleOk() {
         this.confirmLoading = true;
+        await createComment(this.secondComment)
         setTimeout(() => {
+          this.getCommentsList()
           this.visible = false;
           this.confirmLoading = false;
         }, 2000);
       },
       handleCancel(e) {
-        console.log('Clicked cancel button');
         this.visible = false;
       },
     },

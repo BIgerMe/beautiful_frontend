@@ -52,3 +52,19 @@ export function updateBlog(data) {
     data,
   })
 }
+
+export function commentsList(data) {
+  return request({
+    url: '/z/blog/commentsList',
+    method: 'get',
+    params:data,
+  })
+}
+
+export function createComment(data){
+  return request({
+    url: '/z/blog/createComment',
+    method: 'post',
+    data,
+  })
+}
