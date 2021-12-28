@@ -1,5 +1,4 @@
 import { loadingText, messageDuration, title } from '@/config'
-import * as lodash from 'lodash'
 import { Loading, Message, MessageBox, Notification } from 'element-ui'
 import store from '@/store'
 import { getAccessToken } from '@/utils/accessToken'
@@ -143,8 +142,6 @@ const install = (Vue, opts = {}) => {
     return height
   }
 
-  /* 全局lodash */
-  Vue.prototype.$baseLodash = lodash
   /* 全局事件总线 */
   Vue.prototype.$baseEventBus = new Vue()
 }

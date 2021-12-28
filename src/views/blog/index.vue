@@ -28,7 +28,7 @@
     </a-col>
     <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
       <a-affix :offset-top="115" class="center">
-        <div style="background: white; padding: 10px 0">
+        <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
           <a-input-search
             v-model="listQuery.key"
             placeholder="搜索内容"
@@ -40,11 +40,11 @@
           />
         </div>
       </a-affix>
-      <a-col v-if="'mobile' === device" :span="24" >
+ <!--     <a-col v-if="'mobile' === device" :span="24" >
         <el-card align="center" class="md-card">
           <div id="cy" style="width: 300px; height: 300px;"></div>
         </el-card>
-      </a-col>
+      </a-col>-->
       <el-card shadow="always">
         <a-card v-for="item in lists" class="blogCard">
           <img
@@ -103,20 +103,18 @@
         </a-card>
       </el-card>
     </a-col>
-    <a-col v-if="'mobile' !== device" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >
-      <a-affix :offset-top="140">
-        <el-card align="center" class="md-card">
-          <div id="cy" style="width: 300px; height: 300px;"></div>
-        </el-card>
-      </a-affix>
-    </a-col>
+<!--    <a-col v-if="'mobile' !== device" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >-->
+<!--      <el-card align="center" class="md-card">-->
+<!--        <div id="cy" style="width: 300px; height: 300px;"></div>-->
+<!--      </el-card>-->
+<!--    </a-col>-->
   </a-row>
 </template>
 <script>
   import { categoryCY, lists } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
   import * as echarts from 'echarts'
-  import 'echarts-wordcloud'
+  // import 'echarts-wordcloud'
   import {mapGetters} from "vuex";
 
   export default {
@@ -231,7 +229,7 @@
         /*分类*/
         let { data } = await categoryCY()
         this.category = data
-        this.setCy()
+        // this.setCy()
         await this.getList()
       },
       async getList(push = false) {
@@ -287,6 +285,7 @@
   .center{
     width:100% !important;
     height: auto!important;
+    text-align: center;
   }
   .ant-menu-inline,
   .ant-menu-vertical,
@@ -317,5 +316,8 @@
 <style>
   .hljs {
     background: #f6f8fa !important;
+  }
+  .el-card__body{
+    padding:10px 0!important;
   }
 </style>
