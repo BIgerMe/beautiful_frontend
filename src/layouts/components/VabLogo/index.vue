@@ -25,7 +25,6 @@
     },
     computed: {
       ...mapGetters({
-        logo: 'settings/logo',
         layout: 'settings/layout',
       }),
     },

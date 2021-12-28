@@ -115,7 +115,6 @@
 <script>
   import { categoryCY, lists } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
-  import 'mavon-editor/dist/css/index.css'
   import * as echarts from 'echarts'
   import 'echarts-wordcloud'
   import {mapGetters} from "vuex";

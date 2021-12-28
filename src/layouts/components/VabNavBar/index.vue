@@ -9,7 +9,6 @@
             class="fold-unfold"
             @click="handleCollapse"
           ></i>
-          <vab-breadcrumb class="hidden-xs-only" />
         </div>
       </el-col>
       <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12">

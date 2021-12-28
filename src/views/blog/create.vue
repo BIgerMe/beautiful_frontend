@@ -48,7 +48,6 @@
   import { uploadImg } from '@/api/qiniu'
   import { createBlog } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
-  import 'mavon-editor/dist/css/index.css'
   import Vue from "vue";
   export default {
     name: 'CreateBlog',

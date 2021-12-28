@@ -56,7 +56,6 @@
 <script>
   import { detail } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
-  import 'mavon-editor/dist/css/index.css'
   import comments from './components/comments'
   export default {
     name: 'BlogDetail',

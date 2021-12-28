@@ -93,6 +93,8 @@ module.exports = {
         // 不去 node_modules 中找，而是去找 全局变量 ELEMENT
         'element-ui': 'ELEMENT',
         'ant-design-vue': 'antd',
+        'mavon-editor': 'MavonEditor',
+        // 'echarts': 'echarts',
       }
     }
   },
