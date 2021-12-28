@@ -48,7 +48,6 @@ export const asyncRoutes = [
         meta: {
           title: '导航',
           icon: 'home',
-          affix: true,
         },
       },
       {
@@ -84,7 +83,8 @@ export const asyncRoutes = [
         name: 'Blog',
         component: () => import('@/views/blog/index'),
         meta: {
-          title: '所有文章',
+          title: '主页',
+          affix: true,
         },
       },
       {

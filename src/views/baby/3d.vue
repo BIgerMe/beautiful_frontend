@@ -3,10 +3,10 @@
 </template>
 
 <script>
-  import * as THREE from 'three'
+  // import * as THREE from 'three'
   import Stats from '@/utils/statsModule'
   // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+  // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
   export default {
     name: 'Baby',
@@ -16,7 +16,7 @@
     },
     created() {},
     mounted() {
-      this.horse()
+      // this.horse()
     },
     methods: {
       horse() {

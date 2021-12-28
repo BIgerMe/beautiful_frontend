@@ -162,7 +162,7 @@
           var scrollHeight =
             document.documentElement.scrollHeight || document.body.scrollHeight
           //滚动条到底部的条件
-          if (scrollTop + windowHeight == scrollHeight) {
+          if (scrollTop + windowHeight > scrollHeight-10) {
             //写后台加载数据的函数
             console.log(
               '距顶部' +

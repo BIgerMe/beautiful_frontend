@@ -204,7 +204,8 @@
           var scrollHeight =
             document.documentElement.scrollHeight || document.body.scrollHeight
           //滚动条到底部的条件
-          if (scrollTop + windowHeight == scrollHeight) {
+          /**@todo -10是因为页面缩放后查看居然有0.25的误差*/
+          if (scrollTop + windowHeight > scrollHeight-10) {
             //写后台加载数据的函数
             // console.log('距顶部' + scrollTop + '可视区高度' + windowHeight + '滚动条总高度' + scrollHeight)
             if (!_this.disabled) {
