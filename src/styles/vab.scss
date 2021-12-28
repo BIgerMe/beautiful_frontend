@@ -158,7 +158,7 @@ html {
           * {
             transition: none;
           }
-          padding: $base-padding;
+          //padding: $base-padding;
           background: $base-color-white;
         }
       }
@@ -269,7 +269,8 @@ html {
       margin-bottom: 15px;
 
       &__body {
-        padding: $base-padding;
+        //padding: $base-padding;
+        padding: $base-padding 5px;
       }
     }
 

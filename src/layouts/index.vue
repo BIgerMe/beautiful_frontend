@@ -42,7 +42,6 @@
           <vab-nav-bar />
           <vab-tabs-bar v-if="tabsBar === 'true' || tabsBar === true" />
         </div>
-        <!--<vab-ad />-->
         <vab-app-main />
       </div>
     </div>
@@ -250,8 +249,8 @@
           }
 
           .app-main-container {
-            width: calc(100% - #{$base-padding} - #{$base-padding});
-            margin: $base-padding auto;
+            width: calc(100%);
+            margin: 0;
             background: $base-color-transparent;
             border-radius: $base-border-radius;
           }

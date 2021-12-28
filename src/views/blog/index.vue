@@ -27,20 +27,20 @@
       </a-affix>
     </a-col>
     <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
-      <el-card shadow="always">
-        <a-affix :offset-top="120" class="center">
-          <div style="background: white; padding: 0 0 20px 0">
-            <a-input-search
-              v-model="listQuery.key"
-              placeholder="搜索内容"
-              style="width: 300px"
-              @search="
+      <a-affix :offset-top="115" class="center">
+        <div style="background: white; padding: 10px 0">
+          <a-input-search
+            v-model="listQuery.key"
+            placeholder="搜索内容"
+            style="width: 300px"
+            @search="
                 listQuery.page = 1
                 getList()
               "
-            />
-          </div>
-        </a-affix>
+          />
+        </div>
+      </a-affix>
+      <el-card shadow="always">
         <a-card v-for="item in lists" class="blogCard">
           <img
             v-if="item.cover"
@@ -68,7 +68,7 @@
                   <a>{{ c }}</a>
                 </el-tag>
                 <a-divider type="vertical" />
-                <span
+                <span v-if="'mobile' !== device"
                   style="
                     font-family: 'Droid Serif', Georgia, 'Times New Roman',
                       'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
@@ -98,7 +98,7 @@
         </a-card>
       </el-card>
     </a-col>
-    <a-col class="hidden-sm-and-down right" :md="6" :lg="6" :xl="6" >
+    <a-col class="hidden-sm-and-down right" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >
       <a-affix :offset-top="140">
         <el-card align="center" class="md-card">
           <div id="cy" style="width: 300px; height: 300px;"></div>
@@ -113,7 +113,7 @@
   import 'mavon-editor/dist/css/index.css'
   import * as echarts from 'echarts'
   import 'echarts-wordcloud'
-  // import 'element-ui/lib/theme-chalk/display.css';
+  import {mapGetters} from "vuex";
 
   export default {
     name: 'Blog',
@@ -182,6 +182,9 @@
       }
     },
     computed: {
+      ...mapGetters({
+        device: 'settings/device',
+      }),
       noMore() {
         return this.listQuery.page * this.listQuery.pageSize >= this.total
       },

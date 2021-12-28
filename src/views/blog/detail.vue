@@ -5,8 +5,8 @@
         <a-card class="blogCard">
           <a-card-meta>
             <template slot="title">
-              <h2 style="text-align: center">{{ detail.title }}</h2>
-              <div style="text-align: center">
+              <h2 style="text-align: center;white-space: normal;">{{ detail.title }}</h2>
+              <div style="text-align: center;white-space: normal;">
                 <a-tag>
                   <a>{{ detail.nickname }}</a>
                 </a-tag>
@@ -15,19 +15,19 @@
                   <a>{{ c }}</a>
                 </a-tag>
                 <a-divider type="vertical" />
-                <span
+                <div
                   style="
                     font-family: 'Droid Serif', Georgia, 'Times New Roman',
                       'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
-                      'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;color: #0808087d;
+                      'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;color: #0808087d;display: inline-block;
                   "
                 >
                   {{ detail.update_at }}
-                </span>
-                <a-divider type="vertical" />
-                <a-icon type="eye" />&nbsp;{{detail.view}}
-                &emsp;
-                <a-icon type="message" />&nbsp;{{detail.comment}}
+                  <a-divider type="vertical" />
+                  <a-icon type="eye" />&nbsp;{{detail.view}}
+                  &emsp;
+                  <a-icon type="message" />&nbsp;{{detail.comment}}
+                </div>
               </div>
             </template>
             <template slot="description">
