@@ -28,8 +28,8 @@
     </a-col>
     <a-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7">
       <el-card shadow="always">
-        <a-affix :offset-top="120" class="center">
-          <div style="background: white; padding: 0 0 20px 0">
+        <a-affix :offset-top="115" class="center">
+          <div style="background: white; padding: 10px 0">
             <a-input-search
               v-model="listQuery.key"
               placeholder="搜索内容"

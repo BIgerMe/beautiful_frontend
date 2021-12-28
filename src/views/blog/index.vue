@@ -40,6 +40,11 @@
           />
         </div>
       </a-affix>
+      <a-col v-if="'mobile' === device" :span="24" >
+        <el-card align="center" class="md-card">
+          <div id="cy" style="width: 300px; height: 300px;"></div>
+        </el-card>
+      </a-col>
       <el-card shadow="always">
         <a-card v-for="item in lists" class="blogCard">
           <img
@@ -98,7 +103,7 @@
         </a-card>
       </el-card>
     </a-col>
-    <a-col class="hidden-sm-and-down right" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >
+    <a-col v-if="'mobile' !== device" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >
       <a-affix :offset-top="140">
         <el-card align="center" class="md-card">
           <div id="cy" style="width: 300px; height: 300px;"></div>
