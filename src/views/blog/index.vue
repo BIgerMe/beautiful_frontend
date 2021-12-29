@@ -50,12 +50,13 @@
           />
         </div>
       </a-affix>
-      <a-col v-if="'mobile' === device" :span="24" >
+      <a-col v-if="'mobile' === device" :xs="24" >
         <el-card align="center" class="md-card">
           <div id="cy" style="width: 300px; height: 300px;"></div>
         </el-card>
       </a-col>
-      <el-card shadow="always">
+
+      <a-col :xs="24">
         <a-card v-for="item in lists" class="blogCard">
           <img
             v-if="item.cover"
@@ -84,7 +85,7 @@
                 </el-tag>
                 <a-divider type="vertical" />
                 <span v-if="'mobile' !== device"
-                  style="
+                      style="
                     font-family: 'Droid Serif', Georgia, 'Times New Roman',
                       'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
                       'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;color: #0808087d;
@@ -111,7 +112,7 @@
             </template>
           </a-card-meta>
         </a-card>
-      </el-card>
+      </a-col>
     </a-col>
     <a-col v-if="'mobile' !== device" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >
       <el-card align="center" class="md-card">
@@ -124,7 +125,6 @@
   import { categoryCY, lists } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
   import * as echarts from 'echarts'
-  // import 'echarts-wordcloud'
   import {mapGetters} from "vuex";
 
   export default {
@@ -286,6 +286,7 @@
   }
 </script>
 <style type="scss" scoped>
+
   @import "~@/styles/themes/neumorphism.scss";
   .left> div,.right>div{
     width: 100% !important;
@@ -325,11 +326,5 @@
 <style>
   .hljs {
     background: #f6f8fa !important;
-  }
-  .el-card__body{
-    padding:0!important;
-  }
-  .blogCard{
-    margin-top: 0!important;
   }
 </style>
