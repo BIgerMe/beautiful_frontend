@@ -40,7 +40,7 @@
       <div class="vab-main" :class="collapse ? 'is-collapse-main' : ''">
         <div :class="header === 'fixed' ? 'fixed-header' : ''">
           <vab-nav-bar />
-          <vab-tabs-bar v-if="tabsBar === 'true' || tabsBar === true" />
+          <vab-tabs-bar v-if="device !== 'mobile'" />
         </div>
         <vab-app-main />
       </div>
@@ -215,7 +215,8 @@
       }
 
       &.fixed {
-        padding-top: calc(#{$base-nav-bar-height} + #{$base-tabs-bar-height});
+
+        padding-top: #{$base-nav-bar-height};
       }
 
       &.fixed.no-tabs-bar {

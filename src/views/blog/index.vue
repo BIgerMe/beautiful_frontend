@@ -37,7 +37,7 @@
       </a-affix>
     </a-col>
     <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
-      <a-affix :offset-top="115" class="center">
+      <a-affix v-if="device !== 'mobile'" :offset-top="115" class="center">
         <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
           <a-input-search
             v-model="listQuery.key"
