@@ -25,7 +25,7 @@
     <a-list
       v-if="comments.length"
       :data-source="comments"
-      :header="`${comments.length}条回复`"
+      :header="`${comments.length}条用户回复`"
       item-layout="horizontal"
     >
       <a-list-item slot="renderItem" slot-scope="item, index">
@@ -33,16 +33,29 @@
           :author="item.nickname"
           :avatar="item.avatar"
           :content="item.content"
-          :datetime="item.datetime">
+          :datetime="item.created_at">
           <span slot="actions" key="comment-nested-reply-to" @click="showModal(item)">回复</span>
           <a-comment v-for="item_c in item.comments"
             :author="item_c.to_nickname === '' ? item_c.nickname : item_c.nickname+' 回复 '+ item_c.to_nickname"
             :avatar="item_c.avatar"
             :content="item_c.content"
-            :datetime="item_c.datetime"
+            :datetime="item_c.created_at"
           >
             <span slot="actions" key="comment-nested-reply-to" @click="showModal(item_c)">回复</span>
           </a-comment>
+        </a-comment>
+      </a-list-item>
+    </a-list>
+    <a-list
+      v-if="guestComments.length"
+      :data-source="guestComments"
+      :header="`${guestComments.length}条游客回复`"
+      item-layout="horizontal"
+    >
+      <a-list-item slot="renderItem" slot-scope="item, index">
+        <a-comment
+          :content="item.content"
+          :datetime="item.created_at">
         </a-comment>
       </a-list-item>
     </a-list>
@@ -63,6 +76,7 @@
     data() {
       return {
         comments: [],
+        guestComments:[],
         submitting: false,
         value: '',
         secondComment:{
@@ -85,27 +99,39 @@
     methods: {
       async getCommentsList(){
         const { data } = await commentsList({id:this.blogID});
-        this.comments = data
+        console.log(data);
+        this.comments = data.userComment
+        this.guestComments = data.guestComment
       },
       async handleSubmit() {
 
         if (!this.value) {
           return;
         }
-        // this.submitting = true;
+        this.submitting = true;
         let data = {blog_id:this.blogID,content:this.value}
         await createComment(data)
         setTimeout(() => {
           this.submitting = false;
-          this.comments = [
-            {
-              author: this.nickname,
-              avatar: this.avatar,
-              content: this.value,
-              datetime: '刚刚提交',
-            },
-            ...this.comments,
-          ];
+          if(this.nickname){
+            this.comments = [
+              {
+                author: this.nickname,
+                avatar: this.avatar,
+                content: this.value,
+                created_at: '刚刚提交',
+              },
+              ...this.comments,
+            ];
+          }else{
+            this.guestComments = [
+              {
+                content: this.value,
+                created_at: '刚刚提交',
+              },
+              ...this.guestComments,
+            ];
+          }
           this.value = '';
         }, 1000);
       },
@@ -119,12 +145,12 @@
         this.visible = true;
       },
       async handleOk() {
-        // this.confirmLoading = true;
+        this.confirmLoading = true;
         await createComment(this.secondComment)
         setTimeout(() => {
           this.getCommentsList()
           this.visible = false;
-          // this.confirmLoading = false;
+          this.confirmLoading = false;
         }, 2000);
       },
       handleCancel(e) {
