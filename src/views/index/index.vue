@@ -4,7 +4,7 @@
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-alert>
           <div
-            style="display: flex; align-items: center; justify-content: center"
+            style="align-items: center; justify-content: center;white-space: normal;"
           >
             <a
               target="_blank"
@@ -30,13 +30,11 @@
                 src="https://img.shields.io/badge/twitter--blue?logo=twitter&style=social"
               />
             </a>
-
             <img
               style="margin-right: 10px"
               alt="wechat"
               src="https://img.shields.io/badge/wechat-iyeallday-blue?logo=wechat&style=plastic"
             />
-
             <img
               style="margin-right: 10px"
               alt="email"
