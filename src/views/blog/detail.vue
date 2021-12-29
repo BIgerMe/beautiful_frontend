@@ -73,6 +73,7 @@
       async fetchData() {
         const { data } = await detail({ id: this.$route.params.id })
         this.detail = data.data
+        document.title = this.detail.title
       },
     },
   }

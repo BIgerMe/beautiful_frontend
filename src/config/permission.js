@@ -85,7 +85,9 @@ router.beforeResolve(async (to, from, next) => {
       if (progressBar) VabProgress.done()
     }
   }
-  document.title = getPageTitle(to.meta.title)
+  if(to.path.indexOf('/blog/detail') == -1){
+    document.title = getPageTitle(to.meta.title)
+  }
 })
 router.afterEach(() => {
   if (progressBar) VabProgress.done()
