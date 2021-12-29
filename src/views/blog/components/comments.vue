@@ -50,7 +50,6 @@
 </template>
 
 <script>
-  import moment from 'moment'
   import { createComment, commentsList } from "@/api/blog";
   import { mapGetters} from 'vuex'
   export default {
@@ -72,7 +71,6 @@
         },
         visible: false,
         confirmLoading: false,
-        moment,
       };
     },
     created() {
@@ -104,7 +102,7 @@
               author: this.nickname,
               avatar: this.avatar,
               content: this.value,
-              datetime: moment().fromNow(),
+              datetime: '刚刚提交',
             },
             ...this.comments,
           ];

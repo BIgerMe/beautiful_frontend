@@ -29,8 +29,8 @@
     <a-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7">
       <el-card shadow="always">
         <a-affix :offset-top="115" class="center">
-          <div style="background: white; padding: 10px 0">
-            <a-input-search
+          <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
+          <a-input-search
               v-model="listQuery.key"
               placeholder="搜索内容"
               style="width: 200px; min-width: 70%"
@@ -226,6 +226,7 @@
   .center{
     width:100% !important;
     height: auto!important;
+    text-align: center;
   }
   .ant-menu-inline,
   .ant-menu-vertical,

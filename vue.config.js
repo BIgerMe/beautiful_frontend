@@ -94,7 +94,7 @@ module.exports = {
         'element-ui': 'ELEMENT',
         'ant-design-vue': 'antd',
         'mavon-editor': 'MavonEditor',
-        // 'echarts': 'echarts',
+        'echarts': 'echarts',
       }
     }
   },
