@@ -20,6 +20,10 @@
               <a-menu-item key="">全部</a-menu-item>
               <a-menu-item v-for="(item, index) in category" :key="index">
                 {{ index }}
+                <a-badge
+                  :count="item"
+                  :number-style="{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset', }"
+                />
               </a-menu-item>
             </a-menu>
           </el-card>

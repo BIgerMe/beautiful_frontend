@@ -12,14 +12,24 @@
           <el-card class="md-card no-shadow">
             <a-menu
               style="width: auto"
-              :default-selected-keys="['']"
+              :default-selected-keys="['博客']"
               mode="inline"
               theme="light"
               @click="changeCategory"
             >
               <a-menu-item key="">全部</a-menu-item>
-              <a-menu-item v-for="(item, index) in category" :key="index">
+              <a-menu-item key="博客">博客
+                <a-badge
+                  :count="category['博客']"
+                  :number-style="{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset', }"
+                />
+              </a-menu-item>
+              <a-menu-item v-for="(item, index) in category" v-if="index!=='博客'" :key="index">
                 {{ index }}
+                <a-badge
+                  :count="item"
+                  :number-style="{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset', }"
+                />
               </a-menu-item>
             </a-menu>
           </el-card>
@@ -40,11 +50,11 @@
           />
         </div>
       </a-affix>
- <!--     <a-col v-if="'mobile' === device" :span="24" >
+      <a-col v-if="'mobile' === device" :span="24" >
         <el-card align="center" class="md-card">
           <div id="cy" style="width: 300px; height: 300px;"></div>
         </el-card>
-      </a-col>-->
+      </a-col>
       <el-card shadow="always">
         <a-card v-for="item in lists" class="blogCard">
           <img
@@ -103,11 +113,11 @@
         </a-card>
       </el-card>
     </a-col>
-<!--    <a-col v-if="'mobile' !== device" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >-->
-<!--      <el-card align="center" class="md-card">-->
-<!--        <div id="cy" style="width: 300px; height: 300px;"></div>-->
-<!--      </el-card>-->
-<!--    </a-col>-->
+    <a-col v-if="'mobile' !== device" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >
+      <el-card align="center" class="md-card">
+        <div id="cy" style="width: 300px; height: 300px;"></div>
+      </el-card>
+    </a-col>
   </a-row>
 </template>
 <script>
@@ -126,7 +136,7 @@
         lists: [],
         total: 0,
         listQuery: {
-          category: '',
+          category: '博客',
           key: '',
           page: 1,
           pageSize: 5,
@@ -229,7 +239,7 @@
         /*分类*/
         let { data } = await categoryCY()
         this.category = data
-        // this.setCy()
+        this.setCy()
         await this.getList()
       },
       async getList(push = false) {
@@ -244,7 +254,7 @@
         }
         this.total = data.total
       },
-      setCy(){
+      setCy(){//生成词云
         let cyData = []
         for (let index in this.category) {
           cyData.push({ name: index, value: this.category[index] })
@@ -263,7 +273,6 @@
         }
       },
       changeCategory(e) {
-        console.log(e)
         this.listQuery.category = e.key
         this.listQuery.page = 1
         window.scrollTo(0, 0)
@@ -318,6 +327,9 @@
     background: #f6f8fa !important;
   }
   .el-card__body{
-    padding:10px 0!important;
+    padding:0!important;
+  }
+  .blogCard{
+    margin-top: 0!important;
   }
 </style>

@@ -44,8 +44,6 @@
     "compression-webpack-plugin": "^2.0.0",
     "core-js": "^3.18.1",
     "dayjs": "^1.10.7",
-    "echarts-wordcloud": "^2.0.0",
-    "neumorphism": "^1.0.3",
     "npm": "^8.2.0",
     "nprogress": "^0.2.0",
     "qs": "^6.10.1",

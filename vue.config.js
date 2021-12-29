@@ -95,6 +95,7 @@ module.exports = {
         'ant-design-vue': 'antd',
         'mavon-editor': 'MavonEditor',
         'echarts': 'echarts',
+        // 'echarts-wordcloud': 'echarts-wordcloud',
       }
     }
   },

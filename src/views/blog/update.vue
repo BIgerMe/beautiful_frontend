@@ -55,7 +55,7 @@
     data() {
       return {
         options:{
-          category:['php','python','java','html','vue','js'],
+          category:['博客','php','python','java','html','vue','js'],
         },
         form:{
           title:'',
