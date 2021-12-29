@@ -1,6 +1,6 @@
 <template>
   <a-row :gutter="20">
-    <a-col :xs="0" :sm="24" :md="4" :lg="4" :xl="4" class="left" style="max-height: 80vh;">
+    <a-col v-if="device !== 'mobile'" :md="4" :lg="4" :xl="4" class="left" style="max-height: 80vh;">
       <a-affix :offset-top="140">
         <el-scrollbar
           wrap-class="categoryList"
