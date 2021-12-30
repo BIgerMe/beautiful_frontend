@@ -36,6 +36,79 @@ export const constantRoutes = [
 
 export const asyncRoutes = [
   {
+    path: '/blog',
+    component: Layout,
+    redirect: '/index',
+    meta: {
+      title: '文章',
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'Blog',
+        component: () => import('@/views/blog/index'),
+        meta: {
+          title: '主页',
+          affix: true,
+        },
+      },
+      {
+        path: 'detail/:id',
+        name: 'BlogDetail',
+        hidden: true,
+        component: () => import('@/views/blog/detail'),
+        meta: {
+          title: '文章详情',
+        },
+      },
+      {
+        path: 'self',
+        name: 'BlogSelf',
+        hidden: true,
+        component: () => import('@/views/blog/self'),
+        meta: {
+          title: '我的文章',
+        },
+      },
+      {
+        path: 'create',
+        name: 'CreateBlog',
+        hidden: true,
+        component: () => import('@/views/blog/create'),
+        meta: {
+          title: '写新文章',
+        },
+      },
+      {
+        path: 'update/:id',
+        name: 'UpdateBlog',
+        hidden: true,
+        component: () => import('@/views/blog/update'),
+        meta: {
+          title: '更新文章',
+        },
+      },
+    ],
+  },
+  { //@todo 暂时用后台的layout，后续优化成前台的层次
+    path: '/shopping',
+    component: () => import('@/layouts/frontend'),
+    redirect: 'noRedirect',
+    name: 'shopping',
+    meta: {
+      title: '购物',
+      icon: 'shopping',
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/shopping/index'),
+        name: 'shopping_home',
+        meta: { title: '商品', noCache: true },
+      },
+    ]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/blog/index',
@@ -65,60 +138,6 @@ export const asyncRoutes = [
         component: () => import('@/views/baby/3d'),
         meta: {
           title: '3d',
-        },
-      },
-    ],
-  },
-  {
-    path: '/blog',
-    component: Layout,
-    redirect: '/index',
-    meta: {
-      title: '文章',
-    },
-    children: [
-      {
-        path: 'index',
-        name: 'Blog',
-        component: () => import('@/views/blog/index'),
-        meta: {
-          title: '主页',
-          affix: true,
-        },
-      },
-      {
-        path: 'detail/:id',
-        name: 'BlogDetail',
-        hidden: true,
-        component: () => import('@/views/blog/detail'),
-        meta: {
-          title: '文章详情',
-        },
-      },
-      {
-        path: 'self',
-        name: 'BlogSelf',
-        component: () => import('@/views/blog/self'),
-        meta: {
-          title: '我的文章',
-        },
-      },
-      {
-        path: 'create',
-        name: 'CreateBlog',
-        hidden: true,
-        component: () => import('@/views/blog/create'),
-        meta: {
-          title: '写新文章',
-        },
-      },
-      {
-        path: 'update/:id',
-        name: 'UpdateBlog',
-        hidden: true,
-        component: () => import('@/views/blog/update'),
-        meta: {
-          title: '更新文章',
         },
       },
     ],

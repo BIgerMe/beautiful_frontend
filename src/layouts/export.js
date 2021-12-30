@@ -10,13 +10,13 @@ requireComponents.keys().forEach((fileName) => {
   const componentName = componentConfig.default.name
   Vue.component(componentName, componentConfig.default || componentConfig)
 })
-
-const requireZxLayouts = require.context('zx-layouts', true, /\.vue$/)
-requireZxLayouts.keys().forEach((fileName) => {
-  const componentConfig = requireZxLayouts(fileName)
-  const componentName = componentConfig.default.name
-  Vue.component(componentName, componentConfig.default || componentConfig)
-})
+//
+// const requireZxLayouts = require.context('./zx-layouts', true, /\.vue$/)
+// requireZxLayouts.keys().forEach((fileName) => {
+//   const componentConfig = requireZxLayouts(fileName)
+//   const componentName = componentConfig.default.name
+//   Vue.component(componentName, componentConfig.default || componentConfig)
+// })
 
 const requireThemes = require.context('@/styles/themes', true, /\.scss$/)
 requireThemes.keys().forEach((fileName) => {
