@@ -9,7 +9,7 @@
       }"
     >
       <div :class="header === 'fixed' ? 'fixed-header' : ''">
-        <vab-top-bar />
+<!--        <vab-top-bar />-->
         <div
           v-if="tabsBar === 'true' || tabsBar === true"
           :class="{ 'tag-view-show': tabsBar }"
@@ -157,7 +157,7 @@
       position: relative;
 
       &.fixed {
-        padding-top: calc(#{$base-top-bar-height});
+        /*padding-top: calc(#{$base-top-bar-height});*/
       }
 
       &.fixed.no-tabs-bar {
@@ -166,7 +166,7 @@
 
       ::v-deep {
         .vab-main {
-          width: 88%;
+          width: 100%;
           margin: auto;
         }
 
@@ -187,7 +187,7 @@
 
         .main-padding {
           .app-main-container {
-            margin-top: $base-padding;
+            margin-top: 0;
             margin-bottom: $base-padding;
             background: $base-color-transparent;
           }
