@@ -90,11 +90,13 @@ export const asyncRoutes = [
       },
     ],
   },
-  { //@todo 暂时用后台的layout，后续优化成前台的层次
+  {
+    //@todo 暂时用后台的layout，后续优化成前台的层次
     path: '/shopping',
     component: () => import('@/layouts/frontend'),
-    redirect: 'noRedirect',
+    redirect: '/shopping/index',
     name: 'shopping',
+    hidden: true,
     meta: {
       title: '购物',
       icon: 'shopping',
@@ -106,7 +108,7 @@ export const asyncRoutes = [
         name: 'shopping_home',
         meta: { title: '商品', noCache: true },
       },
-    ]
+    ],
   },
   {
     path: '/',

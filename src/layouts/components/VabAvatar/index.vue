@@ -8,8 +8,22 @@
       </div>
     </span>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item v-if="accessToken" command="myBlog" divided>我的写作</el-dropdown-item>
-      <el-dropdown-item v-if="accessToken && (username==='xiaoming' || username==='2665955305@qq.com')" command="baby" divided>小棉袄</el-dropdown-item>
+      <el-dropdown-item v-if="accessToken" command="myBlog" divided>
+        我的写作
+      </el-dropdown-item>
+      <el-dropdown-item v-if="accessToken" command="shopping" divided>
+        购物
+      </el-dropdown-item>
+      <el-dropdown-item
+        v-if="
+          accessToken &&
+          (username === 'xiaoming' || username === '2665955305@qq.com')
+        "
+        command="baby"
+        divided
+      >
+        小棉袄
+      </el-dropdown-item>
       <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
@@ -40,8 +54,7 @@
         username: 'user/username',
       }),
     },
-    created(){
-    },
+    created() {},
     methods: {
       handleCommand(command) {
         switch (command) {
@@ -56,6 +69,9 @@
             break
           case 'myBlog':
             this.$router.push('/blog/self')
+            break
+          case 'shopping':
+            this.$router.push('/shopping')
             break
           case 'plus':
             window.open(

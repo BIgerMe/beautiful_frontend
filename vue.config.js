@@ -27,7 +27,7 @@ const FileManagerPlugin = require('filemanager-webpack-plugin')
 const dayjs = require('dayjs')
 const date = dayjs().format('YYYY_M_D')
 const time = dayjs().format('YYYY-M-D HH:mm:ss')
-const CompressionPlugin = require('compression-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin')
 
 process.env.VUE_APP_TITLE = title || ''
 process.env.VUE_APP_AUTHOR = author || '晓明GoGo 2260891938@qq.com'
@@ -35,9 +35,6 @@ process.env.VUE_APP_UPDATE_TIME = time
 process.env.VUE_APP_VERSION = version
 
 const resolve = (dir) => path.join(__dirname, dir)
-const mockServer = () => {
-  return ''
-}
 
 module.exports = {
   publicPath,
@@ -57,13 +54,13 @@ module.exports = {
     },
     proxy: {
       ['/']: {
-        target: 'http://war3.xxroom.xyz/',
+        target: '//war3.xxroom.xyz/',
         changeOrigin: true,
         pathRewrite: {
           ['^/']: '',
         },
       },
-    }
+    },
   },
   configureWebpack() {
     return {
@@ -88,15 +85,15 @@ module.exports = {
       ],
       externals: {
         // CDN 的 Element 依赖全局变量 Vue， 所以 Vue 也需要使用 CDN 引入
-        'vue': 'Vue',
+        vue: 'Vue',
         // 属性名称 element-ui, 表示遇到 import xxx from 'element-ui' 这类引入 'element-ui'的，
         // 不去 node_modules 中找，而是去找 全局变量 ELEMENT
         'element-ui': 'ELEMENT',
         'ant-design-vue': 'antd',
         'mavon-editor': 'MavonEditor',
-        'echarts': 'echarts',
+        echarts: 'echarts',
         // 'echarts-wordcloud': 'echarts-wordcloud',
-      }
+      },
     }
   },
   chainWebpack(config) {
