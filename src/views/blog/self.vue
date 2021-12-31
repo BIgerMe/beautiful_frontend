@@ -58,7 +58,7 @@
             <template slot="title">
               <a-button
                 type="link"
-                @click="showBlogDetail(item.original_content)"
+                @click="showBlogDetail(item.original_content,item.video)"
               >
                 <h3>{{ item.title }}</h3>
               </a-button>
@@ -102,6 +102,12 @@
           <el-card shadow="always">
             <a-card-meta>
               <template slot="description">
+                <div>
+                  <video style="width: 100%;max-width:500px;" v-if="video !== '' && video !==null" controls="controls" >
+                    <source :src="video" type="video/mp4" />
+                    Video not playing? <a :href="video">Download file</a> instead.
+                  </video>
+                </div>
                 <a-skeleton v-if="blogDetail == ''"></a-skeleton>
                 <mavon-editor
                   v-else
@@ -130,6 +136,7 @@
     data() {
       return {
         blogDetail: '',
+        video:'',
         category: [],
         lists: [],
         total: 0,
@@ -215,8 +222,9 @@
         this.listQuery.page = this.listQuery.page + 1
         this.getList(true)
       },
-      showBlogDetail(value) {
+      showBlogDetail(value,video) {
         this.blogDetail = value
+        this.video = video
       },
     },
   }

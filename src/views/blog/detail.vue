@@ -31,6 +31,12 @@
               </div>
             </template>
             <template slot="description">
+              <div v-if="detail.video !== '' && detail.video !==null" >
+                <video style="width: 100%;max-width:500px;" controls="controls" >
+                  <source :src="detail.video" type="video/mp4" />
+                  Video not playing? <a :href="detail.video">Download file</a> instead.
+                </video>
+              </div>
               <mavon-editor
                 :subfield="false"
                 :default-open="'preview'"
@@ -62,7 +68,9 @@
     components: { 'mavon-editor': mavonEditor , comments },
     data() {
       return {
-        detail: {},
+        detail: {
+          video:''
+        },
       }
     },
     created() {

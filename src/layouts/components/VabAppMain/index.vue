@@ -4,6 +4,7 @@
       <!--缓存排除name: blog的页面-->
       <keep-alive
         :include="cachedRoutes"
+        :exclude="['BlogDetail']"
         :max="keepAliveMaxNum"
       >
         <router-view :key="key" class="app-main-height" />

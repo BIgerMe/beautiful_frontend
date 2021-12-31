@@ -100,6 +100,12 @@
               </div>
             </template>
             <template slot="description">
+              <div>
+                <video style="width: 100%;max-width:500px;" v-if="item.video !== '' && item.video !== null" controls="controls" >
+                  <source :src="item.video" type="video/mp4" />
+                  Video not playing? <a :href="item.video">Download file</a> instead.
+                </video>
+              </div>
               <mavon-editor
                 :subfield="false"
                 :default-open="'preview'"

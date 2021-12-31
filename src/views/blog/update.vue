@@ -3,30 +3,47 @@
     <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-form :inline="true" :model="form" class="demo-form-inline">
-          <el-form-item>
-            <el-input v-model="form.title" style="width:400px">
-              <template slot="prepend">标题</template>
-            </el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-input v-model="form.cover" style="width:400px">
-              <template slot="prepend">封面图片</template>
-            </el-input>
-          </el-form-item>
-          <el-form-item label="分类">
-            <el-select v-model="form.category" filterable clearable allow-create multiple placeholder="活动区域">
-              <el-option v-for="item in options.category" :label="item" :value="item"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="">
-            <el-radio-group v-model="form.private" size="small">
-              <el-radio-button label="0">私有</el-radio-button>
-              <el-radio-button label="1">公开</el-radio-button>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="onSubmit">保存</el-button>
-          </el-form-item>
+          <el-col :xs="24" :md="8">
+            <el-form-item>
+              <el-input v-model="form.title" style="width:400px">
+                <template slot="prepend">标题</template>
+              </el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-input v-model="form.cover" style="width:400px">
+                <template slot="prepend">封面图片</template>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :md="8">
+            <el-form-item>
+              <el-input v-model="form.video" style="width:400px">
+                <template slot="prepend">封面视频</template>
+              </el-input>
+            </el-form-item>
+            <div>
+              <video width="320" height="240" v-if="form.video !== '' && form.video !==null" controls="controls" >
+                <source :src="form.video" type="video/mp4" />
+                Video not playing? <a :href="form.video">Download file</a> instead.
+              </video>
+            </div>
+          </el-col>
+          <el-col :xs="24" :md="8">
+            <el-form-item label="分类">
+              <el-select v-model="form.category" filterable clearable allow-create multiple placeholder="活动区域">
+                <el-option v-for="item in options.category" :label="item" :value="item"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item>
+              <el-radio-group v-model="form.private" size="small">
+                <el-radio-button label="0">私有</el-radio-button>
+                <el-radio-button label="1">公开</el-radio-button>
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">保存</el-button>
+            </el-form-item>
+          </el-col>
         </el-form>
       </el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -62,6 +79,7 @@
           category:[],
           private:'',
           cover:'',
+          video:'',
           original_content: '',
         },
         markdownOption:{
