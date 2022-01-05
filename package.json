@@ -39,19 +39,10 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.21.4",
-    "clipboard": "^2.0.8",
     "compression-webpack-plugin": "^2.0.0",
-    "core-js": "^3.18.1",
     "dayjs": "^1.10.7",
     "npm": "^8.2.0",
-    "nprogress": "^0.2.0",
-    "qs": "^6.10.1",
     "regenerator-runtime": "^0.13.9",
-    "screenfull": "^5.1.0",
-    "vue": "^2.6.14",
-    "vue-echarts": "6.0.0",
-    "vue-router": "^3.5.2",
     "vuex": "^3.6.2",
     "zx-layouts": "^0.6.27"
   },
@@ -78,7 +69,6 @@
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recess-order": "^2.5.0",
-    "svg-sprite-loader": "^6.0.9",
     "vue-template-compiler": "^2.6.14",
     "webpackbar": "^4.0.0"
   },

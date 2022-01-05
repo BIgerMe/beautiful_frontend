@@ -99,7 +99,6 @@
     methods: {
       async getCommentsList(){
         const { data } = await commentsList({id:this.blogID});
-        console.log(data);
         this.comments = data.userComment
         this.guestComments = data.guestComment
       },

@@ -164,22 +164,6 @@ html {
       }
     }
 
-    /* 进度条开始 */
-    #nprogress {
-      position: fixed;
-      z-index: $base-z-index;
-
-      .bar {
-        background: $base-color-blue !important;
-      }
-
-      .peg {
-        box-shadow: 0 0 10px $base-color-blue, 0 0 5px $base-color-blue !important;
-      }
-    }
-
-    /* 进度条结束 */
-
     /* 表格开始 */
 
     .el-table {

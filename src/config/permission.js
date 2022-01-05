@@ -4,26 +4,15 @@
  */
 import router from '@/router'
 import store from '@/store'
-import VabProgress from 'nprogress'
-import 'nprogress/nprogress.css'
 import getPageTitle from '@/utils/pageTitle'
 import {
   authentication,
   loginInterception,
-  progressBar,
-  recordRoute,
   routesWhiteList,
   loginPath,
 } from '@/config'
 
-VabProgress.configure({
-  easing: 'ease',
-  speed: 500,
-  trickleSpeed: 200,
-  showSpinner: false,
-})
 router.beforeResolve(async (to, from, next) => {
-  if (progressBar) VabProgress.start()
 
   let hasToken = store.getters['user/accessToken']
   let username = store.getters['user/username']
@@ -34,11 +23,12 @@ router.beforeResolve(async (to, from, next) => {
   if (hasToken) {
     if (to.path === '/login') {
       next()
-      if (progressBar) VabProgress.done()
     } else {
       const hasPermissions =
         store.getters['user/permissions'] &&
         store.getters['user/permissions'].length > 0
+      console.log(store.getters['user/permissions'])
+      console.log(store.getters['user/permissions'].length)
       if (hasPermissions) {
         if (!username && loginPath.indexOf(to.path) !== -1) {
           next({ path: '/login' })
@@ -66,7 +56,6 @@ router.beforeResolve(async (to, from, next) => {
           next({ ...to, replace: true })
         } catch {
           await store.dispatch('user/resetAccessToken')
-          if (progressBar) VabProgress.done()
         }
       }
     }
@@ -82,7 +71,6 @@ router.beforeResolve(async (to, from, next) => {
       next()
     } else {
       next(`/login?redirect=${to.path}`)
-      if (progressBar) VabProgress.done()
     }
   }
   if(to.path.indexOf('/blog/detail') == -1){
@@ -90,5 +78,5 @@ router.beforeResolve(async (to, from, next) => {
   }
 })
 router.afterEach(() => {
-  if (progressBar) VabProgress.done()
+
 })

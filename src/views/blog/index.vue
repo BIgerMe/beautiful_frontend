@@ -37,88 +37,90 @@
       </a-affix>
     </a-col>
     <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
-      <a-affix v-if="device !== 'mobile'" :offset-top="115" class="center">
-        <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
-          <a-input-search
-            v-model="listQuery.key"
-            placeholder="搜索内容"
-            style="width: 300px"
-            @search="
-                listQuery.page = 1
-                getList()
-              "
-          />
-        </div>
-      </a-affix>
-      <a-col v-if="'mobile' === device" :xs="24" >
-        <el-card align="center" class="md-card">
-          <div id="cy" style="width: 300px; height: 300px;"></div>
-        </el-card>
-      </a-col>
-
-      <a-col :xs="24">
-        <a-card v-for="item in lists" class="blogCard">
-          <img
-            v-if="item.cover"
-            slot="cover"
-            :src="item.cover"
-            class="cover"
-          />
-          <a-card-meta>
-            <template slot="title">
-              <h3>
-                <a>
-                  <router-link
-                    :to="{ name: 'BlogDetail', params: { id: item.id } }"
+      <a-skeleton active v-if="listLoading === true"></a-skeleton>
+      <div v-else>
+        <a-affix v-if="device !== 'mobile'" :offset-top="115" class="center">
+          <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
+            <a-input-search
+              v-model="listQuery.key"
+              placeholder="搜索内容"
+              style="width: 300px"
+              @search="
+                  listQuery.page = 1
+                  getList()
+                "
+            />
+          </div>
+        </a-affix>
+        <a-col v-if="'mobile' === device" :xs="24" >
+          <el-card align="center" class="md-card">
+            <div id="cy" style="width: 300px; height: 300px;"></div>
+          </el-card>
+        </a-col>
+        <a-col :xs="24">
+          <a-card v-for="item in lists" class="blogCard">
+            <img
+              v-if="item.cover"
+              slot="cover"
+              :src="item.cover"
+              class="cover"
+            />
+            <a-card-meta>
+              <template slot="title">
+                <h3>
+                  <a>
+                    <router-link
+                      :to="{ name: 'BlogDetail', params: { id: item.id } }"
+                    >
+                      {{ item.title }}
+                    </router-link>
+                  </a>
+                </h3>
+                <div>
+                  <el-tag effect="plain" type="info">
+                    <a>{{ item.nickname }}</a>
+                  </el-tag>
+                  <a-divider type="vertical" />
+                  <el-tag v-for="c in item.category" effect="plain" type="info">
+                    <a>{{ c }}</a>
+                  </el-tag>
+                  <a-divider type="vertical" />
+                  <span v-if="'mobile' !== device"
+                        style="
+                      font-family: 'Droid Serif', Georgia, 'Times New Roman',
+                        'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
+                        'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;color: #0808087d;
+                    "
                   >
-                    {{ item.title }}
-                  </router-link>
-                </a>
-              </h3>
-              <div>
-                <el-tag effect="plain" type="info">
-                  <a>{{ item.nickname }}</a>
-                </el-tag>
-                <a-divider type="vertical" />
-                <el-tag v-for="c in item.category" effect="plain" type="info">
-                  <a>{{ c }}</a>
-                </el-tag>
-                <a-divider type="vertical" />
-                <span v-if="'mobile' !== device"
-                      style="
-                    font-family: 'Droid Serif', Georgia, 'Times New Roman',
-                      'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
-                      'WenQuanYi Micro Hei', 'Microsoft Yahei', serif;color: #0808087d;
-                  "
-                >
-                  {{ item.update_at }}
-                </span>
-                <a-divider type="vertical" />
-                <a-icon type="eye" />&nbsp;{{item.view}}
-                &emsp;
-                <a-icon type="message" />&nbsp;{{item.comment}}
-              </div>
-            </template>
-            <template slot="description">
-              <div>
-                <video style="width: 100%;max-width:500px;" v-if="item.video !== '' && item.video !== null" controls="controls" >
-                  <source :src="item.video" type="video/mp4" />
-                  Video not playing? <a :href="item.video">Download file</a> instead.
-                </video>
-              </div>
-              <mavon-editor
-                :subfield="false"
-                :default-open="'preview'"
-                :toolbars-flag="false"
-                :editable="false"
-                :scroll-style="true"
-                :ishljs="true"
-                :value="item.original_content"
-              />
-            </template>
-          </a-card-meta>
-        </a-card>
-      </a-col>
+                    {{ item.update_at }}
+                  </span>
+                  <a-divider type="vertical" />
+                  <a-icon type="eye" />&nbsp;{{item.view}}
+                  &emsp;
+                  <a-icon type="message" />&nbsp;{{item.comment}}
+                </div>
+              </template>
+              <template slot="description">
+                <div>
+                  <video style="width: 100%;max-width:500px;" v-if="item.video !== '' && item.video !== null" controls="controls" >
+                    <source :src="item.video" type="video/mp4" />
+                    Video not playing? <a :href="item.video">Download file</a> instead.
+                  </video>
+                </div>
+                <mavon-editor
+                  :subfield="false"
+                  :default-open="'preview'"
+                  :toolbars-flag="false"
+                  :editable="false"
+                  :scroll-style="true"
+                  :ishljs="true"
+                  :value="item.original_content"
+                />
+              </template>
+            </a-card-meta>
+          </a-card>
+        </a-col>
+      </div>
     </a-col>
     <a-col v-if="'mobile' !== device" :xs="0" :sm="0" :md="6" :lg="6" :xl="6" >
       <el-card align="center" class="md-card">
@@ -139,6 +141,7 @@
     data() {
       return {
         category: [],
+        listLoading:true,
         lists: [],
         total: 0,
         listQuery: {
@@ -249,6 +252,7 @@
         await this.getList()
       },
       async getList(push = false) {
+        this.listLoading = true
         /*文章列表*/
         const { data } = await lists(this.listQuery)
         if (push) {
@@ -259,6 +263,7 @@
           this.lists = data.data
         }
         this.total = data.total
+        this.listLoading = false
       },
       setCy(){//生成词云
         let cyData = []
@@ -273,7 +278,6 @@
           this.cy.series[0].maskImage = maskImage
           cyChart.setOption(this.cy)
           cyChart.on('click', (params)=> {
-            console.log(params.data)
             this.changeCategory({'key':params.data.name})
           })
         }

@@ -26,7 +26,6 @@
         </el-col>
         <el-col :xl="5" :lg="5" :md="5" :sm="5" :xs="5">
           <div class="right-panel">
-            <vab-full-screen-bar @refresh="refreshRoute" />
             <vab-avatar />
           </div>
         </el-col>

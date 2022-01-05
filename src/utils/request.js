@@ -11,12 +11,11 @@ import {
   loginInterception,
 } from '@/config'
 import store from '@/store'
-import qs from 'qs'
+// import qs from 'qs'
 import router from '@/router'
 import { isArray } from '@/utils/validate'
 
 /**
- * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
  * @description 处理code异常
  * @param {*} code
  * @param {*} msg
@@ -55,8 +54,8 @@ instance.interceptors.request.use(
     //这里会过滤所有为空、0、false的key，如果不需要请自行注释
     // if (config.data && config.headers['Content-Type'] !== 'multipart/form-data')
       // config.data = Vue.prototype.$baseLodash.pickBy(config.data, Vue.prototype.$baseLodash.identity)
-    if (config.data && config.headers['Content-Type'] === 'application/x-www-form-urlencoded;charset=UTF-8')
-      config.data = qs.stringify(config.data)
+    // if (config.data && config.headers['Content-Type'] === 'application/x-www-form-urlencoded;charset=UTF-8')
+    //   config.data = qs.stringify(config.data)
     return config
   },
   (error) => {
