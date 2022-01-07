@@ -22,6 +22,13 @@ export function detail(data) {
     data,
   })
 }
+export function editDetail(data) {
+  return request({
+    url: '/z/blog/editDetail',
+    method: 'post',
+    data,
+  })
+}
 
 export function selfCategoryCY() {
   return request({

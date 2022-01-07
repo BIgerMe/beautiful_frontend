@@ -63,7 +63,7 @@
 
 <script>
   import { uploadImg } from '@/api/qiniu'
-  import { updateBlog,detail } from '@/api/blog'
+  import { updateBlog,editDetail } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
   import Vue from "vue";
   export default {
@@ -124,7 +124,7 @@
     },
     methods: {
       async fetchData() {
-        const { data } = await detail({ id: this.$route.params.id })
+        const { data } = await editDetail({ id: this.$route.params.id })
         this.form = data.data
       },
       // 绑定@imgAdd event
