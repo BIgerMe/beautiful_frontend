@@ -54,7 +54,7 @@ module.exports = {
     },
     proxy: {
       ['/']: {
-        target: '//war3.xxroom.xyz/',
+        target: '//xxroom.xyz/',
         changeOrigin: true,
         pathRewrite: {
           ['^/']: '',
