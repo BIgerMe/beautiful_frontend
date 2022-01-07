@@ -1,6 +1,6 @@
 <template>
-  <div class="index-container">
-    <el-row :gutter="20">
+  <div>
+    <a-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-alert>
           <div
@@ -43,27 +43,57 @@
           </div>
         </el-alert>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-          <div v-for="(category,key) in navList">
-            <el-col :lg="8">
-              <a-divider orientation="left" style="font-size: 18px">
-                {{key}}
-              </a-divider>
-              <el-card class="nav-card" style="min-height: 172px">
-                <el-col v-for="(item,key) in category" v-if="key<6" :xs="24" :sm="8" >
-                  <p style="max-width:100%;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin-bottom: 0">
-                    <a :href="item.href" target='_blank' style="color: black;">
-                      <img style="width:30px;height: 30px;border-radius: 50%;margin: 5px" :src="item.logo" :title="item.title" :alt="item.title">
-                      {{item.title}}
-                    </a>
-                  </p>
-                  <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color: #00000073">{{item.content}}</p>
-                </el-col>
-              </el-card>
-            </el-col>
+    </a-row>
+    <a-row :gutter="20">
+      <a-col :lg="8">
+        <el-card class="nav-card" v-for="(category,key) in navList" v-if="['视频','社区','财经','游戏',].indexOf(key) !== -1">
+          <div slot="header">
+            <span>{{key}}</span>
           </div>
-      </el-col>
-    </el-row>
+          <a-col v-for="(item,key) in category" :xs="12" :sm="8" >
+            <p style="max-width:100%;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin-bottom: 0">
+              <a :href="item.href" target='_blank' style="color: black;">
+                <img style="width:30px;height: 30px;border-radius: 50%;margin: 5px" :src="item.logo" :title="item.title" :alt="item.title">
+                {{item.title}}
+              </a>
+            </p>
+            <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color: #00000073">{{item.content}}</p>
+          </a-col>
+        </el-card>
+      </a-col>
+      <a-col :lg="8">
+        <el-card class="nav-card" v-for="(category,key) in navList" v-if="['前端','后端','运营','产品'].indexOf(key) !== -1">
+          <div slot="header">
+            <span>{{key}}</span>
+          </div>
+          <a-col v-for="(item,key) in category" :xs="12" :sm="8" >
+            <p style="max-width:100%;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin-bottom: 0">
+              <a :href="item.href" target='_blank' style="color: black;">
+                <img style="width:30px;height: 30px;border-radius: 50%;margin: 5px" :src="item.logo" :title="item.title" :alt="item.title">
+                {{item.title}}
+              </a>
+            </p>
+            <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color: #00000073">{{item.content}}</p>
+          </a-col>
+        </el-card>
+      </a-col>
+      <a-col :lg="8">
+        <el-card class="nav-card" v-for="(category,key) in navList" v-if="['常用','爱好','第三方'].indexOf(key) !== -1">
+          <div slot="header">
+            <span>{{key}}</span>
+          </div>
+          <a-col v-for="(item,key) in category" :xs="12" :sm="8" >
+            <p style="max-width:100%;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin-bottom: 0">
+              <a :href="item.href" target='_blank' style="color: black;">
+                <img style="width:30px;height: 30px;border-radius: 50%;margin: 5px" :src="item.logo" :title="item.title" :alt="item.title">
+                {{item.title}}
+              </a>
+            </p>
+            <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color: #00000073">{{item.content}}</p>
+          </a-col>
+        </el-card>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -107,9 +137,4 @@
   }
 </script>
 <style lang="scss" scoped>
-  .index-container {
-    padding: 0 !important;
-    margin: 0 !important;
-    background: #f5f7f8 !important;
-  }
 </style>
