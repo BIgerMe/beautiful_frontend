@@ -37,8 +37,7 @@
       </a-affix>
     </a-col>
     <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
-      <a-skeleton active v-if="listLoading === true"></a-skeleton>
-      <div v-else>
+      <div>
         <a-affix v-if="device !== 'mobile'" :offset-top="115" class="center">
           <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
             <a-input-search
@@ -141,7 +140,6 @@
     data() {
       return {
         category: [],
-        listLoading:true,
         lists: [],
         total: 0,
         listQuery: {
@@ -252,7 +250,6 @@
         await this.getList()
       },
       async getList(push = false) {
-        this.listLoading = true
         /*文章列表*/
         const { data } = await lists(this.listQuery)
         if (push) {
@@ -263,7 +260,6 @@
           this.lists = data.data
         }
         this.total = data.total
-        this.listLoading = false
       },
       setCy(){//生成词云
         let cyData = []

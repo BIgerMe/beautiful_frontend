@@ -3,8 +3,8 @@
   margin-top: 10px;
   border-radius: 20px;
   background: #ffffff;
-  box-shadow:  -8px -8px 11px #cfcfcf,
-  8px 8px 11px #ffffff;
+  box-shadow: inset 5px 5px 10px #666666,
+  inset -5px -5px 10px #ffffff!important;
   img.cover{
     width: 100%; height: 100px; object-fit: cover;
     border-top-left-radius: 20px!important;
@@ -12,12 +12,19 @@
   }
 }
 
+.nav-card{
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: inset 5px 5px 10px #666666,
+  inset -5px -5px 10px #ffffff!important;
+}
+
 .blogCard {
   margin-top: 16px;
   border-radius: 39px;
   background: #ffffff;
-  box-shadow:  -8px -8px 11px #cfcfcf,
-  8px 8px 11px #ffffff;
+  box-shadow: inset 5px 5px 10px #666666,
+  inset -5px -5px 10px #ffffff!important;
   img.cover{
     width: 100%; height: 200px; object-fit: cover;
     border-top-left-radius: 39px!important;
