@@ -11510,12 +11510,12 @@
   ],
   "asset": {
     "extras": {
-      "author": "NORBERTO-3D (https://sketchfab.com/norberto3d)",
+      "author": "Sketchfab (https://sketchfab.com/Sketchfab)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/phoenix-bird-844ba0cf144a413ea92c779f18912042",
-      "title": "phoenix bird"
+      "source": "https://sketchfab.com/3d-models/real-time-bones-demo-phoenix-bird-6a8d1fd20a1f46e988d9d06e028f75a0",
+      "title": "Real-time Bones Demo: Phoenix Bird"
     },
-    "generator": "Sketchfab-7.37.0",
+    "generator": "Sketchfab-7.52.0",
     "version": "2.0"
   },
   "bufferViews": [
@@ -11720,24 +11720,6 @@
     {
       "children": [
         2
-      ],
-      "matrix": [
-        0.99860024452209473,
-        0.052891559898853302,
-        -1.6081226229577292e-16,
-        0,
-        -0.052891559898853302,
-        0.99860024452209473,
-        1.6081226229577292e-16,
-        0,
-        1.6909277697879215e-16,
-        -1.5208156283617782e-16,
-        1,
-        0,
-        -0.62473195791244507,
-        17.137104034423828,
-        -5.6843418860808015e-14,
-        1
       ],
       "name": "RootNode (model correction matrix)"
     },
