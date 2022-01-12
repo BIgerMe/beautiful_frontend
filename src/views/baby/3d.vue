@@ -25,7 +25,7 @@
         let camera, scene, renderer
         let mesh, mixer
         let controls
-        const radius = 1300
+        const radius = 2000
         let theta = 0
         let clock
         let prevTime = Date.now()
@@ -43,26 +43,32 @@
           scene = new THREE.Scene()
           /*从上往下*/
           const light1 = new THREE.DirectionalLight(0xFFFFFF, 4)
-          light1.position.set(0, 1, 0).normalize()
+          light1.position.set(1, 1, 0).normalize()
           scene.add(light1)
 
 
-          const light2 = new THREE.DirectionalLight(0xFFFFFF, 3)
-          light2.position.set(1, -1, 0).normalize()
-          scene.add(light2)
+          // const light2 = new THREE.DirectionalLight(0xFFFFFF, 3)
+          // light2.position.set(1, -1, 0).normalize()
+          // scene.add(light2)
           const loader = new GLTFLoader()
 
-          // loader.load('./static/three/gltf/Horse.glb', function (gltf) {
-          loader.load('./static/three/gltf/phoenix_bird/scene.gltf', function (gltf) {
+          loader.load('./static/three/gltf/pheonix.glb', function (gltf) {
+          // loader.load('./static/three/gltf/phoenix_bird/scene.gltf', function (gltf) {
             mesh = gltf.scene.children[0]
+            mesh.position.x =  -2000
             scene.add(mesh)
             mixer = new THREE.AnimationMixer(mesh)
             mixer.clipAction(gltf.animations[0]).setDuration(1).play()
+
+            // let mesh1 = gltf.scene.children[0]
+            // scene.add(mesh1)
+            // mixer = new THREE.AnimationMixer(mesh1)
+            // mixer.clipAction(gltf.animations[0]).setDuration(1).play()
           })
 
           renderer = new THREE.WebGLRenderer( {alpha: true } );
           //您可以将透明颜色保留为默认值。
-          // renderer.setClearColor( 0x000); //default
+          renderer.setClearColor( 0x000); //default
           renderer.setPixelRatio(window.devicePixelRatio) //像素比
           renderer.setSize(container.offsetWidth, container.offsetHeight)
           renderer.outputEncoding = THREE.sRGBEncoding //真彩色，不加的话颜色会与ps中图像看上去的不同
