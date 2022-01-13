@@ -263,15 +263,17 @@
       },
       setCy(){//生成词云
         let cyData = []
+
         for (let index in this.category) {
-          cyData.push({ name: index, value: this.category[index] })
+          cyData.push({ name: index, value: parseInt(this.category[index]) })
         }
         let maskImage = new Image()
         let cyChart = echarts.init(document.getElementById('cy'))
         maskImage.src = require('@/assets/mask/twitter.png')
         maskImage.onload = () => {
+          console.log(cyData)
           this.cy.series[0].data = cyData
-          this.cy.series[0].maskImage = maskImage
+          // this.cy.series[0].maskImage = maskImage
           cyChart.setOption(this.cy)
           cyChart.on('click', (params)=> {
             this.changeCategory({'key':params.data.name})

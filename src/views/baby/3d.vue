@@ -5,7 +5,6 @@
 <script>
   import * as THREE from 'three'
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-  import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
   export default {
@@ -89,64 +88,40 @@
           // controls.maxPolarAngle = Math.PI / 3;//绕垂直轨道的距离（范围是0-Math.PI,默认为Math.PI）
           // controls.autoRotate = false;
           console.log(controls)
-          // clock = new THREE.Clock();//用于更新轨道控制器
-          // controls.update();// 照相机转动时，必须更新该控制器
         }
 
         /*克隆*/
         function clone( source ) {
-
           const sourceLookup = new Map();
           const cloneLookup = new Map();
-
           const clone = source.clone();
-
           parallelTraverse( source, clone, function ( sourceNode, clonedNode ) {
-
             sourceLookup.set( clonedNode, sourceNode );
             cloneLookup.set( sourceNode, clonedNode );
-
           } );
 
           clone.traverse( function ( node ) {
-
             if ( ! node.isSkinnedMesh ) return;
-
             const clonedMesh = node;
             const sourceMesh = sourceLookup.get( node );
             const sourceBones = sourceMesh.skeleton.bones;
-
             clonedMesh.skeleton = sourceMesh.skeleton.clone();
             clonedMesh.bindMatrix.copy( sourceMesh.bindMatrix );
-
             clonedMesh.skeleton.bones = sourceBones.map( function ( bone ) {
-
               return cloneLookup.get( bone );
-
             } );
-
             clonedMesh.bind( clonedMesh.skeleton, clonedMesh.bindMatrix );
-
           } );
-
           return clone;
-
         }
         function parallelTraverse( a, b, callback ) {
-
           callback( a, b );
-
           for ( let i = 0; i < a.children.length; i ++ ) {
-
             parallelTraverse( a.children[ i ], b.children[ i ], callback );
-
           }
-
         }
 
         function animate() {
-          // let delta = clock.getDelta();
-          // controls.update(delta);
           requestAnimationFrame(animate)
           render()
         }
@@ -154,7 +129,7 @@
           /*相机的位置*/
           theta += 0.2
           /*头正尾负*/
-          camera.position.x = radius * Math.sin(THREE.MathUtils.degToRad(theta))
+          // camera.position.x = radius * Math.sin(THREE.MathUtils.degToRad(theta))
           // camera.position.y = radius * Math.cos(THREE.MathUtils.degToRad(theta))
           // camera.position.z = radius * Math.cos(THREE.MathUtils.degToRad(theta))
           /*相机看向的位置*/
