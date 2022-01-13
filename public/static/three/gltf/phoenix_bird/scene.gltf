@@ -11798,12 +11798,12 @@
     },
     {
       "mesh": 0,
-      "name": "",
+      "name": "body",
       "skin": 0
     },
     {
       "mesh": 1,
-      "name": "",
+      "name": "fly",
       "skin": 0
     },
     {
