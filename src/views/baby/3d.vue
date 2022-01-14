@@ -3,9 +3,11 @@
 </template>
 
 <script>
-  import * as THREE from 'three'
-  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+  // import * as THREE from 'three'
+  // import three from 'https://cdn.skypack.dev/three';
+  // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+  // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+  // import { THREE } from './static/js/three.js';
 
   export default {
     name: 'three',
@@ -49,9 +51,11 @@
           // const light2 = new THREE.DirectionalLight(0xFFFFFF, 3)
           // light2.position.set(1, -1, 0).normalize()
           // scene.add(light2)
-          const loader = new GLTFLoader()
+          const loader = new THREE.GLTFLoader()
 
-          loader.load('./static/three/gltf/pheonix.glb', function (gltf) {
+
+          loader.load('https://video.xxroom.xyz/scene.glb', function (gltf) {
+          // loader.load('./static/three/gltf/phoenix.glb', function (gltf) {
           // loader.load('./static/three/gltf/phoenix_bird/scene.gltf', function (gltf) {
             let mesh1 = clone(gltf.scene)
             let mesh2 = clone(gltf.scene)
@@ -83,7 +87,7 @@
           renderer.outputEncoding = THREE.sRGBEncoding //真彩色，不加的话颜色会与ps中图像看上去的不同
           container.appendChild(renderer.domElement)
 
-          controls = new OrbitControls(camera,renderer.domElement);// 初始化控制器
+          controls = new THREE.OrbitControls(camera,renderer.domElement);// 初始化控制器
           controls.target.set(0, 0, 0);// 设置控制器的焦点，使控制器围绕这个焦点进行旋转
           // controls.maxPolarAngle = Math.PI / 3;//绕垂直轨道的距离（范围是0-Math.PI,默认为Math.PI）
           // controls.autoRotate = false;

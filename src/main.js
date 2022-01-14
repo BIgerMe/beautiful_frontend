@@ -10,7 +10,7 @@ import Antd from 'ant-design-vue'
 Vue.use(Antd)
 
 new Vue({
-  el: '#vue-admin-beautiful',
+  el: '#zyf',
   router,
   store,
   render: (h) => h(App),
