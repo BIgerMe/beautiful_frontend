@@ -44,7 +44,10 @@
         </el-alert>
       </el-col>
     </a-row>
-    <a-row :gutter="20">
+    <a-row :gutter="20" style="position: relative">
+      <div style="position: absolute;height: 500px;width: 100%;z-index: 999;pointer-events: none;">
+        <phoenix height="500px" width="100%" />
+      </div>
       <a-col :lg="8">
         <el-card class="nav-card" v-for="(category,key) in navList" v-if="['视频','社区','财经','游戏',].indexOf(key) !== -1">
           <div slot="header">
@@ -99,9 +102,10 @@
 
 <script>
   import { getList } from '@/api/navigation'
+  import phoenix from '@/components/3d/phoenix'
   export default {
     name: 'Index',
-    components: {},
+    components:{phoenix},
     data() {
       return {
         navList:[],

@@ -12,7 +12,9 @@
           <h2>喜欢的可以下单~不买的可以进来看一看~</h2>
 
         </el-col>
-        <el-col :lg="12"></el-col>
+        <el-col :lg="12">
+          <phoenix height="400px" width="100%" />
+        </el-col>
         <el-col :lg="24" class="s_category_position">
           <ul class="s_category">
             <li class="s_category_li" v-for="i in [1,2,3,4,5,6]">
@@ -32,18 +34,16 @@
 </template>
 
 <script>
+  import phoenix from '@/components/3d/phoenix'
   export default {
     name: 'shopping_home',
     data() {
-      return {
-      }
+      return {}
     },
-    mounted() {
-    },
-    beforeDestroy() {
-    },
-    methods: {
-    },
+    components:{phoenix},
+    mounted() {},
+    beforeDestroy() {},
+    methods: {},
   }
 </script>
 
