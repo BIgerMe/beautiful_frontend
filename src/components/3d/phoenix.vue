@@ -1,16 +1,9 @@
 <template>
-<!--  <div-->
-<!--    :id="id"-->
-<!--    :ts_code="ts_code"-->
-<!--    :class="className"-->
-<!--    :style="{ height: height, width: width }"-->
-<!--  />-->
   <div id="phoenix" class="index-container" :style="{ height: height, width: width }"></div>
 </template>
 
 <script>
   export default {
-    // mixins: [resize],
     props: {
       width: {
         type: String,
@@ -53,12 +46,10 @@
           light1.position.set(1, 1, 0).normalize()
           scene.add(light1)
 
-
           // const light2 = new THREE.DirectionalLight(0xFFFFFF, 3)
           // light2.position.set(1, -1, 0).normalize()
           // scene.add(light2)
           const loader = new THREE.GLTFLoader()
-
 
           loader.load('https://video.xxroom.xyz/scene.glb', function (gltf) {
             // loader.load('./static/three/gltf/phoenix.glb', function (gltf) {
@@ -69,20 +60,15 @@
             mesh1.position.set(-1000,0,0)
             mesh1.scale.set(0.7,0.7,0.7) //缩小至0.5倍
             mesh2.position.set(0,300,0)
-            // console.log(mesh1)
-            // console.log(mesh2)
-            // return false;
+
             let mixer1 = new THREE.AnimationMixer(mesh1)
             let mixer2 = new THREE.AnimationMixer(mesh2)
             mixer1.clipAction(gltf.animations[0]).setDuration(1).play()
             mixer2.clipAction(gltf.animations[0]).setDuration(1).play()
-            // scene.add(mesh)
+
             scene.add( mesh1,mesh2 );
             mesh.push(mesh1,mesh2);
             mixer.push(  mixer1,mixer2 );
-            // scene.add(mesh1)
-            // mixer = new THREE.AnimationMixer(mesh1)
-            // mixer.clipAction(gltf.animations[0]).setDuration(1).play()
           })
 
           renderer = new THREE.WebGLRenderer( {alpha: true } );
@@ -95,9 +81,6 @@
 
           controls = new THREE.OrbitControls(camera,renderer.domElement);// 初始化控制器
           controls.target.set(0, 0, 0);// 设置控制器的焦点，使控制器围绕这个焦点进行旋转
-          // controls.maxPolarAngle = Math.PI / 3;//绕垂直轨道的距离（范围是0-Math.PI,默认为Math.PI）
-          // controls.autoRotate = false;
-          console.log(controls)
         }
 
         /*克隆*/
