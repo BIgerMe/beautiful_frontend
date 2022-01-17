@@ -57,9 +57,9 @@
             let mesh1 = clone(gltf.scene)
             let mesh2 = clone(gltf.scene)
 
-            mesh1.position.set(-1000,0,0)
+            mesh1.position.set(-1000,-300,0)
             mesh1.scale.set(0.7,0.7,0.7) //缩小至0.5倍
-            mesh2.position.set(0,300,0)
+            mesh2.position.set(0,0,0)
 
             let mixer1 = new THREE.AnimationMixer(mesh1)
             let mixer2 = new THREE.AnimationMixer(mesh2)
