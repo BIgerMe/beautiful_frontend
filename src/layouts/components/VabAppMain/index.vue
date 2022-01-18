@@ -45,7 +45,6 @@
             cachedRoutesArr.push(item.name)
           }
         })
-        console.log(cachedRoutesArr)
         return cachedRoutesArr
       },
       key() {

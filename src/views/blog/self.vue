@@ -1,7 +1,7 @@
 <template>
   <a-row :gutter="20">
     <a-col :xs="0" :sm="24" :md="3" :lg="3" :xl="3" class="left" style="max-height: 80vh">
-      <a-affix :offset-top="140">
+      <a-affix :offset-top="80">
         <el-scrollbar
           wrap-class="categoryList"
           wrap-style="color: red;"
@@ -32,21 +32,6 @@
     </a-col>
     <a-col :xs="24" :sm="24" :md="7" :lg="7" :xl="7">
       <el-card shadow="always">
-        <a-affix :offset-top="115" class="center">
-          <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
-          <a-input-search
-              v-model="listQuery.key"
-              placeholder="搜索内容"
-              style="width: 200px; min-width: 70%"
-              @search="
-                listQuery.page = 1
-                getList()
-              "
-            />
-            &nbsp
-            <router-link :to="{ name: 'CreateBlog'}"><a-button type="primary" icon="plus" /></router-link>
-          </div>
-        </a-affix>
         <a-card v-for="item in lists" class="md-card">
           <img
             v-if="item.cover"
@@ -91,7 +76,7 @@
       </el-card>
     </a-col>
     <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14" class="right">
-      <a-affix :offset-top="140">
+      <a-affix :offset-top="80">
         <el-scrollbar
           wrap-class="blogDetail"
           wrap-style="color: red;"
@@ -130,6 +115,7 @@
 <script>
   import { selfCategoryCY, selfLists } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
+  import { bus }  from '@/utils/bus'
   export default {
     name: 'BlogSelf',
     components: { 'mavon-editor': mavonEditor },
@@ -185,7 +171,13 @@
     created() {
       this.fetchData()
     },
-    mounted() {},
+    mounted() {
+      bus.$on('search',(content)=>{
+        this.listQuery.key = content
+        this.listQuery.page = 1
+        this.getList();
+      })
+    },
     methods: {
       async fetchData() {
         /*分类*/

@@ -79,7 +79,7 @@
       },
     },
     mounted() {
-      //console.log(this.visitedRoutes);
+      console.log(this.visitedRoutes);
     },
     methods: {
       async handleTabRemove(tabActive) {

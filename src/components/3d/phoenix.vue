@@ -1,5 +1,5 @@
 <template>
-  <div id="phoenix" class="index-container" :style="{ height: height, width: width }"></div>
+  <div id="phoenix" :style="{ height: height, width: width }"></div>
 </template>
 
 <script>
@@ -18,11 +18,15 @@
       return {}
     },
     mounted() {
-      this.phoenix()
+
+      // setTimeout(()=>{
+      //   console.log('123')
+        this.phoenix()
+      // },5000)
     },
     methods: {
       phoenix() {
-        let container, stats
+        let container
         let camera, scene, renderer
         let mesh = [], mixer = []
         let controls
@@ -41,14 +45,11 @@
           camera.position.set(0,500,2000)
 
           scene = new THREE.Scene()
-          /*从上往下*/
+
           const light1 = new THREE.DirectionalLight(0xFFFFFF, 5)
           light1.position.set(1, 1, 0).normalize()
           scene.add(light1)
 
-          // const light2 = new THREE.DirectionalLight(0xFFFFFF, 3)
-          // light2.position.set(1, -1, 0).normalize()
-          // scene.add(light2)
           const loader = new THREE.GLTFLoader()
 
           loader.load('https://video.xxroom.xyz/scene.glb', function (gltf) {

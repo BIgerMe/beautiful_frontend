@@ -63,6 +63,7 @@
   import { detail } from '@/api/blog'
   import { mavonEditor } from 'mavon-editor'
   import comments from './components/comments'
+  import {mapGetters} from "vuex";
   export default {
     name: 'BlogDetail',
     components: { 'mavon-editor': mavonEditor , comments },
@@ -75,6 +76,12 @@
     },
     created() {
       this.fetchData()
+    },
+    computed:{
+      ...mapGetters({
+        visitedRoutes: 'tabsBar/visitedRoutes',
+        routes: 'routes/routes',
+      }),
     },
     mounted() {},
     methods: {

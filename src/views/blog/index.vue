@@ -38,7 +38,7 @@
     </a-col>
     <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
       <div>
-        <a-affix v-if="device !== 'mobile'" :offset-top="115" class="center">
+        <!--<a-affix v-if="device !== 'mobile'" :offset-top="60" class="center">
           <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
             <a-input-search
               v-model="listQuery.key"
@@ -50,7 +50,7 @@
                 "
             />
           </div>
-        </a-affix>
+        </a-affix>-->
         <a-col v-if="'mobile' === device" :xs="24" >
           <el-card align="center" class="md-card">
             <div id="cy" style="width: 300px; height: 300px;"></div>
@@ -133,7 +133,7 @@
   import { mavonEditor } from 'mavon-editor'
   import * as echarts from 'echarts'
   import {mapGetters} from "vuex";
-
+  import { bus } from '@/utils/bus'
   export default {
     name: 'Blog',
     components: { 'mavon-editor': mavonEditor },
@@ -212,6 +212,9 @@
       },
     },
     activated(){
+
+    },
+    created() {
       let _this = this
       this.$nextTick(() => {
         // this.initScroll()
@@ -226,8 +229,8 @@
           var scrollHeight =
             document.documentElement.scrollHeight || document.body.scrollHeight
           //滚动条到底部的条件
-          /**@todo -10是因为页面缩放后查看居然有0.25的误差*/
-          if (scrollTop + windowHeight > scrollHeight-10) {
+          // console.log('距顶部+可视区高度' + (scrollTop + windowHeight) + '滚动条总高度' + scrollHeight)
+          if (scrollTop + windowHeight === scrollHeight) {
             //写后台加载数据的函数
             // console.log('距顶部' + scrollTop + '可视区高度' + windowHeight + '滚动条总高度' + scrollHeight)
             if (!_this.disabled) {
@@ -236,12 +239,17 @@
           }
         }
       })
-    },
-    created() {
       this.fetchData()
     },
-    mounted() {},
+    mounted() {
+      bus.$on('search',(content)=>{
+        this.listQuery.key = content
+        this.listQuery.page = 1
+        this.getList();
+      })
+    },
     methods: {
+
       async fetchData() {
         /*分类*/
         let { data } = await categoryCY()
@@ -271,7 +279,6 @@
         let cyChart = echarts.init(document.getElementById('cy'))
         maskImage.src = require('@/assets/mask/twitter.png')
         maskImage.onload = () => {
-          console.log(cyData)
           this.cy.series[0].data = cyData
           // this.cy.series[0].maskImage = maskImage
           cyChart.setOption(this.cy)

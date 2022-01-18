@@ -15,7 +15,7 @@
           :class="{ 'tag-view-show': tabsBar }"
         >
           <div class="vab-main">
-            <vab-tabs-bar />
+<!--            <vab-tabs-bar />-->
           </div>
         </div>
       </div>

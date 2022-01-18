@@ -10,16 +10,20 @@
         {{ title }}
       </span>
     </router-link>
+    &emsp;
+    <a-input-search placeholder="搜索" v-model="content" style="width: 200px" @search="search()" />
   </div>
 </template>
 <script>
   import { mapGetters } from 'vuex'
+  import { bus } from '@/utils/bus'
 
   export default {
     name: 'VabLogo',
     data() {
       return {
         title: this.$baseTitle,
+        content:'',
       }
     },
     computed: {
@@ -27,6 +31,11 @@
         layout: 'settings/layout',
       }),
     },
+    methods:{
+      search(){
+        bus.$emit('search',this.content)
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>

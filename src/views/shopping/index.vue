@@ -12,7 +12,7 @@
           <h2>喜欢的可以下单~不买的可以进来看一看~</h2>
 
         </el-col>
-        <el-col :lg="24"  style="position: absolute">
+        <el-col :lg="24"  style="position: absolute;" >
           <phoenix height="400px" width="100%" />
         </el-col>
         <el-col :lg="24" class="s_category_position">

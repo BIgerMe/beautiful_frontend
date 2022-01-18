@@ -8,7 +8,6 @@ import '@/layouts/export'
 Vue.config.productionTip = false
 import Antd from 'ant-design-vue'
 Vue.use(Antd)
-
 new Vue({
   el: '#zyf',
   router,
