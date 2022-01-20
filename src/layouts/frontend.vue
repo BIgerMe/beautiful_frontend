@@ -1,11 +1,6 @@
 <template>
   <div class="zyf-wrapper" :class="classObj">
-    <div class="layout-container-horizontal"
-
-    >
-<!--      <div :class="header === 'fixed' ? 'fixed-header' : ''">-->
-<!--        <n-top-bar />-->
-<!--      </div>-->
+    <div class="layout-container-horizontal no-tabs-bar">
       <div class="vab-main main-padding">
         <vab-app-main />
       </div>

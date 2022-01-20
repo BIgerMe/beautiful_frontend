@@ -2,30 +2,26 @@
   <div class="top-bar-container">
     <div class="vab-main">
       <el-row>
-        <el-col :xl="8" :lg="8" :md="8" :sm="8" :xs="8">
-          <vab-logo />
-        </el-col>
-        <el-col :xl="11" :lg="11" :md="11" :sm="11" :xs="11">
-          <el-menu
-            :background-color="variables['menu-background']"
+        <el-col style="text-align: right;background: #0c0c0c">
+          <div style="display: inline-block">
+            <el-menu
             :text-color="variables['menu-color']"
             :active-text-color="variables['menu-color-active']"
             :default-active="activeMenu"
             mode="horizontal"
             menu-trigger="hover"
-          >
-            <template v-for="route in routes">
-              <vab-side-bar-item
-                v-if="!route.hidden"
-                :key="route.path"
-                :full-path="route.path"
-                :item="route"
-              />
-            </template>
-          </el-menu>
-        </el-col>
-        <el-col :xl="5" :lg="5" :md="5" :sm="5" :xs="5">
-          <div class="right-panel">
+            >
+              <template v-for="route in routes">
+                <vab-side-bar-item
+                  v-if="!route.hidden"
+                  :key="route.path"
+                  :full-path="route.path"
+                  :item="route"
+                />
+              </template>
+            </el-menu>
+          </div>
+          <div style="display: inline-block">
             <vab-avatar />
           </div>
         </el-col>
@@ -75,5 +71,10 @@
   }
 </script>
 <style lang="scss" scoped>
-
+  .el-menu{
+    background-color:#00000000;
+  }
+  .el-menu.el-menu--horizontal{
+    border-bottom: 0;
+  }
 </style>

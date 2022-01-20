@@ -2,7 +2,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   .title{
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 300;
     color: var(--skfb-white, #fff);
   }
@@ -37,7 +37,15 @@
     /*background-origin: initial;*/
     /*background-clip: initial;*/
     /*background-color: initial;*/
+    .part1{
+      max-width: 1130px;
+      margin: 0 auto!important;
+      width: calc(100% - 60px);
+      position: relative;
+      flex: 1
+    }
   }
+
   .store-intro__logo {
     position: absolute;
     z-index: 0;

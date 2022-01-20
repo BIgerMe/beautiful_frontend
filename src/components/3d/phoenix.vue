@@ -1,11 +1,15 @@
 <template>
-  <div id="phoenix" :style="{ height: height, width: width }"></div>
+  <div :id="id" :style="{ height: height, width: width }"></div>
 </template>
 
 <script>
   import { clone } from '@/utils/three'
   export default {
     props: {
+      id:{
+        type: String,
+        default: 'phoenix',
+      },
       width: {
         type: String,
         default: '200px',
@@ -23,6 +27,7 @@
     },
     methods: {
       phoenix() {
+        let id = this.id
         let container
         let camera, scene, renderer
         let mesh = [], mixer = []
@@ -34,7 +39,7 @@
         let speed = [0.0004,0.0003]
         let prevTime = Date.now()
         function init() {
-          container = document.getElementById('phoenix')
+          container = document.getElementById(id)
           let width = container.offsetWidth
           let height = container.offsetHeight
           camera = new THREE.PerspectiveCamera(
