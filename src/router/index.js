@@ -93,6 +93,7 @@ export const asyncRoutes = [
   {
     //@todo 暂时用后台的layout，后续优化成前台的层次
     path: '/shopping',
+    // component: () => import('@/layouts/frontend'),
     component: () => import('@/layouts/frontend'),
     redirect: '/shopping/index',
     name: 'shopping',
@@ -133,15 +134,6 @@ export const asyncRoutes = [
           title: '小棉袄',
         },
       },
-      {
-        path: '3d',
-        name: '3d',
-        hidden: true,
-        component: () => import('@/views/baby/3d'),
-        meta: {
-          title: '3d',
-        },
-      },
     ],
   },
   {
@@ -149,6 +141,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: 'noRedirect',
     name: 'stock',
+    hidden: 'hidden',
     meta: {
       title: '金融信息',
       icon: 'chart',
@@ -172,6 +165,25 @@ export const asyncRoutes = [
         name: 'StockDetail',
         hidden: true,
         meta: { title: '股票详情页', icon: 'detail', noCache: true },
+      },
+    ],
+  }, {
+    path: '/three',
+    component: Layout,
+    redirect: '/three/one',
+    name: 'three',
+    meta: {
+      title: '3D展示',
+    },
+    children: [
+      {
+        path: 'one',
+        name: 'one',
+        hidden: true,
+        component: () => import('@/views/three/one'),
+        meta: {
+          title: 'one',
+        },
       },
     ],
   },

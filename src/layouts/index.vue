@@ -10,14 +10,14 @@
     >
       <div :class="header === 'fixed' ? 'fixed-header' : ''">
         <vab-top-bar />
-        <div
-          v-if="tabsBar === 'true' || tabsBar === true"
-          :class="{ 'tag-view-show': tabsBar }"
-        >
-          <div class="vab-main">
-<!--            <vab-tabs-bar />-->
-          </div>
-        </div>
+<!--        <div-->
+<!--          v-if="tabsBar === 'true' || tabsBar === true"-->
+<!--          :class="{ 'tag-view-show': tabsBar }"-->
+<!--        >-->
+<!--          <div class="vab-main">-->
+<!--&lt;!&ndash;            <vab-tabs-bar />&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
       <div class="vab-main main-padding">
         <vab-app-main />

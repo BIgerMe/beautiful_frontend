@@ -1,16 +1,11 @@
 <template>
-  <div id="phoenix" style="width: 100%;height: 800px"></div>
+  <div id="phoenix" style="width: 100%;height: 800px;max-height: 100%"></div>
 </template>
 
 <script>
-  // import * as THREE from 'three'
-  // import three from 'https://cdn.skypack.dev/three';
-  // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-  // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-  // import { THREE } from './static/js/three.js';
-
+  import { clone } from '@/utils/three'
   export default {
-    name: 'three',
+    name: 'one',
     components: {},
     data() {
       return {}
@@ -21,86 +16,6 @@
       this.phoenix()
     },
     methods: {
-      space(){
-        let container, stats
-        let camera, scene, renderer
-        let mesh,bloomComposer
-        let controls
-        const radius = 2000
-        function init() {
-          container = document.getElementById('phoenix')
-          camera = new THREE.PerspectiveCamera(
-            45,
-            container.offsetWidth / container.offsetHeight,
-            1,
-            10000
-          )
-          camera.position.set(0,500,0)
-
-          scene = new THREE.Scene()
-          /*从上往下*/
-          const loader = new THREE.GLTFLoader()
-          // loader.load('https://video.xxroom.xyz/scene.glb', function (gltf) {
-          loader.load('./static/three/gltf/need_some_space/scene.gltf', function (gltf) {
-            let mesh = gltf.scene
-            mesh.position.set(-100,0,100)
-            scene.add(mesh)
-          })
-
-          renderer = new THREE.WebGLRenderer( {alpha: true } );
-          //您可以将透明颜色保留为默认值。
-          renderer.setClearColor( 0x000000); //default
-          renderer.setPixelRatio(window.devicePixelRatio) //像素比
-          renderer.setSize(container.offsetWidth, container.offsetHeight)
-          // renderer.outputEncoding = THREE.sRGBEncoding //真彩色，不加的话颜色会与ps中图像看上去的不同
-          container.appendChild(renderer.domElement)
-
-          controls = new THREE.OrbitControls(camera,renderer.domElement);// 初始化控制器
-          // controls.target.set(0, 0, 0);// 设置控制器的焦点，使控制器围绕这个焦点进行旋转
-          // controls.maxPolarAngle = Math.PI / 3;//绕垂直轨道的距离（范围是0-Math.PI,默认为Math.PI）
-          // controls.autoRotate = false;
-
-          /*通道*/
-          const renderScene = new THREE.RenderPass(scene, camera)
-          var bloomPass = new THREE.UnrealBloomPass();
-          bloomPass.renderToScreen = true;
-          bloomPass.threshold = 0;
-          bloomPass.strength = 1.5;
-          bloomPass.radius = 0;
-
-          //创建效果组合器对象，可以在该对象上添加后期处理通道，通过配置该对象，使它可以渲染我们的场景，并应用额外的后期处理步骤，在render循环中，使用EffectComposer渲染场景、应用通道，并输出结果。
-          bloomComposer = new THREE.EffectComposer(renderer)
-          bloomComposer.setSize(container.offsetWidth, container.offsetHeight);
-          bloomComposer.addPass(renderScene);
-          bloomComposer.addPass(bloomPass);
-          bloomComposer.render()
-          renderer.autoClear = false
-        }
-        function animate() {
-          renderer.render(scene, camera)
-          renderer.clear()
-          camera.layers.set(0)
-          bloomComposer.render()
-          // 清除深度缓存
-          // renderer.clearDepth()
-          // camera.layers.set(2)
-          requestAnimationFrame(animate)
-          render()
-        }
-        function render() {
-          /*相机的位置*/
-          // theta += 0.2
-          /*头正尾负*/
-          // camera.position.x = radius * Math.sin(THREE.MathUtils.degToRad(theta))
-          // camera.position.y = radius * Math.cos(THREE.MathUtils.degToRad(theta))
-          // camera.position.z = radius * Math.cos(THREE.MathUtils.degToRad(theta))
-          /*相机看向的位置*/
-          // camera.lookAt(0, 0, 0)
-          renderer.render(scene, camera)
-        }
-        init()
-        animate()
-      },
       phoenix() {
         let container, stats
         let camera, scene, renderer
@@ -115,12 +30,16 @@
         let meshAxis
         function init() {
           container = document.getElementById('phoenix')
+          let width = container.offsetWidth <= 414 ? window.innerWidth :  container.offsetWidth
+          let height = container.offsetHeight <= 414 ? window.innerHeight : container.offsetHeight
           camera = new THREE.PerspectiveCamera(
             45,
-            container.offsetWidth / container.offsetHeight,
+            width / height,
             1,
             10000
           )
+          console.log(container.offsetWidth)
+
           camera.position.set(0,0,12000)
 
           scene = new THREE.Scene()
@@ -131,7 +50,7 @@
 
           const loader = new THREE.GLTFLoader()
 
-          loader.load('https://video.xxroom.xyz/scene.glb', function (gltf) {
+          loader.load('//video.xxroom.xyz/scene.glb', function (gltf) {
             let mesh1 = clone(gltf.scene)
             let mesh2 = clone(gltf.scene)
             mesh1.position.set(-1000,-150,0)
@@ -147,13 +66,11 @@
             mixer.push(  mixer1,mixer2 );
           })
           meshAxis = new THREE.Vector3(0,1,0)
-          loader.load('https://video.xxroom.xyz/nss.glb', function (gltf) {
+          loader.load('//video.xxroom.xyz/nss.glb', function (gltf) {
             let mesh3 = gltf.scene
             mesh.push(mesh3)
             mesh3.rotateX(Math.PI/10)
-            // mesh3.position.set(-3500,-3500,3500)
             mesh3.position.set(-4500,-4500,1000)
-            // mesh3.position.set(0,0,0)
             mesh3.scale.set(30,30,30) //5倍
             scene.add(mesh3)
           })
@@ -161,7 +78,7 @@
           //您可以将透明颜色保留为默认值。
           renderer.setClearColor( 0x000,0); //default
           renderer.setPixelRatio(window.devicePixelRatio) //像素比
-          renderer.setSize(container.offsetWidth, container.offsetHeight)
+          renderer.setSize(width, height)
           renderer.outputEncoding = THREE.sRGBEncoding //真彩色，不加的话颜色会与ps中图像看上去的不同
           container.appendChild(renderer.domElement)
 
@@ -179,43 +96,12 @@
 
           //创建效果组合器对象，可以在该对象上添加后期处理通道，通过配置该对象，使它可以渲染我们的场景，并应用额外的后期处理步骤，在render循环中，使用EffectComposer渲染场景、应用通道，并输出结果。
           bloomComposer = new THREE.EffectComposer(renderer)
-          bloomComposer.setSize(container.offsetWidth, container.offsetHeight);
+          bloomComposer.setSize(width, height);
           bloomComposer.addPass(renderScene);
           bloomComposer.addPass(bloomPass);
 
           bloomComposer.render()
           renderer.autoClear = false
-        }
-
-        /*克隆*/
-        function clone( source ) {
-          const sourceLookup = new Map();
-          const cloneLookup = new Map();
-          const clone = source.clone();
-          parallelTraverse( source, clone, function ( sourceNode, clonedNode ) {
-            sourceLookup.set( clonedNode, sourceNode );
-            cloneLookup.set( sourceNode, clonedNode );
-          } );
-
-          clone.traverse( function ( node ) {
-            if ( ! node.isSkinnedMesh ) return;
-            const clonedMesh = node;
-            const sourceMesh = sourceLookup.get( node );
-            const sourceBones = sourceMesh.skeleton.bones;
-            clonedMesh.skeleton = sourceMesh.skeleton.clone();
-            clonedMesh.bindMatrix.copy( sourceMesh.bindMatrix );
-            clonedMesh.skeleton.bones = sourceBones.map( function ( bone ) {
-              return cloneLookup.get( bone );
-            } );
-            clonedMesh.bind( clonedMesh.skeleton, clonedMesh.bindMatrix );
-          } );
-          return clone;
-        }
-        function parallelTraverse( a, b, callback ) {
-          callback( a, b );
-          for ( let i = 0; i < a.children.length; i ++ ) {
-            parallelTraverse( a.children[ i ], b.children[ i ], callback );
-          }
         }
 
         function animate() {

@@ -3,6 +3,7 @@
 </template>
 
 <script>
+  import { clone } from '@/utils/three'
   export default {
     props: {
       width: {
@@ -34,9 +35,11 @@
         let prevTime = Date.now()
         function init() {
           container = document.getElementById('phoenix')
+          let width = container.offsetWidth
+          let height = container.offsetHeight
           camera = new THREE.PerspectiveCamera(
             45,
-            container.offsetWidth / container.offsetHeight,
+            width / height,
             1,
             10000
           )
@@ -50,7 +53,7 @@
 
           const loader = new THREE.GLTFLoader()
 
-          loader.load('https://video.xxroom.xyz/scene.glb', function (gltf) {
+          loader.load('//video.xxroom.xyz/scene.glb', function (gltf) {
             // loader.load('./static/three/gltf/phoenix.glb', function (gltf) {
             // loader.load('./static/three/gltf/phoenix_bird/scene.gltf', function (gltf) {
             let mesh1 = clone(gltf.scene)
@@ -71,14 +74,12 @@
           })
           /*宇宙*/
           meshAxis = new THREE.Vector3(0,1,0)
-          loader.load('https://video.xxroom.xyz/nss.glb', function (gltf) {
+          loader.load('//video.xxroom.xyz/nss.glb', function (gltf) {
             let mesh3 = gltf.scene
             mesh.push(mesh3)
             mesh3.rotateX(Math.PI/10)
-            // mesh3.position.set(-3500,-3500,3500)
             mesh3.position.set(-4500,-4500,1000)
-            // mesh3.position.set(0,0,0)
-            mesh3.scale.set(30,30,30) //5倍
+            mesh3.scale.set(30,30,30) //放大n倍
             scene.add(mesh3)
           })
 
@@ -86,7 +87,7 @@
           //您可以将透明颜色保留为默认值。
           renderer.setClearColor( 0x000,0); //default
           renderer.setPixelRatio(window.devicePixelRatio) //像素比
-          renderer.setSize(container.offsetWidth, container.offsetHeight)
+          renderer.setSize(width, height)
           renderer.outputEncoding = THREE.sRGBEncoding //真彩色，不加的话颜色会与ps中图像看上去的不同
           container.appendChild(renderer.domElement)
 
@@ -95,54 +96,33 @@
 
           /*通道*/
           const renderScene = new THREE.RenderPass(scene, camera)
-          var bloomPass = new THREE.UnrealBloomPass();
+          renderScene.autoClear = false
+          const bloomPass = new THREE.UnrealBloomPass();
           bloomPass.renderToScreen = true;
           bloomPass.threshold = 0;
           bloomPass.strength = 1.5;
           bloomPass.radius = 0;
 
+          // var width = container.offsetWidth || 1;
+          // var height = container.offsetHeight || 1;
+          // var parameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat, stencilBuffer: false };
+          // var renderTarget = new THREE.WebGLRenderTarget( width, height, parameters );
+          // bloomComposer = new THREE.EffectComposer(renderer, renderTarget);
+
           //创建效果组合器对象，可以在该对象上添加后期处理通道，通过配置该对象，使它可以渲染我们的场景，并应用额外的后期处理步骤，在render循环中，使用EffectComposer渲染场景、应用通道，并输出结果。
           bloomComposer = new THREE.EffectComposer(renderer)
-          bloomComposer.setSize(container.offsetWidth, container.offsetHeight);
+          bloomComposer.setSize(width, height);
           bloomComposer.addPass(renderScene);
           bloomComposer.addPass(bloomPass);
 
-          bloomComposer.render()
+          // renderPass.clear=false
           renderer.autoClear = false
-        }
-
-        /*克隆*/
-        function clone( source ) {
-          const sourceLookup = new Map();
-          const cloneLookup = new Map();
-          const clone = source.clone();
-          parallelTraverse( source, clone, function ( sourceNode, clonedNode ) {
-            sourceLookup.set( clonedNode, sourceNode );
-            cloneLookup.set( sourceNode, clonedNode );
-          } );
-
-          clone.traverse( function ( node ) {
-            if ( ! node.isSkinnedMesh ) return;
-            const clonedMesh = node;
-            const sourceMesh = sourceLookup.get( node );
-            const sourceBones = sourceMesh.skeleton.bones;
-            clonedMesh.skeleton = sourceMesh.skeleton.clone();
-            clonedMesh.bindMatrix.copy( sourceMesh.bindMatrix );
-            clonedMesh.skeleton.bones = sourceBones.map( function ( bone ) {
-              return cloneLookup.get( bone );
-            } );
-            clonedMesh.bind( clonedMesh.skeleton, clonedMesh.bindMatrix );
-          } );
-          return clone;
-        }
-        function parallelTraverse( a, b, callback ) {
-          callback( a, b );
-          for ( let i = 0; i < a.children.length; i ++ ) {
-            parallelTraverse( a.children[ i ], b.children[ i ], callback );
-          }
+          // renderer.autoClearColor = false
         }
 
         function animate() {
+          /*泛光渲染*/
+          bloomComposer.render()
           requestAnimationFrame(animate)
           render()
         }
@@ -183,35 +163,35 @@
                 }
               }
             }
+          }
             /*头正尾负*/
             // camera.position.x = radius  * Math.sin(THREE.MathUtils.degToRad(theta))
             // camera.position.y = radius * Math.cos(THREE.MathUtils.degToRad(theta))
             // camera.position.z = radius  * Math.cos(THREE.MathUtils.degToRad(theta))
             /*相机看向的位置*/
-            camera.lookAt(0, 0, 0)
+          camera.lookAt(0, 0, 0)
 
-
-            if (mixer) {
-              const time = Date.now()
-              let t = time - prevTime
-              if(mixer[0] !== undefined){
-                mesh[0].rotateOnAxis(meshAxis,(t) * -Math.PI/600000)
-                mesh[1].position.x += 100 * 0.03 * Math.sin(THREE.MathUtils.degToRad(theta))
-                mesh[2].position.x += 50 * 0.03 * Math.sin(THREE.MathUtils.degToRad(theta))
-                mesh[1].position.z += 100 * 0.03 * Math.sin(THREE.MathUtils.degToRad(theta)) * Math.tan(22.5)
-                if(mesh[1].position.x > mesh[2].position.x +700){
-                  speed[0] = 0.00025
-                }else if(mesh[1].position.x + 800 < mesh[2].position.x){
-                  speed[0] = 0.0004
-                }
-                mixer[0].update((t)* speed[0])
-                mixer[1].update((t)* speed[1])
+          if (mixer) {
+            const time = Date.now()
+            let t = time - prevTime
+            if(mixer[0] !== undefined){
+              mesh[0].rotateOnAxis(meshAxis,(t) * -Math.PI/600000)
+              mesh[1].position.x += 100 * 0.03 * Math.sin(THREE.MathUtils.degToRad(theta))
+              mesh[2].position.x += 50 * 0.03 * Math.sin(THREE.MathUtils.degToRad(theta))
+              mesh[1].position.z += 100 * 0.03 * Math.sin(THREE.MathUtils.degToRad(theta)) * Math.tan(22.5)
+              if(mesh[1].position.x > mesh[2].position.x +700){
+                speed[0] = 0.00025
+              }else if(mesh[1].position.x + 800 < mesh[2].position.x){
+                speed[0] = 0.0004
               }
-              prevTime = time
+              mixer[0].update((t)* speed[0])
+              mixer[1].update((t)* speed[1])
             }
-            renderer.render(scene, camera)
+            prevTime = time
           }
+          renderer.render(scene, camera)
         }
+
         init()
         animate()
       },
