@@ -170,21 +170,22 @@ export const asyncRoutes = [
   }, {
     path: '/three',
     component: Layout,
-    redirect: '/three/one',
+    redirect: 'noRedirect',
     name: 'three',
-    meta: {
-      title: '3D展示',
-    },
+    meta: {title: '3D展示'},
     children: [
       {
         path: 'one',
-        name: 'one',
-        hidden: true,
         component: () => import('@/views/three/one'),
-        meta: {
-          title: 'one',
-        },
+        name: 'one',
+        meta: {title: '宇宙凤凰'}
       },
+      {
+        path: 'two',
+        component: () => import('@/views/three/two'),
+        name: 'two',
+        meta: { title:'平面'}
+      }
     ],
   },
 ]

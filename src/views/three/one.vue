@@ -148,11 +148,6 @@
                 }
               }
             }
-
-            // camera.position.y = radius * Math.sin(THREE.MathUtils.degToRad(theta))
-            // camera.position.z += radius * Math.cos(THREE.MathUtils.degToRad(theta))
-            // theta += 10;
-            // camera.position.z += 10;
           }
           /*头正尾负*/
           // camera.position.x = radius * Math.sin(THREE.MathUtils.degToRad(theta))
