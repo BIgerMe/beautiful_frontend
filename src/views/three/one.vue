@@ -16,6 +16,117 @@
       this.phoenix()
     },
     methods: {
+      space(){
+        let camera, scene, renderer, stats, material;
+        let mouseX = 0, mouseY = 0;
+
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+
+        init();
+        animate();
+
+        function init() {
+
+          camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 2, 2000 );
+          camera.position.z = 1000;
+
+          scene = new THREE.Scene();
+          scene.fog = new THREE.FogExp2( 0x000000, 0.001 );
+
+          const geometry = new THREE.BufferGeometry();
+          const vertices = [];
+
+          const sprite = new THREE.TextureLoader().load( './static/three/texture/disc.png' );
+
+          for ( let i = 0; i < 10000; i ++ ) {
+
+            const x = 2000 * Math.random() - 1000;
+            const y = 2000 * Math.random() - 1000;
+            const z = 2000 * Math.random() - 1000;
+
+            vertices.push( x, y, z );
+
+          }
+
+          geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+
+          material = new THREE.PointsMaterial( { size: 30, sizeAttenuation: true,map:sprite, alphaTest: 0.5, transparent: true } );
+          material.color.setHSL( 1.0, 0.3, 0.7 );
+
+          const particles = new THREE.Points( geometry, material );
+          scene.add( particles );
+
+          //
+
+          renderer = new THREE.WebGLRenderer();
+          renderer.setPixelRatio( window.devicePixelRatio );
+          renderer.setSize( window.innerWidth, window.innerHeight );
+          document.body.appendChild( renderer.domElement );
+
+          //
+          //
+          // stats = new Stats();
+          // document.body.appendChild( stats.dom );
+
+          document.body.style.touchAction = 'none';
+          document.body.addEventListener( 'pointermove', onPointerMove );
+
+          //
+
+          window.addEventListener( 'resize', onWindowResize );
+
+        }
+
+        function onWindowResize() {
+
+          windowHalfX = window.innerWidth / 2;
+          windowHalfY = window.innerHeight / 2;
+
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+
+          renderer.setSize( window.innerWidth, window.innerHeight );
+
+        }
+
+        function onPointerMove( event ) {
+
+          if ( event.isPrimary === false ) return;
+
+          mouseX = event.clientX - windowHalfX;
+          mouseY = event.clientY - windowHalfY;
+
+        }
+
+        //
+
+        function animate() {
+
+          requestAnimationFrame( animate );
+
+          render();
+          // stats.update();
+
+        }
+
+        function render() {
+
+          const time = Date.now() * 0.00005;
+
+          camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+          camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+
+          camera.lookAt( scene.position );
+
+          const h = ( 360 * ( 1.0 + time ) % 360 ) / 360;
+          material.color.setHSL( h, 0.5, 0.5 );
+
+          renderer.render( scene, camera );
+
+        }
+
+      },
       phoenix() {
         let container, stats
         let camera, scene, renderer
@@ -32,12 +143,7 @@
           container = document.getElementById('phoenix')
           let width = container.offsetWidth <= 414 ? window.innerWidth :  container.offsetWidth
           let height = container.offsetHeight <= 414 ? window.innerHeight : container.offsetHeight
-          camera = new THREE.PerspectiveCamera(
-            45,
-            width / height,
-            1,
-            10000
-          )
+          camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000)
           console.log(container.offsetWidth)
 
           camera.position.set(0,0,12000)
@@ -67,7 +173,27 @@
           })
           meshAxis = new THREE.Vector3(0,1,0)
           loader.load('//video.xxroom.xyz/nss.glb', function (gltf) {
+
+            const sprite = new THREE.TextureLoader().load( './static/three/texture/disc.png' );
+
+            // gltf.scene.traverse((child) => {
+            //   console.log(child.isMesh)
+            //   if (child.isMesh) {
+            //     const mesh3 = new THREE.Mesh(child.geometry, material);
+            //     mesh3.rotateX(Math.PI / 10)
+            //     mesh3.position.set(-4500, -4500, 1000)
+            //     mesh3.scale.set(30, 30, 30) //5倍
+            //     scene.add(mesh3)
+            //   }
+            // })
+
+
             let mesh3 = gltf.scene
+            mesh3.children[0].material.size = 15
+            mesh3.children[0].material.map = sprite
+            mesh3.children[0].material.sizeAttenuation = true
+            mesh3.children[0].material.alphaTest = 0.5
+            mesh3.children[0].material.transparent = true
             mesh.push(mesh3)
             mesh3.rotateX(Math.PI/10)
             mesh3.position.set(-4500,-4500,1000)

@@ -27,7 +27,7 @@
           let width = container.offsetWidth <= 414 ? window.innerWidth :  container.offsetWidth
           let height = container.offsetHeight <= 414 ? window.innerHeight : container.offsetHeight
           camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000)
-          camera.position.set(0,150,150)
+          camera.position.set(0,150,0)
           scene = new THREE.Scene()
           /*从上往下*/
           const light1 = new THREE.DirectionalLight(0xFFFFFF, 1)
@@ -44,26 +44,28 @@
           ground.material.map.wrapS = ground.material.map.wrapT = THREE.RepeatWrapping;
           ground.material.map.encoding = THREE.sRGBEncoding;
           ground.receiveShadow = true;
-
           scene.add( ground );
-          // const geometry = new THREE.PlaneGeometry(100,100,100,100);
-          // const material = new THREE.MeshBasicMaterial( {color: 0x1f83e7, side: THREE.DoubleSide} );
-          // const plane = new THREE.Mesh( geometry, material );
-          // scene.add( plane );
-          const loader = new THREE.GLTFLoader()
-          console.log(scene)
-          loader.load('//video.xxroom.xyz/scene.glb', function (gltf) {
-            mesh[0] = gltf.scene
-            mesh[0].scale.set(0.03,0.03,0.03)
-            mesh[0].position.y= 50
-            scene.add(mesh[0])
-          })
-          console.log(scene)
 
-          renderer = new THREE.WebGLRenderer( {alpha: true } );
+
+          const geometry = new THREE.BoxGeometry( 10, 10, 10 );
+          const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+          const cube = new THREE.Mesh( geometry, material );
+          scene.add( cube );
+
+          const loader = new THREE.GLTFLoader()
+          // loader.load('//video.xxroom.xyz/scene.glb', function (gltf) {
+          //   mesh[0] = gltf.scene
+          //   mesh[0].scale.set(0.03,0.03,0.03)
+          //   mesh[0].position.y= 50
+          //   scene.add(mesh[0])
+          // })
+          const axesHelper = new THREE.AxesHelper( 50 );
+          scene.add( axesHelper );
+
+          renderer = new THREE.WebGLRenderer( {alpha: true,antialias:true, } );
           // renderer = new THREE.WebGLRenderer();
           //您可以将透明颜色保留为默认值。
-          renderer.setClearColor( 0x000,0); //default
+          renderer.setClearColor( 0x000); //default
           renderer.setPixelRatio(window.devicePixelRatio) //像素比
           renderer.setSize(width, height)
           renderer.outputEncoding = THREE.sRGBEncoding //真彩色，不加的话颜色会与ps中图像看上去的不同
