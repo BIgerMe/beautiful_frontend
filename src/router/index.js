@@ -141,7 +141,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: 'noRedirect',
     name: 'stock',
-    hidden: 'hidden',
+    // hidden: 'hidden',
     meta: {
       title: '金融信息',
       icon: 'chart',

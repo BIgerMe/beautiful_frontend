@@ -1,5 +1,5 @@
 <template>
-  <div id="zyf">
+  <div id="zyf" v-cloak>
     <router-view />
   </div>
 </template>
@@ -10,3 +10,8 @@
     mounted() {},
   }
 </script>
+<style type="scss" scoped>
+  [v-cloak] {
+    display: none;
+  }
+</style>

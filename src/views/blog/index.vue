@@ -1,5 +1,5 @@
 <template>
-  <a-row :gutter="20">
+  <a-row :gutter="20" style="font-family: serif">
     <a-col v-if="device !== 'mobile'" :md="4" :lg="4" :xl="4" class="left" style="max-height: 80vh;">
       <a-affix :offset-top="140">
         <el-scrollbar
@@ -38,19 +38,6 @@
     </a-col>
     <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14">
       <div>
-        <!--<a-affix v-if="device !== 'mobile'" :offset-top="60" class="center">
-          <div style="background: white; padding: 10px 0;box-shadow: inset 28px 28px 56px #282c34,inset -28px -28px 56px #ffffff">
-            <a-input-search
-              v-model="listQuery.key"
-              placeholder="搜索内容"
-              style="width: 300px"
-              @search="
-                  listQuery.page = 1
-                  getList()
-                "
-            />
-          </div>
-        </a-affix>-->
         <a-col v-if="'mobile' === device" :xs="24" >
           <el-card align="center" class="md-card">
             <div id="cy" style="width: 300px; height: 300px;"></div>
@@ -125,11 +112,33 @@
       <el-card align="center" class="md-card">
         <div id="cy" style="width: 300px; height: 300px;"></div>
       </el-card>
+      <el-card class="md-card">
+        <div slot="header"><h3>技术栈超链接</h3></div>
+        <div style="margin-bottom: 3px">
+          <el-radio-group v-model="group.group_title" size="medium" @change="group.group_subtitle='';getGroupDetail()">
+            <el-radio-button v-for="(item,key) in navGroup" :label="key"></el-radio-button>
+          </el-radio-group>
+        </div>
+        <div style="margin-bottom: 3px" >
+          <el-radio-group v-model="group.group_subtitle" size="mini" @change="getGroupDetail">
+            <el-radio-button label="">全部</el-radio-button>
+            <el-radio-button v-for="(item,key) in navGroup[group.group_title]" :label="item"></el-radio-button>
+          </el-radio-group>
+        </div>
+        <div>
+          <ul>
+            <li v-for="item in groupDetail">
+              <a :href="item.href" target="_blank">{{item.title}}</a>
+            </li>
+          </ul>
+        </div>
+      </el-card>
     </a-col>
   </a-row>
 </template>
 <script>
   import { categoryCY, lists } from '@/api/blog'
+  import { getGroupList, getGroupDetail } from '@/api/navigation'
   import { mavonEditor } from 'mavon-editor'
   import * as echarts from 'echarts'
   import {mapGetters} from "vuex";
@@ -140,6 +149,12 @@
     data() {
       return {
         category: [],
+        navGroup:[],
+        group:{
+          group_title:'',
+          group_subtitle:'',
+        },
+        groupDetail:[],
         lists: [],
         total: 0,
         listQuery: {
@@ -256,6 +271,8 @@
         this.category = data
         this.setCy()
         await this.getList()
+        await this.getGroupList()
+        await this.getGroupDetail()
       },
       async getList(push = false) {
         /*文章列表*/
@@ -268,6 +285,15 @@
           this.lists = data.data
         }
         this.total = data.total
+      },
+      async getGroupList(){
+        const {data} = await getGroupList()
+        this.navGroup = data
+        this.group.group_title = Object.keys(data)[0]
+      },
+      async getGroupDetail(){
+        const {data} = await getGroupDetail(this.group)
+        this.groupDetail = data
       },
       setCy(){//生成词云
         let cyData = []
@@ -312,6 +338,9 @@
     height: auto!important;
     text-align: center;
   }
+  .ant-menu-item{
+    margin-bottom: 0!important;
+  }
   .ant-menu-inline,
   .ant-menu-vertical,
   .ant-menu-vertical-left {
@@ -341,5 +370,14 @@
 <style>
   .hljs {
     background: #f6f8fa !important;
+  }
+  .el-radio-button__orig-radio:checked+.el-radio-button__inner{
+    background: black!important;
+    border: 0!important;
+    -webkit-box-shadow: 0 0 0 0!important;
+    box-shadow: 0 0 0 0!important;
+  }
+  .el-radio-button__inner{
+    border: 0!important;
   }
 </style>
