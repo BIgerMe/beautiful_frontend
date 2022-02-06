@@ -73,7 +73,7 @@
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2018.8 - 2019.6" placement="top">
                 <h4><b>江苏微盛网络科技有限公司</b></h4>
-                <p>负责小程序、公众号开发，开发项目包括房产、医疗、多个外包公众号小程序</p>
+                <p>负责小程序、公众号开发，开发项目包括房产、医疗。独立负责多个外包公众号小程序开发上线、版本升级。</p>
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2019.6 - 2020.4" placement="top">
                 <h4><b>江苏无锡新意科技有限公司</b></h4>
