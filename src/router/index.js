@@ -90,6 +90,7 @@ export const asyncRoutes = [
       },
     ],
   },
+
   {
     //@todo 暂时用后台的layout，后续优化成前台的层次
     path: '/shopping',
@@ -178,14 +179,34 @@ export const asyncRoutes = [
         path: 'one',
         component: () => import('@/views/three/one'),
         name: 'one',
-        meta: {title: '宇宙凤凰'}
+        meta: {title: '小凤凰'}
       },
       {
         path: 'two',
         component: () => import('@/views/three/two'),
         name: 'two',
+        hidden:true,
         meta: { title:'平面'}
       }
+    ],
+  },
+  {
+    //@todo 暂时用后台的layout，后续优化成前台的层次
+    path: '/other',
+    component: () => import('@/layouts/frontend'),
+    // hidden: true,
+    meta: {
+      title: '了解站长',
+    },
+    children: [
+      {
+        path: 'resume',
+        name: 'resume',
+        component: () => import('@/views/index/resume'),
+        meta: {
+          title: '了解站长',
+        },
+      },
     ],
   },
 ]
