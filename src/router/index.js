@@ -194,7 +194,7 @@ export const asyncRoutes = [
     //@todo 暂时用后台的layout，后续优化成前台的层次
     path: '/other',
     component: () => import('@/layouts/frontend'),
-    // hidden: true,
+    hidden: true,
     meta: {
       title: '了解站长',
     },

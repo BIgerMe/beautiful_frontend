@@ -12,7 +12,7 @@
           <el-card class="md-card no-shadow">
             <a-menu
               style="width: auto"
-              :default-selected-keys="['博客']"
+              :default-selected-keys="['']"
               mode="inline"
               theme="light"
               @click="changeCategory"
@@ -158,7 +158,7 @@
         lists: [],
         total: 0,
         listQuery: {
-          category: '博客',
+          category: '',
           key: '',
           page: 1,
           pageSize: 5,

@@ -19,7 +19,10 @@
     <div style="margin-top: -150px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card class="xl-card" style="">
+          <el-card v-if="device !=='mobile'" class="xl-card">
+            <div id="skill" style="width: auto;height: 400px"></div>
+          </el-card>
+          <el-card v-else>
             <div id="skill" style="width: auto;height: 400px"></div>
           </el-card>
         </el-col>
@@ -28,7 +31,7 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card class="xl-card" style="">
+          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
             <h3 align="center"><b>校园经历</b></h3>
             <el-timeline>
               <el-timeline-item color="green" timestamp="2004.9 - 2007.6" placement="top">
@@ -54,7 +57,7 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card class="xl-card" style="">
+          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
             <h3 align="center"><b>工作经历</b></h3>
             <el-timeline>
               <el-timeline-item color="red" timestamp="2014.7 - 2015.6" placement="top">
@@ -72,17 +75,37 @@
                 <p>负责业务属于校园管理类SAAS平台，稳定提供多校园服务，与融资方协同开发业务合并，平台前后端分离改版升级。</p>
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2018.8 - 2019.6" placement="top">
-                <h4><b>江苏微盛网络科技有限公司</b></h4>
+                <h4><b>江苏微盛网络科技有限公司 - 软件开发工程师</b></h4>
                 <p>负责小程序、公众号开发，开发项目包括房产、医疗。独立负责多个外包公众号小程序开发上线、版本升级。</p>
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2019.6 - 2020.4" placement="top">
-                <h4><b>江苏无锡新意科技有限公司</b></h4>
-                <p>金融项目（多平台多渠道PHP+JAVA），负责与第三方银行渠道对接、与下游业务对接支付渠道，独立负责PHP平台搭建、稳定运行、维护和安全监控，协同JAVA业务接口开发，前端VUE开发。</p>
+                <h4><b>江苏无锡新意科技有限公司 - 软件工程师</b></h4>
+                <p>金融项目（多平台多渠道PHP+JAVA），负责与第三方银行渠道对接、与下游业务对接支付渠道，独立负责PHP平台搭建、稳定运行、维护和安全监控，协同JAVA业务接口开发，前端VUE开发，部署自动化程序。</p>
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2020.4至今" placement="top">
-                <h4><b>常州科腾纺织品有限公司</b></h4>
+                <h4><b>常州科腾纺织品有限公司 - IT工程师</b></h4>
+                <p>全栈php+vue开发包括oa、o2o、sap、CRM、SRM、物流、成本分析、头寸统计等包含全平台的内容，全面升级旧平台的开发流程，项目架构和技术栈应用；python脚本部署定时自动抓取行业数据；提供行业分析数据；
+                为业务、金融、中台、物流、财务多部门运行提供稳定可靠高性能的支持。</p>
               </el-timeline-item>
             </el-timeline>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+    <div style="margin-top: 0px;display:flex;flex-direction: column;">
+      <el-row>
+        <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
+          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
+            <h3 align="center"><b>兴趣爱好</b></h3>
+            <ul>
+              <li>a、github是比较喜欢的地方，探索优秀的开源项目是轻松愉快得一件事，在这里真的是能感受到开源带来的便捷性。</li>
+              <li>b、除此之外，每年都会业余花时间精进一下英语能力，提升英语文档阅读能力，提升解决问题能力，这是很有成效的，因为百度和必应得到的中文处理方案大多是借鉴或翻译的，处理较难或不常见问题还是得用Google才能正真解决和得到全面解释，翻译的局限性也很大；
+              </li>
+              <li>c、系统性的计划学习，充满斗志、很有成就感的事情。</li>
+              <li>d、用户体验的学习，在工作领域思考未来发展方向和可能性，技术带给自身的不只是便捷，还有视角，网上冲浪，探索世界。</li>
+              <li>e、业余锻炼身体、和朋友玩玩游戏、桌游，聚会也是OK的，咱也是气氛大王。</li>
+              <li>总之：带娃为主，学习分享为辅，努力工作，共建美好生活。</li>
+            </ul>
           </el-card>
         </el-col>
       </el-row>
