@@ -14,7 +14,7 @@
         </el-col>
         <el-col :lg="12">
           <el-card class="md-card" style="background: rgba(0,0,0,0)!important;">
-            <phoenix  height="300px" width="100%"  />
+<!--            <phoenix  height="300px" width="100%"  />-->
           </el-card>
         </el-col>
         <el-col :lg="24" class="s_category_position">
@@ -32,11 +32,29 @@
       </el-row>
     </div>
     <div style="padding-top: 140px">
-      <el-row>
-        <el-col :lg="24">
-          <el-card class="xl-card" style="background: rgba(0,0,0,0)!important;">
-            <phoenix :id="'p2'" height="800px" width="100%"  />
-          </el-card>
+      <el-row :gutter="20">
+        <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
+<!--          <el-card class="xl-card" style="background: rgba(0,0,0,0)!important;"></el-card>-->
+
+          <el-col :lg="6" v-for="(o, index) in 4" :key="o" >
+            <el-card class="md-light-card">
+              <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+              <div style="padding: 14px;">
+                <h3>超级无敌海底霸王澳龙王纯种香辣龙虾塔克夹汉堡</h3>
+                <div class="bottom clearfix">
+                  <el-button type="text" class="button">
+                    <a>
+                      <router-link
+                        :to="{ name: 'shopping_detail'}"
+                      >
+                        购买
+                      </router-link>
+                    </a>
+                  </el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
         </el-col>
       </el-row>
     </div>
@@ -47,6 +65,7 @@
 
 <script>
   import phoenix from '@/components/3d/phoenix'
+  import {mapGetters} from "vuex";
   export default {
     name: 'shopping_home',
     data() {
@@ -61,13 +80,28 @@
         ]
       }
     },
+    computed: {
+      ...mapGetters({
+        device: 'settings/device',
+      }),
+    },
     components:{ phoenix },
     mounted() {},
     beforeDestroy() {},
-    methods: {},
+    methods: {
+
+    },
   }
 </script>
 
 <style lang="scss" scoped>
   @import "~@/styles/shopping/index.scss";
+  .image{
+    width: 100%;
+    opacity:0.1;
+    display: block;
+  }
+  .button{
+    float:right
+  }
 </style>

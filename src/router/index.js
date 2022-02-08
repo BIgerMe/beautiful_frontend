@@ -110,6 +110,12 @@ export const asyncRoutes = [
         name: 'shopping_home',
         meta: { title: '商品', noCache: true },
       },
+      {
+        path: 'detail',
+        component: () => import('@/views/shopping/detail'),
+        name: 'shopping_detail',
+        meta: { title: '商品详情', noCache: true },
+      },
     ],
   },
   {
