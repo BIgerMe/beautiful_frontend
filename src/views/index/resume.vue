@@ -20,7 +20,7 @@
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
           <el-card v-if="device !=='mobile'" class="xl-card">
-            <div id="skill" style="width: auto;height: 400px"></div>
+            <div id="skill" style= "width: auto;height: 400px"></div>
           </el-card>
           <el-card v-else>
             <div id="skill" style="width: auto;height: 400px"></div>
@@ -110,6 +110,20 @@
         </el-col>
       </el-row>
     </div>
+    <div style="margin-top: 0px;display:flex;flex-direction: column;">
+      <el-row>
+        <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
+          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
+            <h3 align="center"><b>联系方式</b></h3>
+            <ul>
+              <li>电话：15756197390</li>
+              <li>微信：15716197390</li>
+              <li>邮箱：2260891938@qq.com</li>
+            </ul>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -182,7 +196,6 @@
     components:{ },
     mounted() {
       this.showSkill()
-
     },
     created() {
     },
@@ -190,6 +203,10 @@
     methods: {
       showSkill(){
         let skillDom = document.getElementById('skill')
+
+        skillDom.style.width = skillDom.offsetWidth < 500 ? window.innerWidth*0.9+'px' : skillDom.offsetWidth;
+
+        console.log(skillDom.offsetWidth)
         let skillChart = echarts.init(skillDom)
         skillChart.setOption(this.skillOption)
       }
