@@ -2,18 +2,27 @@
   <div class="store-home">
     <el-row :gutter="20" class="part1">
       <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-        <!--          <el-card class="xl-card" style="background: rgba(0,0,0,0)!important;"></el-card>-->
-
         <el-col :lg="9" >
           <el-card class="md-card">
-<!--            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
             <a-carousel arrows dots-class="slick-dots slick-thumb">
+              <div
+                slot="prevArrow"
+                slot-scope="props"
+                class="custom-slick-arrow"
+                style="left: 10px;zIndex: 1"
+              >
+                <a-icon type="left-circle" />
+              </div>
               <a slot="customPaging" slot-scope="props">
                 <img :src="goods.image[props.i]" />
               </a>
-              <div v-for="item in goods.image">
-                <img :src="item" />
+              <div slot="nextArrow" slot-scope="props" class="custom-slick-arrow" style="right: 10px">
+                <a-icon type="right-circle" />
               </div>
+<!--              <div >-->
+<!--                <img :src="item" />-->
+              <imgZoom v-for="item in goods.image"  :width="415"  :height="300" :minIMGsrc="item" :scale="3" />
+<!--              </div>-->
             </a-carousel>
           </el-card>
         </el-col>
@@ -71,6 +80,7 @@
 
 <script>
   import phoenix from '@/components/3d/phoenix'
+  import imgZoom from './components/imgZoom'
   import {mapGetters} from "vuex";
   export default {
     name: 'shopping_detail',
@@ -78,10 +88,14 @@
       return {
         goods:{
           image:[
-            'https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg',
-            'https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg',
-            'https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract03.jpg',
-            'https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg',
+            'http://head.xxroom.xyz/llJBQrON-6bn9s6PS1bSZ3AQhcA7',
+            'http://head.xxroom.xyz/FgfEk2G_WlwtfC_8b7IjjIbcc_SE',
+            'http://head.xxroom.xyz/FgfEk2G_WlwtfC_8b7IjjIbcc_SE',
+            'http://head.xxroom.xyz/FgfEk2G_WlwtfC_8b7IjjIbcc_SE',
+            'http://head.xxroom.xyz/Fm2G6NJoXW8geH_OVhqKec0otecd',
+            'http://head.xxroom.xyz/Fm2G6NJoXW8geH_OVhqKec0otecd',
+            'http://head.xxroom.xyz/Fv9ODPm-Zv23KwSwfxc1Md8Aaiaa',
+            'http://head.xxroom.xyz/Fv9ODPm-Zv23KwSwfxc1Md8Aaiaa',
           ],
           num:1
         },
@@ -100,7 +114,7 @@
         device: 'settings/device',
       }),
     },
-    components:{ phoenix },
+    components:{ phoenix,imgZoom },
     mounted() {},
     beforeDestroy() {},
     methods: {
@@ -128,10 +142,11 @@
     max-width: 100%;
   }
   .ant-carousel >>> .slick-thumb {
-    bottom: -45px;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
   }
   .ant-carousel >>> .slick-thumb li {
-    width: 60px;
+    width: 45px;
     height: 45px;
   }
   .ant-carousel >>> .slick-thumb li img {
@@ -144,6 +159,21 @@
   }
   .ant-carousel>>>.slick-dots{
     position: unset!important;
+  }
+
+  .ant-carousel >>> .custom-slick-arrow {
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
+    color: #fff;
+    background-color: rgba(31, 45, 61, 0.11);
+    opacity: 0.3;
+  }
+  .ant-carousel >>> .custom-slick-arrow:before {
+    display: none;
+  }
+  .ant-carousel >>> .custom-slick-arrow:hover {
+    opacity: 0.5;
   }
 </style>
 <style lang="scss" scoped>
