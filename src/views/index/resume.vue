@@ -184,6 +184,7 @@
               [70, 'python'],
               [72, 'git、svn'],
               [75, 'vue（element、antd、vant...）'],
+              [75, 'project management'],
               [79, 'mysql、sql server'],
               [85, 'php（yii2、tp、ci、自写框架）'],
 
