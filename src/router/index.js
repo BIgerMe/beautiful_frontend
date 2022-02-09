@@ -210,7 +210,15 @@ export const asyncRoutes = [
         name: 'resume',
         component: () => import('@/views/index/resume'),
         meta: {
-          title: '了解站长',
+          title: '认识我',
+        },
+      },
+      {
+        path: 'resume_en',
+        name: 'resume_en',
+        component: () => import('@/views/index/resume_en'),
+        meta: {
+          title: 'know me',
         },
       },
     ],
