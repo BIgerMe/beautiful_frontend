@@ -45,12 +45,12 @@
         areaHeight: 210,
         areaMarkStyle: {},
         minImgBoxStyle: {
-          cursor: 'move'
+          cursor: 'move',
+          display:'inline-block'
         },
         minImgStyle: {},
         maxImgBoxStyle: {
-
-
+          display:'inline-block',
         },
         maxImgStyle: {
           position: 'absolute',
@@ -146,7 +146,7 @@
   .box {
     position: relative;
     overflow: hidden;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
   }
 
   .areaMark {
@@ -155,6 +155,5 @@
   }
   .maxImgBox{
     position: absolute;
-    z-index:999
   }
 </style>

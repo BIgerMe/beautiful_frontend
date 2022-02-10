@@ -3,8 +3,11 @@
     <el-row :gutter="20" class="part1">
       <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
         <el-col :lg="9" >
+          <imgZoom  :width="400"  :height="300" :minIMGsrc="goods.image[7]" :scale="3" />
+
           <el-card class="md-card">
-            <a-carousel arrows dots-class="slick-dots slick-thumb">
+
+            <!--<a-carousel arrows dots-class="slick-dots slick-thumb">
               <div
                 slot="prevArrow"
                 slot-scope="props"
@@ -19,11 +22,12 @@
               <div slot="nextArrow" slot-scope="props" class="custom-slick-arrow" style="right: 10px">
                 <a-icon type="right-circle" />
               </div>
-<!--              <div >-->
-<!--                <img :src="item" />-->
-              <imgZoom v-for="item in goods.image"  :width="415"  :height="300" :minIMGsrc="item" :scale="3" />
-<!--              </div>-->
-            </a-carousel>
+&lt;!&ndash;              <div >&ndash;&gt;
+&lt;!&ndash;                <img :src="item" />&ndash;&gt;
+&lt;!&ndash;              <imgZoom v-for="item in goods.image"  :width="400"  :height="300" :minIMGsrc="item" :scale="3" />&ndash;&gt;
+              <imgZoom  :width="400"  :height="300" :minIMGsrc="goods.image[7]" :scale="3" />
+&lt;!&ndash;              </div>&ndash;&gt;
+            </a-carousel>-->
           </el-card>
         </el-col>
         <el-col :lg="15">
