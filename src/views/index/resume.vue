@@ -43,6 +43,9 @@
               <el-descriptions-item label="学历">本科</el-descriptions-item>
               <el-descriptions-item label="民族">汉</el-descriptions-item>
               <el-descriptions-item label="婚姻">已婚</el-descriptions-item>
+              <el-descriptions-item :span="3" label="个人最新站点">
+                <el-link href="http://xxroom.xyz">http://xxroom.xyz</el-link> 注：暂时关闭ssl，避免静态资源费用
+              </el-descriptions-item>
               <el-descriptions-item :span="3" label="求职意向">
                 <el-tag style="margin: 3px">全职</el-tag>
                 <el-tag style="margin: 3px"><i class="el-icon-location"></i>无锡、常州</el-tag>
@@ -176,7 +179,7 @@
               ['score', 'skill'],
               [21, 'nlp'],
               [41, '3d（blender、three.js）'],
-              [45, 'java（springboot）'],
+              [42, 'java（springboot）、c、算法'],
               [65, 'redis'],
               [67, 'apache、nginx'],
               [70, 'linux、windows'],

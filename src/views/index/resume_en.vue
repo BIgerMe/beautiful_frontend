@@ -43,6 +43,9 @@
               <el-descriptions-item label="Address" :span="3">①An town, Xishan district, Wuxi, Jiangsu province、②Lijia town, Wujin district, Changzhou, Jiangsu province</el-descriptions-item>
               <el-descriptions-item label="Degree">Undergraduate</el-descriptions-item>
               <el-descriptions-item label="Marriage">Married</el-descriptions-item>
+              <el-descriptions-item :span="3" label="Personal latest site">
+                <el-link href="http://xxroom.xyz">http://xxroom.xyz</el-link> Note：Temporarily shut down ssl to avoid static resource charges
+              </el-descriptions-item>
               <el-descriptions-item :span="3" label="Job-hunting intention">
                 <el-tag style="margin: 3px">Full time</el-tag>
                 <el-tag style="margin: 3px"><i class="el-icon-location"></i>Wuxi、Changzhou</el-tag>
@@ -176,7 +179,7 @@
               ['score', 'skill'],
               [21, 'nlp'],
               [41, '3d（blender、three.js）'],
-              [45, 'java（springboot）'],
+              [42, 'java（springboot）、c、arithmetic'],
               [65, 'redis'],
               [67, 'apache、nginx'],
               [70, 'linux、windows'],
