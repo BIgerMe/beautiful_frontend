@@ -5,8 +5,13 @@
         <div style="height:100px"></div>
       </el-col>
       <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-        <el-col :lg="9" >
-          <imgZoom  :width="400"  :height="300" :minIMGsrc="goods.image[7]" :scale="3" />
+        <el-col :lg="9" id="goods-img">
+
+          <imgZoom  :width="width"  :height="height" :minIMGsrc="goods.image[7]" :scale="3" />
+
+          <div style="width:420px">
+            <el-card></el-card>
+          </div>
         </el-col>
         <el-col :lg="15">
           <el-card class="md-light-card">
@@ -88,7 +93,10 @@
           { title:'购 物',subtitle:'Shopping',},
           { title:'购 物',subtitle:'Shopping',},
           { title:'购 物',subtitle:'Shopping',},
-        ]
+        ],
+
+        width:420,
+        height:420,
       }
     },
     computed: {
@@ -97,7 +105,11 @@
       }),
     },
     components:{ phoenix,imgZoom },
-    mounted() {},
+    mounted() {
+      // console.log(document.getElementById('goods-img').offsetWidth)
+      // this.width = document.getElementById('goods-img').offsetWidth;
+      // this.height = document.getElementById('goods-img').offsetWidth;
+    },
     beforeDestroy() {},
     methods: {
 
