@@ -63,9 +63,9 @@
                   </a>
                 </h3>
                 <div>
-                  <el-tag effect="plain" type="info">
-                    <a>{{ item.nickname }}</a>
-                  </el-tag>
+                  <a-avatar style="margin-right: 3px" :size="28" :src="item.avatar" />
+                  <el-link>{{ item.nickname }}</el-link>
+
                   <a-divider type="vertical" />
                   <el-tag v-for="c in item.category" effect="plain" type="info">
                     <a>{{ c }}</a>

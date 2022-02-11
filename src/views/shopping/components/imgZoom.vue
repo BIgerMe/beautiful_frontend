@@ -54,6 +54,7 @@
         },
         maxImgStyle: {
           position: 'absolute',
+          'z-index':999
         },
       }
     },
