@@ -138,12 +138,11 @@
             <h3 align="center"><b>hobby</b></h3>
             <ul>
               <li>a、Github is a favorite place, exploring excellent open source projects is easy and enjoyable, and you can really feel the convenience of open source here.</li>
-              <li>b、In addition, every year, amateurs spend time to refine their English ability, improve their English document reading ability and improve their problem-solving ability, which is very effective, because most of the Chinese processing solutions received by Baidu and Bing are for reference or translation, and to deal with more difficult or unusual problems, they still have to use Google to really solve and get a comprehensive explanation, and translation is also very limited.；
+              <li>b、In addition, every year spend time to refine my English ability, improve English document reading ability and improve problem-solving ability, which is very effective, because most of the Chinese processing solutions received by Baidu and Bing are for reference or translation, and to deal with more difficult or unusual problems, they still have to use Google to really solve and get a comprehensive explanation, and translation is also very limited.；
               </li>
               <li>c、Systematic planned study, something full of fighting spirit and a great sense of achievement.</li>
               <li>d、User experience learning, thinking about the future development direction and possibilities in the field of work, technology brings not only convenience, but also perspective, surfing the Internet and exploring the world.</li>
               <li>e、Spare time exercise,play basketball, playing games with friends, board games, parties are also OK, i am also good at Enliven the atmosphere.</li>
-              <li>In short: give priority to taking children, learning and sharing as a supplement, work hard and build a better life together.</li>
             </ul>
           </el-card>
         </el-col>
