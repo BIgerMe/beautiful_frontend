@@ -350,7 +350,7 @@
     max-height: 80vh;
   }
   .v-note-wrapper {
-    z-index: 1 !important;
+    z-index: 0 !important;
     min-height: 100px;
     max-height: 450px;
     overflow: hidden;

@@ -20,14 +20,13 @@
 <!--          </div>-->
         </el-col>
         <el-col :lg="24">
-          <el-col :lg="8+1-index" v-for="(o, index) in 3" :key="o" >
-            <el-card class="md-light-card">
-              <router-link :to="{ name: 'shopping_detail'}">
-                <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-
+          <el-col :lg="8+1-index" v-for="(item, index) in top" >
+            <el-card class="md-card">
+              <router-link :to="{ name: 'shopping_detail',params: { id: item.id }}">
+                <img v-if="item.cover" style="width: 100%;height: 200px" :src="item.cover" class="image">
               </router-link>
               <div style="padding: 14px;">
-                <h3>超级无敌海底霸王澳龙王纯种香辣龙虾塔克夹汉堡</h3>
+                <h3>{{item.title}}</h3>
               </div>
             </el-card>
           </el-col>
@@ -58,12 +57,13 @@
 </template>
 
 <script>
-  import phoenix from '@/components/3d/phoenix'
   import {mapGetters} from "vuex";
+  import {goodsLists,categoryList} from '@/api/shopping'
   export default {
     name: 'shopping_home',
     data() {
       return {
+        top:null,
         category:[
           { title:'购 物',subtitle:'Shopping',},
           { title:'拍 卖',subtitle:'Auction',},
@@ -79,11 +79,16 @@
         device: 'settings/device',
       }),
     },
-    components:{ phoenix },
-    mounted() {},
+    components:{  },
+    mounted() {
+        this.getTopList()
+    },
     beforeDestroy() {},
     methods: {
-
+        async getTopList(){
+            const {data} = await goodsLists({page:1,pageSize:3})
+            this.top = data.data
+        }
     },
   }
 </script>

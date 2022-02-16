@@ -7,7 +7,7 @@
       <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
         <el-col :lg="9" id="goods-img">
 
-          <imgZoom  :width="width"  :height="height" :minIMGsrc="goods.image[7]" :scale="3" />
+          <imgZoom  :width="width"  :height="height" :minIMGsrc="form.cover" :scale="3" />
 
           <div style="width:420px">
             <el-card></el-card>
@@ -15,12 +15,12 @@
         </el-col>
         <el-col :lg="15">
           <el-card class="md-light-card">
-            <h2>超级无敌海底霸王澳龙王纯种香辣龙虾塔克夹汉堡超级无敌海底霸王澳龙王纯种香辣龙虾塔克夹</h2>
+            <h2>{{form.title}}</h2>
             <div>
               <span aria-hidden="true">
                 <span class="price-symbol">¥</span>
-                <span class="price-whole">158<span class="price-decimal">.</span></span>
-                <span class="price-fraction">83</span>
+                <span class="price-whole">{{form.price}}<span class="price-decimal">.</span></span>
+                <span class="price-fraction">00</span>
               </span>
 
               &emsp;&emsp;比市场价
@@ -54,7 +54,7 @@
               </div>
             </div>
             <div >
-              <el-input-number v-model="goods.num" controls-position="right" :min="1" :max="10"></el-input-number>
+              <el-input-number v-model="order.num" controls-position="right" :min="1" :max="10"></el-input-number>
               &emsp;
               <el-button type="danger" size="large" round><b>现在购买</b></el-button>
             </div>
@@ -66,35 +66,32 @@
 </template>
 
 <script>
-  import phoenix from '@/components/3d/phoenix'
   import imgZoom from './components/imgZoom'
+  import {goodsDetail} from '@/api/shopping'
   import {mapGetters} from "vuex";
   export default {
     name: 'shopping_detail',
     data() {
       return {
-        goods:{
-          image:[
-            'http://head.xxroom.xyz/llJBQrON-6bn9s6PS1bSZ3AQhcA7',
-            'http://head.xxroom.xyz/FgfEk2G_WlwtfC_8b7IjjIbcc_SE',
-            'http://head.xxroom.xyz/FgfEk2G_WlwtfC_8b7IjjIbcc_SE',
-            'http://head.xxroom.xyz/FgfEk2G_WlwtfC_8b7IjjIbcc_SE',
-            'http://head.xxroom.xyz/Fm2G6NJoXW8geH_OVhqKec0otecd',
-            'http://head.xxroom.xyz/Fm2G6NJoXW8geH_OVhqKec0otecd',
-            'http://head.xxroom.xyz/Fv9ODPm-Zv23KwSwfxc1Md8Aaiaa',
-            'http://head.xxroom.xyz/Fv9ODPm-Zv23KwSwfxc1Md8Aaiaa',
-          ],
+        order:{
           num:1
         },
-        category:[
-          { title:'购 物',subtitle:'Shopping',},
-          { title:'购 物',subtitle:'Shopping',},
-          { title:'购 物',subtitle:'Shopping',},
-          { title:'购 物',subtitle:'Shopping',},
-          { title:'购 物',subtitle:'Shopping',},
-          { title:'购 物',subtitle:'Shopping',},
-        ],
-
+        form:{
+          id:'',
+          title:'',
+          cover:'',
+          video:'',
+          imgList:[],
+          price:'',
+          origin_price:'',
+          unit:'件',
+          min:0,
+          max:0,
+          storage:0,
+          shelf:'0',
+          recommend:0,
+          category:[],
+        },
         width:420,
         height:420,
       }
@@ -104,15 +101,17 @@
         device: 'settings/device',
       }),
     },
-    components:{ phoenix,imgZoom },
-    mounted() {
-      // console.log(document.getElementById('goods-img').offsetWidth)
-      // this.width = document.getElementById('goods-img').offsetWidth;
-      // this.height = document.getElementById('goods-img').offsetWidth;
+    components:{ imgZoom },
+    created() {
+      this.fetchData()
     },
+    mounted() {},
     beforeDestroy() {},
     methods: {
-
+      async fetchData() {
+        const { data } = await goodsDetail({ id: this.$route.params.id })
+        this.form = data
+      },
     },
   }
 </script>

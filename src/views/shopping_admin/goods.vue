@@ -12,21 +12,21 @@
             <el-table-column prop="id" label="ID" width="80" align="center"></el-table-column>
             <el-table-column prop="title" label="标题" width="300" align="center"></el-table-column>
             <el-table-column prop="cover" label="封面图片">
-              <tempalte slot-scope="{row}">
+              <template slot-scope="{row}">
                 <el-image
                   v-if="row.cover"
-                  style="width: 100px; height: 100px"
+                  style="width: 50px; height: 50px"
                   :src="row.cover"
                   :preview-src-list="row.imgList">
                 </el-image>
-              </tempalte>
+              </template>
             </el-table-column>
             <el-table-column prop="category" label="所属分类">
-              <tempalte slot-scope="{row}">
+              <template slot-scope="{row}">
                 <el-tag style="margin: 3px" v-for="item in row.category">
                   {{item}}
                 </el-tag>
-              </tempalte>
+              </template>
             </el-table-column>
             <el-table-column prop="price" label="一口价"></el-table-column>
             <el-table-column prop="origin_price" label="原单价"></el-table-column>
@@ -166,6 +166,7 @@
   import {goodsLists,updateGoods} from '@/api/shopping_admin'
   import Pagination from '@/components/Pagination'
   import Dropzone from '@/components/Dropzone'
+  import Vue from "vue";
 
   export default {
     name: 'shopping_goods',
@@ -228,27 +229,25 @@
       handleSubmit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            updateGoods(this.form).then(response => {
-              this.$notify({
-                title: 'Success',
-                message: '更新成功',
-                type: 'success',
-                duration: 2000
-              })
+            updateGoods(this.form).then(res => {
+                Vue.prototype.$baseNotify(`更新成功`)
+                this.getList()
+                this.editFormVisible = false
             })
-            this.getList()
-            this.editFormVisible = false
+
           } else {
             console.log('error submit!!')
             return false
           }
         })
-        $('.dz-preview').remove()
+        document.querySelector('.dz-preview').forEach(el=>el.remove())
+        // $('.dz-preview').remove()
         this.$refs['picture'].initOnceStatus()
       },
       handleCancel() { // 取消
         this.editFormVisible = false
-        $('.dz-preview').remove()
+        // $('.dz-preview').remove()
+        document.querySelectorAll('.dz-preview').forEach(el=>el.remove())
         this.$refs['picture'].initOnceStatus()
       },
       changePic(){

@@ -79,6 +79,7 @@ export default {
     defaultImg(val) {
       if (val.length === 0) {
         // this.initOnce = false
+        // this.initImages(val)
         return
       }
       if (!this.initOnce) return
@@ -165,7 +166,7 @@ export default {
   },
   methods: {
     removeAllFiles() {
-      this.dropzone.removeAllFiles(true)
+      this.dropzone.removeAllFiles()
     },
     initOnceStatus() {
       this.initOnce = true

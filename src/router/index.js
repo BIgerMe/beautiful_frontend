@@ -111,7 +111,7 @@ export const asyncRoutes = [
         meta: { title: '商品', noCache: true },
       },
       {
-        path: 'detail',
+        path: 'detail/:id',
         component: () => import('@/views/shopping/detail'),
         name: 'shopping_detail',
         meta: { title: '商品详情', noCache: true },

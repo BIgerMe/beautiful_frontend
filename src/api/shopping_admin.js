@@ -3,7 +3,7 @@ import request from '@/utils/request'
 /*新增商品*/
 export function createGoods(data) {
   return request({
-    url: '/z/shopping/createGoods',
+    url: '/z/shoppingAdmin/createGoods',
     method: 'post',
     data
   })
@@ -11,7 +11,7 @@ export function createGoods(data) {
 //更新商品
 export function updateGoods(data) {
   return request({
-    url: '/z/shopping/updateGoods',
+    url: '/z/shoppingAdmin/updateGoods',
     method: 'post',
     data
   })
@@ -19,14 +19,14 @@ export function updateGoods(data) {
 //商品分类列表
 export function categoryList() {
   return request({
-    url: '/z/shopping/categoryList',
+    url: '/z/shoppingAdmin/categoryList',
     method: 'get',
   })
 }
 //商品列表
 export function goodsLists(data) {
   return request({
-    url: '/z/shopping/goodsLists',
+    url: '/z/shoppingAdmin/goodsLists',
     method: 'get',
     params:data
   })
