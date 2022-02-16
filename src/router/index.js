@@ -144,6 +144,30 @@ export const asyncRoutes = [
     ],
   },
   {
+    path: '/shopping_admin',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'shopping',
+    // hidden: 'hidden',
+    meta: {
+      title: '商品管理',
+    },
+    children: [
+      {
+        path: 'goods',
+        component: () => import('@/views/shopping_admin/goods'),
+        name: 'shopping_goods',
+        meta: { title: '商品管理', noCache: true },
+      },{
+        path: 'goods_add',
+        component: () => import('@/views/shopping_admin/goods_add'),
+        name: 'shopping_goods_add',
+        hidden: 'hidden',
+        meta: { title: '商品添加', noCache: true },
+      },
+    ],
+  },
+  {
     path: '/stock',
     component: Layout,
     redirect: 'noRedirect',
