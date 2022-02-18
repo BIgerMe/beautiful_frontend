@@ -19,8 +19,8 @@
             <div>
               <span aria-hidden="true">
                 <span class="price-symbol">¥</span>
-                <span class="price-whole">{{form.price}}<span class="price-decimal">.</span></span>
-                <span class="price-fraction">00</span>
+                <span class="price-whole">{{form.price_int}}<span class="price-decimal">.</span></span>
+                <span class="price-fraction">{{form.price_decimal}}</span>
               </span>
 
               &emsp;&emsp;比市场价

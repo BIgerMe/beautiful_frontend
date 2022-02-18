@@ -20,13 +20,23 @@
 <!--          </div>-->
         </el-col>
         <el-col :lg="24">
-          <el-col :lg="8+1-index" v-for="(item, index) in top" >
-            <el-card class="md-card">
+          <el-col :lg="8" v-for="(item, index) in top" >
+<!--            <el-card class="md-light-card goods-card">-->
+            <el-card class="goods-card">
               <router-link :to="{ name: 'shopping_detail',params: { id: item.id }}">
-                <img v-if="item.cover" style="width: 100%;height: 200px" :src="item.cover" class="image">
+                <img v-if="item.cover" :src="item.cover" class="image">
               </router-link>
-              <div style="padding: 14px;">
+              <div class="content">
                 <h3>{{item.title}}</h3>
+                <div class="price-info">
+<!--                  <em class="sale"><strong>9</strong>%<span class="icon">OFF</span></em>-->
+                  <em class="sale"><strong>18</strong>%<span class="icon">OFF</span></em>
+                  <span class="price" aria-hidden="true">
+                    <span class="price-symbol">¥</span>
+                    <span class="price-whole">{{item.price_int}}<span class="price-decimal">.</span></span>
+                    <span class="price-fraction">{{item.price_decimal}}</span>
+                  </span>
+                </div>
               </div>
             </el-card>
           </el-col>
@@ -37,13 +47,13 @@
       <el-row :gutter="20">
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
           <el-col :lg="6" v-for="(o, index) in 4" :key="o" >
-            <el-card class="md-light-card">
+            <el-card class="md-light-card goods-card">
               <router-link
                 :to="{ name: 'shopping_detail'}"
               >
                 <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
               </router-link>
-              <div style="padding: 14px;">
+              <div class="content" style="padding: 14px;">
                 <h3>超级无敌海底霸王澳龙王纯种香辣龙虾塔克夹汉堡</h3>
               </div>
             </el-card>
@@ -102,5 +112,60 @@
   }
   .button{
     float:right
+  }
+  .el-card.goods-card{
+    border: 0;
+    border-radius: 0;
+    img{
+      width: 100%;height: 300px
+    }
+    .content {
+      height: 100px;
+      h3 {
+        padding: 15px 15px 0 15px;
+      }
+      .price-info{
+        padding-right: 3px;
+        .sale{
+          overflow: hidden;
+          display: inline-block;
+          bottom: 10px;
+          left: 20px;
+          color: #ff3100;
+          font-family: Tahoma;
+          font-size: 18px;
+          .icon{
+            overflow: hidden;
+            display: inline-block;
+            margin-left: 3px;
+            width: 13px;
+            height: 13px;
+            background: url(//pics.gmarket.co.kr/pc/gc/main/gc_main.png) no-repeat -400px 0;
+            color: #fff;
+            font-size: 0;
+            text-indent: -999em;
+          }
+        }
+        .price{
+          float:right;
+          .price-symbol,.price-decimal,.price-fraction{
+            position: relative;
+            top: -.75em;
+            font-size: 13px;
+          }
+          .price-whole{
+            font-size: 22px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+</style>
+<style lang="scss">
+  .goods-card {
+    .el-card__body{
+      padding: 0!important;
+    }
   }
 </style>
