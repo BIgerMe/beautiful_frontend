@@ -2,13 +2,15 @@
   <div :class="'logo-container-' + layout">
     <router-link to="/">
       <!-- 这里是logo变更的位置 -->
-      <span
-        class="title"
-        :class="{ 'hidden-xs-only': layout === 'horizontal' }"
-        :title="title"
-      >
-        {{ title }}
-      </span>
+      <img style="width: auto;height: 100%" src="@/assets/logo/6.png">
+
+<!--      <span-->
+<!--        class="title"-->
+<!--        :class="{ 'hidden-xs-only': layout === 'horizontal' }"-->
+<!--        :title="title"-->
+<!--      >-->
+<!--        {{ title }}-->
+<!--      </span>-->
     </router-link>
     &emsp;
     <a-input-search placeholder="搜索" v-model="content" style="width: 200px" @search="search()" />
@@ -28,6 +30,7 @@
     },
     computed: {
       ...mapGetters({
+        logo: 'settings/logo',
         layout: 'settings/layout',
       }),
     },
