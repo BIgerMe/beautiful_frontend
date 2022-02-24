@@ -143,6 +143,7 @@
   import * as echarts from 'echarts'
   import {mapGetters} from "vuex";
   import { bus } from '@/utils/bus'
+  import { getUrlParam } from '@/utils/index'
   export default {
     name: 'Blog',
     components: { 'mavon-editor': mavonEditor },
@@ -257,6 +258,20 @@
       this.fetchData()
     },
     mounted() {
+      let code = getUrlParam('code')
+      if(code!==null){//如果是微信登陆
+        //根据code获取access_token
+        this.$store.dispatch('user/wxLogin', {code:code})
+          .then(() => {
+
+          })
+          .catch(() => {
+
+          })
+
+      }
+
+
       bus.$on('search',(content)=>{
         this.listQuery.key = content
         this.listQuery.page = 1

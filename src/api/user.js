@@ -1,5 +1,13 @@
 import request from '@/utils/request'
 
+export async function wxLogin(data){
+  return request({
+    url: '/z/user/wxLogin',
+    method: 'post',
+    data,
+  })
+}
+
 export async function login(data) {
   return request({
     url: '/z/user/login',

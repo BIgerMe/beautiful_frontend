@@ -4,7 +4,7 @@
  */
 
 import Vue from 'vue'
-import { getUserInfo, login, logout } from '@/api/user'
+import { getUserInfo, login, wxLogin, logout } from '@/api/user'
 import {
   getAccessToken,
   removeAccessToken,
@@ -49,22 +49,30 @@ const actions = {
   setPermissions({ commit }, permissions) {
     commit('setPermissions', permissions)
   },
+  /*微信登录*/
+  async wxLogin({ commit },code){
+    const { data } = await wxLogin(code)
+    const accessToken = data[tokenName]
+    if (accessToken) {
+      commit('setAccessToken', accessToken)
+      await dispatch('getUserInfo')
+      const hour = new Date().getHours()
+      const thisTime = hour < 8 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 18 ? '下午好' : '晚上好'
+      Vue.prototype.$baseNotify(`欢迎登录${title}`, `${thisTime}！`)
+    } else {
+      Vue.prototype.$baseMessage(
+          `登录接口异常，未正确返回${tokenName}...`,
+          'error'
+      )
+    }
+  },
   async login({ commit }, userInfo) {
     const { data } = await login(userInfo)
     const accessToken = data[tokenName]
     if (accessToken) {
       commit('setAccessToken', accessToken)
       const hour = new Date().getHours()
-      const thisTime =
-        hour < 8
-          ? '早上好'
-          : hour <= 11
-          ? '上午好'
-          : hour <= 13
-          ? '中午好'
-          : hour < 18
-          ? '下午好'
-          : '晚上好'
+      const thisTime = hour < 8 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 18 ? '下午好' : '晚上好'
       Vue.prototype.$baseNotify(`欢迎登录${title}`, `${thisTime}！`)
     } else {
       Vue.prototype.$baseMessage(
