@@ -14,14 +14,9 @@
               <a :title="item.title" href="#">{{item.title}}<span>{{item.subtitle}}</span></a>
             </li>
           </ul>
-
-<!--          <div style="width: 100%;margin-top: 10px;min-height: 200px">-->
-<!--            <el-card style="width: 100%;min-height: 200px;"></el-card>-->
-<!--          </div>-->
         </el-col>
         <el-col :lg="24">
           <el-col :lg="8" v-for="(item, index) in top" >
-<!--            <el-card class="md-light-card goods-card">-->
             <el-card class="goods-card">
               <router-link :to="{ name: 'shopping_detail',params: { id: item.id }}">
                 <img v-if="item.cover" :src="item.cover" class="image">
@@ -29,7 +24,6 @@
               <div class="content">
                 <h3>{{item.title}}</h3>
                 <div class="price-info">
-<!--                  <em class="sale"><strong>9</strong>%<span class="icon">OFF</span></em>-->
                   <em class="sale"><strong>18</strong>%<span class="icon">OFF</span></em>
                   <span class="price" aria-hidden="true">
                     <span class="price-symbol">¥</span>
@@ -46,17 +40,23 @@
     <div style="margin-top: -70px;">
       <el-row :gutter="20">
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-col :lg="6" v-for="(o, index) in 4" :key="o" >
-            <el-card class="md-light-card goods-card">
-              <router-link
-                :to="{ name: 'shopping_detail'}"
-              >
-                <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-              </router-link>
-              <div class="content" style="padding: 14px;">
-                <h3>超级无敌海底霸王澳龙王纯种香辣龙虾塔克夹汉堡</h3>
-              </div>
-            </el-card>
+          <el-col :lg="6" v-for="(item, index) in subTop">
+              <el-card class="goods-card">
+                  <router-link :to="{ name: 'shopping_detail',params: { id: item.id }}">
+                      <img v-if="item.cover" :src="item.cover" class="subImage">
+                  </router-link>
+                  <div class="content">
+                      <h3>{{item.title}}</h3>
+                      <div class="price-info">
+                          <em class="sale"><strong>18</strong>%<span class="icon">OFF</span></em>
+                          <span class="price" aria-hidden="true">
+                    <span class="price-symbol">¥</span>
+                    <span class="price-whole">{{item.price_int}}<span class="price-decimal">.</span></span>
+                    <span class="price-fraction">{{item.price_decimal}}</span>
+                  </span>
+                      </div>
+                  </div>
+              </el-card>
           </el-col>
         </el-col>
       </el-row>
@@ -74,6 +74,7 @@
     data() {
       return {
         top:null,
+        subTop:null,
         category:[
           { title:'购 物',subtitle:'Shopping',},
           { title:'拍 卖',subtitle:'Auction',},
@@ -92,12 +93,17 @@
     components:{  },
     mounted() {
         this.getTopList()
+        this.getSubTopList()
     },
     beforeDestroy() {},
     methods: {
         async getTopList(){
             const {data} = await goodsLists({page:1,pageSize:3})
             this.top = data.data
+        },
+        async getSubTopList(){
+            const {data} = await goodsLists({page:1,pageSize:8,offset:3})
+            this.subTop = data.data
         }
     },
   }
@@ -105,24 +111,26 @@
 
 <style lang="scss" scoped>
   @import "~@/styles/shopping/index.scss";
-  .image{
-    width: 100%;
-    /*opacity:0.1;*/
-    display: block;
-  }
+
   .button{
     float:right
   }
   .el-card.goods-card{
     border: 0;
     border-radius: 0;
-    img{
+    img.image{
       width: 100%;height: 300px
     }
+    img.subImage{
+      width: 100%;height: 200px
+    }
     .content {
-      height: 100px;
+      /*height: 100px;*/
       h3 {
         padding: 15px 15px 0 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .price-info{
         padding-right: 3px;

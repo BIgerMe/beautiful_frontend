@@ -7,10 +7,19 @@
       <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
         <el-col :lg="9" id="goods-img">
 
-          <imgZoom  :width="width"  :height="height" :minIMGsrc="form.cover" :scale="3" />
+          <imgZoom  :width="width"  :height="height" :minIMGsrc="coverImg" :scale="3" />
 
-          <div style="width:420px">
-            <el-card></el-card>
+          <div class="thumb-list">
+            <div id="thumb-list">
+              <ul class="thumb">
+                <li v-for="item in form.imgList" class="thumb-li"
+                    @mouseover="selectStyle(item)"
+                    :class="{'active':item===coverImg}"
+                >
+                  <img style="width: 50px;height: 50px" :src="item">
+                </li>
+              </ul>
+            </div>
           </div>
         </el-col>
         <el-col :lg="15">
@@ -21,41 +30,15 @@
                 <span class="price-symbol">¥</span>
                 <span class="price-whole">{{form.price_int}}<span class="price-decimal">.</span></span>
                 <span class="price-fraction">{{form.price_decimal}}</span>
+                <em class="sale"><strong>18</strong>%<span class="icon">OFF</span></em>
               </span>
-
-              &emsp;&emsp;比市场价
-              <div style="display: inline-block">
-                <a-statistic
-                  :value="9.3"
-                  :precision="2"
-                  suffix="%"
-                  class="demo-class"
-                  :value-style="{ color: '#3f8600' }"
-                >
-                  <template #prefix>
-                    <a-icon type="arrow-down" />
-                  </template>
-                </a-statistic>
-              </div>
-
-              &emsp;&emsp;100天内较最低价格
-              <div style="display: inline-block">
-                <a-statistic
-                  :value="11.28"
-                  :precision="2"
-                  suffix="%"
-                  :value-style="{ color: '#cf1322' }"
-                  style="margin-right: 50px"
-                >
-                  <template #prefix>
-                    <a-icon type="arrow-up" />
-                  </template>
-                </a-statistic>
-              </div>
             </div>
+
             <div >
-              <el-input-number v-model="order.num" controls-position="right" :min="1" :max="10"></el-input-number>
+              <el-input-number v-model="order.num" controls-position="right" :min="1" :max="10"></el-input-number> 件
               &emsp;
+            </div>
+            <div style="margin-top: 20px">
               <el-button type="danger" size="large" round><b>现在购买</b></el-button>
             </div>
           </el-card>
@@ -76,6 +59,7 @@
         order:{
           num:1
         },
+        coverImg:'',
         form:{
           id:'',
           title:'',
@@ -111,6 +95,10 @@
       async fetchData() {
         const { data } = await goodsDetail({ id: this.$route.params.id })
         this.form = data
+        this.coverImg = data.cover
+      },
+      selectStyle(item) {
+        this.coverImg = item
       },
     },
   }
@@ -125,52 +113,28 @@
   .price-whole{
     font-size: 28px;
   }
-  .ant-carousel >>> .slick-dots {
-    height: auto;
-  }
-  .ant-carousel >>> .slick-slide img {
-    border: 5px solid #fff;
-    display: block;
-    margin: auto;
-    max-width: 100%;
-  }
-  .ant-carousel >>> .slick-thumb {
-    /*text-overflow: ellipsis;*/
-    /*white-space: nowrap;*/
-  }
-  .ant-carousel >>> .slick-thumb li {
-    width: 45px;
-    height: 45px;
-  }
-  .ant-carousel >>> .slick-thumb li img {
-    width: 100%;
-    height: 100%;
-    filter: grayscale(100%);
-  }
-  .ant-carousel >>> .slick-thumb li.slick-active img {
-    filter: grayscale(0%);
-  }
-  .ant-carousel>>>.slick-dots{
-    position: unset!important;
-  }
 
-  .ant-carousel >>> .custom-slick-arrow {
-    width: 25px;
-    height: 25px;
-    font-size: 25px;
-    color: #fff;
-    background-color: rgba(31, 45, 61, 0.11);
-    opacity: 0.3;
-  }
-  .ant-carousel >>> .custom-slick-arrow:before {
-    display: none;
-  }
-  .ant-carousel >>> .custom-slick-arrow:hover {
-    opacity: 0.5;
-  }
 </style>
 <style lang="scss" scoped>
   @import "~@/styles/shopping/index.scss";
+  .thumb-list{
+    width:420px;
+    margin-top: 10px;
+    #thumb-list{
+      overflow: hidden;
+      .thumb{
+        width: 500px;
+        padding: 0;
+        .thumb-li{
+          display:inline;
+          margin: 0 3px;
+        }
+        .thumb-li.active>img{
+          border: 2px solid #e53e41;
+        }
+      }
+    }
+  }
   .image{
     width: 100%;
     opacity:0.1;
@@ -178,6 +142,23 @@
   }
   .button{
     float:right
+  }
+  .sale{
+    margin-left: 20px;
+    color: #ff3100;
+    font-family: Tahoma;
+    font-size: 18px;
+    .icon{
+      overflow: hidden;
+      display: inline-block;
+      margin-left: 3px;
+      width: 13px;
+      height: 13px;
+      background: url(//pics.gmarket.co.kr/pc/gc/main/gc_main.png) no-repeat -400px 0;
+      color: #fff;
+      font-size: 0;
+      text-indent: -999em;
+    }
   }
 </style>
 
