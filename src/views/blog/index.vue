@@ -219,6 +219,7 @@
     computed: {
       ...mapGetters({
         device: 'settings/device',
+        accessToken: 'user/accessToken',
       }),
       noMore() {
         return this.listQuery.page * this.listQuery.pageSize >= this.total
@@ -259,16 +260,11 @@
     },
     mounted() {
       let code = getUrlParam('code')
-      if(code!==null){//如果是微信登陆
+      if(code!==null && !this.accessToken){//如果是微信登陆
         //根据code获取access_token
         this.$store.dispatch('user/wxLogin', {code:code})
-          .then(() => {
-
-          })
-          .catch(() => {
-
-          })
-
+          .then(() => {})
+          .catch(() => {})
       }
 
 

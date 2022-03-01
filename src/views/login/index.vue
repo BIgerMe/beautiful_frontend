@@ -7,10 +7,10 @@
 
       <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <el-tabs type="border-card" class="login-form" >
-          <el-tab-pane label="用户管理">
+          <el-tab-pane label="微信登录">
             <div id="wxqr"></div>
           </el-tab-pane>
-          <el-tab-pane label="配置管理" >
+          <el-tab-pane label="账号登录" >
             <el-form ref="form" :model="form" :rules="rules" label-position="left">
               <el-form-item style="margin-top: 40px" prop="username">
                 <span class="svg-container svg-container-admin"></span>

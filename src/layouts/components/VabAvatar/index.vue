@@ -3,7 +3,7 @@
     <span class="avatar-dropdown">
       <el-avatar class="user-avatar" :src="avatar"></el-avatar>
       <div class="user-name">
-        {{ username }}
+        {{ nickname }}
         <i class="el-icon-arrow-down el-icon--right"></i>
       </div>
     </span>
@@ -17,7 +17,7 @@
       <el-dropdown-item
         v-if="
           accessToken &&
-          (username === 'xiaoming' || username === '2665955305@qq.com')
+          (username === 'xiaoming')
         "
         command="baby"
         divided
@@ -52,6 +52,7 @@
         accessToken: 'user/accessToken',
         avatar: 'user/avatar',
         username: 'user/username',
+        nickname: 'user/nickname',
       }),
     },
     created() {},
