@@ -23,11 +23,17 @@
     <div style="margin-top: -150px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card v-if="device !=='mobile'" class="xl-card">
+          <el-card v-if="device !=='mobile'" class="md-card">
             <div id="skill" style= "width: auto;height: 400px"></div>
-          </el-card>
-          <el-card v-else>
-            <div id="skill" style="width: auto;height: 400px"></div>
+            <div>
+              <b>后端：</b>熟悉php、python、apache、nginx；了解java、c语言、docker<br>
+              <b>数据：</b>熟悉mysql、sqlserver、redis；了解mangodb、oracle<br>
+              <b>前端：</b>熟悉vue及相应框架常用组件应用、HTML、css、js、scss、bootstrap<br>
+              <b>其他：</b>熟悉git、svn代码管理项、windows、linux(centos,ubuntu)、photoshop；了解算法、3d技术、blender模型制作、npl神经网络等<br>
+            </div>
+<!--          </el-card>-->
+<!--          <el-card v-else>-->
+<!--            <div id="skill" style="width: auto;height: 400px"></div>-->
           </el-card>
         </el-col>
       </el-row>
@@ -35,14 +41,17 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
+          <el-card class="md-card">
             <el-descriptions :column="device !== 'mobile'? 3 : 1" title="个人基础信息" border>
               <el-descriptions-item label="姓名">张晓明</el-descriptions-item>
-              <el-descriptions-item label="籍贯">常州</el-descriptions-item>
-              <el-descriptions-item label="常住地址">江苏无锡锡山区安镇、江苏常州武进区礼嘉</el-descriptions-item>
+              <el-descriptions-item label="生日">1991-07-10</el-descriptions-item>
+              <el-descriptions-item label="年龄">30</el-descriptions-item>
+              <el-descriptions-item label="毕业院校">南京航空航天大学</el-descriptions-item>
               <el-descriptions-item label="学历">本科</el-descriptions-item>
+              <el-descriptions-item label="工作年龄">7年</el-descriptions-item>
+              <el-descriptions-item label="籍贯">常州</el-descriptions-item>
               <el-descriptions-item label="民族">汉</el-descriptions-item>
-              <el-descriptions-item label="婚姻">已婚</el-descriptions-item>
+              <el-descriptions-item label="婚育状况">已婚已育</el-descriptions-item>
               <el-descriptions-item :span="3" label="个人最新站点">
                 <el-link href="http://xxroom.xyz">http://xxroom.xyz</el-link> 注：暂时关闭ssl，避免静态资源费用
               </el-descriptions-item>
@@ -70,7 +79,7 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
             <h3 align="center"><b>校园经历</b></h3>
             <el-timeline>
               <el-timeline-item color="green" timestamp="2004.9 - 2007.6" placement="top">
@@ -96,17 +105,15 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
             <h3 align="center"><b>工作经历</b></h3>
             <el-timeline>
               <el-timeline-item color="red" timestamp="2014.7 - 2015.6" placement="top">
                 <h4><b>江苏常发农业装备股份有限公司 - 技术销售</b></h4>
-                <p>校招的公司，出差约8个月负责辽宁、吉林片区的经销商对接销售，感想工作内容不适合自己。</p>
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2015.7 - 2017.4" placement="top">
                 <h4><b>南京途牛旅游网 - 软件工程师</b></h4>
                 <p>负责软件测试及环境搭建，期间部门调整后学习PHP开发，开始入手开发工作，熟悉了会员系统、预订系统、CRM等。</p>
-                <p>公司多部门多系统的协同运作，庞大的研发团队优秀的人很多，对我影响较大，尤其感激领导挖掘了我的开发能力。</p>
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2017.5 - 2018.8" placement="top">
                 <h4><b>江苏鼎昊信息技术有限公司 - PHP开发工程师</b></h4>
@@ -123,7 +130,7 @@
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2020.4至今" placement="top">
                 <h4><b>常州科腾纺织品有限公司 - IT工程师</b></h4>
-                <p>全栈php+vue开发包括oa、o2o、sap、CRM、SRM、物流、成本分析、头寸统计等包含全平台的内容，全面升级旧平台的开发流程，项目架构和技术栈应用；python脚本部署定时自动抓取行业数据；提供行业分析数据；
+                <p>全栈php+vue开发包括oa、o2o、sap、CRM、SRM、物流、成本分析、头寸统计等包含全平台的内容，全面升级旧平台的开发流程，项目架构和技术栈应用，设置定时文件备份及安全防护部署；python脚本部署定时自动抓取行业数据；提供行业分析数据；
                 为业务、金融、中台、物流、财务多部门运行提供稳定可靠高性能的支持。</p>
               </el-timeline-item>
             </el-timeline>
@@ -134,16 +141,38 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
-            <h3 align="center"><b>兴趣爱好</b></h3>
-            <ul>
-              <li>a、github是比较喜欢的地方，探索优秀的开源项目是轻松愉快得一件事，在这里真的是能感受到开源带来的便捷性。</li>
-              <li>b、除此之外，每年都会业余花时间精进一下英语能力，提升英语文档阅读能力，提升解决问题能力，这是很有成效的，因为百度和必应得到的中文处理方案大多是借鉴或翻译的，处理较难或不常见问题还是得用Google才能正真解决和得到全面解释，翻译的局限性也很大；
-              </li>
-              <li>c、系统性的计划学习，充满斗志、很有成就感的事情。</li>
-              <li>d、用户体验的学习，在工作领域思考未来发展方向和可能性，技术带给自身的不只是便捷，还有视角，网上冲浪，探索世界。</li>
-              <li>e、业余锻炼身体、篮球、和朋友玩玩游戏、桌游，聚会也是OK的，咱也是气氛大王。</li>
-            </ul>
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
+            <h3 align="center"><b>项目经历</b></h3>
+            <el-timeline>
+              <el-timeline-item color="green"  placement="top">
+                <h4><b>项目一</b></h4>
+                <div>项目名称：校园SAAS平台</div>
+                <div>项目介绍：提供多校的校园系统支持</div>
+                <div>项目模块：学生、教师、考试、作业、家庭等</div>
+                <div>项目职责：负责 WEB 端搭建、微信公众号、APP 接口开发,与第三方IM对接开发、大数据、数据迁移、新框架easyswoole搭建，与融资方协同开发业务合并，平台前后端分离改版升级。</div>
+              </el-timeline-item>
+              <el-timeline-item color="green"  placement="top">
+                <h4><b>项目二</b></h4>
+                <div>项目名称：医疗项目</div>
+                <div>项目介绍：腾讯旗下医疗项目小程序</div>
+                <div>项目模块：医院详情、科室、医生、挂号、检查检验、病例、电子报告等</div>
+                <div>项目职责：项目推进负责人，日常对标难点、进度与第三方进行远程项目需求交流，项目需求规划；功能逻辑梳理，PHP MVC自写框架开发所有api接口,与前端小程序端接口对接，整体测试上线。</div>
+              </el-timeline-item>
+              <el-timeline-item color="green"  placement="top">
+                <h4><b>项目三</b></h4>
+                <div>项目名称：金融项目</div>
+                <div>项目介绍：拼多多自动下单、对接银行渠道付款，自动发货</div>
+                <div>项目模块：通道管理、三方系统渠道、下单支付模块、自动发货工具</div>
+                <div>项目职责：负责php系统的搭建和整体开发和接口对接、前段vue-admin项目的搭建和后台管理开发，自动发货工具自动化调通和部署</div>
+              </el-timeline-item>
+              <el-timeline-item color="green"  placement="top">
+                <h4><b>项目四</b></h4>
+                <div>项目名称：O2O</div>
+                <div>项目介绍：棉花线上交易平台，online to offline，包括h5、前台、后台管理端</div>
+                <div>项目模块：资源、需求、挂盘、合同、客户管理、期价维护、市场信息、信息推送管理等</div>
+                <div>项目职责：基本独自负责项目的全栈开发、服务器部署、需求对标、后期优化工作。整体项目完成正常运行，包括资源导入，需求资源匹配，挂盘成交撤销实时广播推送期价挂\改\撤盘处理，多种合同模板开立等等，还包括短信消息推送。</div>
+              </el-timeline-item>
+            </el-timeline>
           </el-card>
         </el-col>
       </el-row>
@@ -151,12 +180,11 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
-            <h3 align="center"><b>联系方式</b></h3>
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
+            <h3 align="center"><b>日常兴趣</b></h3>
             <ul>
-              <li>电话：15756197390</li>
-              <li>微信：15716197390</li>
-              <li>邮箱：2260891938@qq.com</li>
+              <li>写博客，技术文章积累，逛github，力扣刷算法题(php+python)，日常学习英语，系统性学习技术课程</li>
+              <li>爱好锻炼、篮球、游戏、金融等</li>
             </ul>
           </el-card>
         </el-col>
@@ -180,6 +208,7 @@
               [41, '3d（blender、three.js）'],
               [42, 'java（springboot）、c、算法'],
               [65, 'redis'],
+              [66, 'photoshop'],
               [67, 'apache、nginx'],
               [70, 'linux、windows'],
               [70, 'html、css、scss、js、bootstrap'],
