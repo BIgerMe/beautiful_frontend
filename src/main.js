@@ -8,6 +8,8 @@ import '@/layouts/export'
 Vue.config.productionTip = false
 import Antd from 'ant-design-vue'
 Vue.use(Antd)
+/*单页加载静态文件*/
+
 new Vue({
   el: '#zyf',
   router,

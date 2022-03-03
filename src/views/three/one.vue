@@ -1,19 +1,38 @@
 <template>
-  <div id="phoenix" style="width: 100%;height: 800px;max-height: 100%"></div>
+  <div>
+    <div id="phoenix" style="width: 100%;height: 800px;max-height: 100%"></div>
+  </div>
 </template>
 
 <script>
   import { clone } from '@/utils/three'
+  import { loadJs } from "../../utils/vab";
+
   export default {
     name: 'one',
-    components: {},
     data() {
       return {}
     },
-    created() {},
+    created() {
+        console.log(123)
+    },
     mounted() {
       // this.space()
-      this.phoenix()
+        loadJs([
+            '//unpkg.com/three@0.136.0/build/three.js',
+            '//unpkg.com/three@0.136.0/examples/js/controls/OrbitControls.js',
+            '//unpkg.com/three@0.136.0/examples/js/loaders/GLTFLoader.js',
+            '//unpkg.com/three@0.136.0/examples/js/postprocessing/EffectComposer.js',
+            '//unpkg.com/three@0.136.0/examples/js/postprocessing/RenderPass.js',
+            '//unpkg.com/three@0.136.0/examples/js/postprocessing/ShaderPass.js',
+            '//unpkg.com/three@0.136.0/examples/js/shaders/CopyShader.js',
+            '//unpkg.com/three@0.136.0/examples/js/shaders/LuminosityHighPassShader.js',
+            '//unpkg.com/three@0.136.0/examples/js/postprocessing/UnrealBloomPass.js',
+        ]).then(()=> {
+            console.log(456)
+
+            this.phoenix()
+        })
     },
     methods: {
       space(){
