@@ -39,6 +39,7 @@
 
 <script>
   import { isPassword } from '@/utils/validate'
+  import {loadJs} from "../../utils/vab";
 
   export default {
     name: 'Login',
@@ -99,16 +100,21 @@
       document.body.style.overflow = 'auto'
     },
     mounted() {
-      var obj = new WxLogin({
-        self_redirect:true,
-        id:"wxqr",
-        appid: "wxd5e70a9ab58f69f9",
-        scope: "snsapi_login",
-        redirect_uri: encodeURI("http://xxroom.xyz/z/user/home"),
-        state: "",
-        style: "black",
-        href: ""
-      });
+
+        loadJs([
+            '//res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js',
+        ]).then(()=> {
+            var obj = new WxLogin({
+                self_redirect: true,
+                id: "wxqr",
+                appid: "wxd5e70a9ab58f69f9",
+                scope: "snsapi_login",
+                redirect_uri: encodeURI("http://xxroom.xyz/z/user/home"),
+                state: "",
+                style: "black",
+                href: ""
+            });
+        })
     },
     // head:{
     //   script:[
