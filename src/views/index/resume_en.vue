@@ -23,11 +23,14 @@
     <div style="margin-top: -150px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card v-if="device !=='mobile'" class="xl-card">
+          <el-card class="md-card">
             <div id="skill" style= "width: auto;height: 400px"></div>
-          </el-card>
-          <el-card v-else>
-            <div id="skill" style="width: auto;height: 400px"></div>
+            <div>
+              <b>Backend：</b>Familiar with php、python、apache、nginx；understand java、c language、docker<br>
+              <b>database：</b>Familiar with mysql、sqlserver、redis；understand mangodb、oracle<br>
+              <b>frontend：</b>Familiar with vue And the application of common components of the corresponding framework、HTML、css、js、scss、bootstrap<br>
+              <b>other：</b>Familiar with git、svn、windows、linux(centos,ubuntu)、photoshop；understand Algorithm, 3D technology, blender, npl, etc.<br>
+            </div>
           </el-card>
         </el-col>
       </el-row>
@@ -35,13 +38,16 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
             <el-descriptions :column="device !== 'mobile'? 3 : 1" title="Personal basic information" border>
               <el-descriptions-item label="Name">Xiaoming Zhang</el-descriptions-item>
+              <el-descriptions-item label="BirthDay">1991-07-10</el-descriptions-item>
+              <el-descriptions-item label="Age">30</el-descriptions-item>
+              <el-descriptions-item :span="3" label="Graduate from University">Nanjing University of Aeronautics and Astronautics</el-descriptions-item>
+              <el-descriptions-item label="Degree">Undergraduate</el-descriptions-item>
               <el-descriptions-item label="Native">ChangZhou</el-descriptions-item>
               <el-descriptions-item label="Ethnic">Han</el-descriptions-item>
               <el-descriptions-item label="Address" :span="3">①An town, Xishan district, Wuxi, Jiangsu province、②Lijia town, Wujin district, Changzhou, Jiangsu province</el-descriptions-item>
-              <el-descriptions-item label="Degree">Undergraduate</el-descriptions-item>
               <el-descriptions-item label="Marriage">Married</el-descriptions-item>
               <el-descriptions-item :span="3" label="Personal latest site">
                 <el-link href="http://xxroom.xyz">http://xxroom.xyz</el-link> Note：Temporarily shut down ssl to avoid static resource charges
@@ -70,23 +76,17 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
             <h3 align="center"><b>Degree</b></h3>
             <el-timeline>
               <el-timeline-item color="green" timestamp="2004.9 - 2007.6" placement="top">
                 <h4><b>（Junior middle school）Qianhuang Experimental School, Wujin District, Changzhou City</b></h4>
-<!--                <p>成绩并不稳定，除了数学成绩较好且稳定，其余并不突出。2次重要的直升考试和中考出乎意料的成绩优异。</p>-->
-<!--                <p>喜欢打篮球、游戏war3、动漫火影忍者（每周半天假期活动大概率在这些之间）</p>-->
               </el-timeline-item>
               <el-timeline-item color="blue" timestamp="2007.9 - 2010.6" placement="top">
                 <h4><b>（high school）Qianhuang Senior Middle School in Jiangsu Province</b></h4>
-<!--                <p>高一直升的教改班成绩很糟糕，压力很大屡次垫底；高二选的物理生物，成绩起色不大且不稳定；高三逐渐稳定，数学稳定前三，其余普通；高考成绩出乎意料，全班第一。</p>-->
-<!--                <p>喜欢打篮球（受牛人影响兴趣浓厚）、游戏war3、魔兽世界、杂志周刊等（每周半天假期活动大概率在这些之间）</p>-->
               </el-timeline-item>
               <el-timeline-item color="red" timestamp="2010.9 - 2014.6" placement="top">
                 <h4><b>（University）Nanjing University of Aeronautics and Astronautics （Profession）College of Automation-Measurement and control technology and instruments</b></h4>
-<!--                <p>不够努力，回想起来有点杂陈，挂科较多，很多科目勉强通过。即便如此，大学过的很愉快，宿舍、班级、专业、学院的朋友们真的很暖。</p>-->
-<!--                <p>喜欢打篮球（院队）、电竞（电竞社副社长）（活动时间多，业余很强，职业入门）</p>-->
               </el-timeline-item>
             </el-timeline>
           </el-card>
@@ -96,17 +96,15 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
             <h3 align="center"><b>Work experience</b></h3>
             <el-timeline>
               <el-timeline-item color="red" timestamp="2014.7 - 2015.6" placement="top">
                 <h4><b>Jiangsu Changfa Agricultural equipment Co., Ltd. - Technical sales</b></h4>
-                <p>The company recruited by the school will be responsible for docking sales among the dealers in Liaoning and Jilin areas for about 8 months, feeling that the content of the work is not suitable for me.</p>
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2015.7 - 2017.4" placement="top">
                 <h4><b>Nanjing Tuniu - Software engineer</b></h4>
                 <p>Responsible for software testing and environment building, during the department adjustment to learn PHP development, start development work, familiar with the membership system, reservation system, CRM and so on.</p>
-                <p>The company's multi-department and multi-system coordinated operation, a large R & D team, a lot of excellent people, have a great impact on me, especially grateful to the leadership to tap my development ability.</p>
               </el-timeline-item>
               <el-timeline-item color="green" timestamp="2017.5 - 2018.8" placement="top">
                 <h4><b>Jiangsu Dinghao Information Technology Co., Ltd. - PHP Development engineer</b></h4>
@@ -134,16 +132,38 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
-            <h3 align="center"><b>hobby</b></h3>
-            <ul>
-              <li>a、Github is a favorite place, exploring excellent open source projects is easy and enjoyable, and you can really feel the convenience of open source here.</li>
-              <li>b、In addition, every year spend time to refine my English ability, improve English document reading ability and improve problem-solving ability, which is very effective, because most of the Chinese processing solutions received by Baidu and Bing are for reference or translation, and to deal with more difficult or unusual problems, they still have to use Google to really solve and get a comprehensive explanation, and translation is also very limited.；
-              </li>
-              <li>c、Systematic planned study, something full of fighting spirit and a great sense of achievement.</li>
-              <li>d、User experience learning, thinking about the future development direction and possibilities in the field of work, technology brings not only convenience, but also perspective, surfing the Internet and exploring the world.</li>
-              <li>e、Spare time exercise,play basketball, playing games with friends, board games, parties are also OK, i am also good at Enliven the atmosphere.</li>
-            </ul>
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
+            <h3 align="center"><b>Project experience</b></h3>
+            <el-timeline>
+              <el-timeline-item color="green"  placement="top">
+                <h4><b>Project one</b></h4>
+                <div>name：Campus SAAS platform</div>
+                <div>introduction：Provide multi-school campus system support</div>
+                <div>modules：Students, teachers, exams, homework, families, etc.</div>
+                <div>duty：Responsible for WEB construction, Wechat official account, APP interface development, docking with third-party IM, big data, data migration, new framework easyswoole construction, collaborative development business merger with financiers, separation and revision and upgrade of the frontend and backend of the platform.</div>
+              </el-timeline-item>
+              <el-timeline-item color="green"  placement="top">
+                <h4><b>Project two</b></h4>
+                <div>name：Medical items</div>
+                <div>introduction：Tencent's medical project Mini Program</div>
+                <div>modules：Hospital details, departments, doctors, registration, examinations, cases, electronic reports, etc.</div>
+                <div>duty：in charge of project promotion, daily standard difficulties, progress and third parties for remote project requirements communication, project requirements planning; functional logic carding, PHP MVC self-written framework to develop all api interfaces, docking with the front-end Mini Program interface, the overall test online.</div>
+              </el-timeline-item>
+              <el-timeline-item color="green"  placement="top">
+                <h4><b>Project three</b></h4>
+                <div>name：Financial project</div>
+                <div>introduction：Pinduoduo automatically issues orders, docks bank channels for payment, and automatically delivers goods.</div>
+                <div>modules：Channel management, three-party system channel, order payment module, automatic shipping tool</div>
+                <div>duty：Responsible for php system construction and overall development and interface docking, vue-admin project construction and backend manage system development, automatic shipping tools automatic adjustment and deployment</div>
+              </el-timeline-item>
+              <el-timeline-item color="green"  placement="top">
+                <h4><b>Project four</b></h4>
+                <div>name：O2O</div>
+                <div>introduction：Cotton online trading platform, online to offline, including h5, foreground, backstage management</div>
+                <div>modules：Resources, demand, hanging order, contract, customer management, futures price maintenance, market information, information push management, etc.</div>
+                <div>duty：Basically alone responsible for the full stack development of the project, server deployment, requirements alignment, post-optimization work. The overall project has completed normal operation, including resource import, matching of demand resources, closing or cancellation of hanging orders, real-time broadcast push price pegging / changing / cancellation, opening of multiple contract templates, etc., as well as SMS message push.</div>
+              </el-timeline-item>
+            </el-timeline>
           </el-card>
         </el-col>
       </el-row>
@@ -151,12 +171,11 @@
     <div style="margin-top: 0px;display:flex;flex-direction: column;">
       <el-row>
         <el-col :lg="16" :offset="device === 'mobile' ? 0 : 4">
-          <el-card :class="device !=='mobile' ? 'xl-card' : 'md-card'">
-            <h3 align="center"><b>Contact</b></h3>
+          <el-card :class="device !=='mobile' ? 'md-card' : 'md-card'">
+            <h3 align="center"><b>hobby</b></h3>
             <ul>
-              <li>Mobile：15756197390</li>
-              <li>Wechat：15716197390</li>
-              <li>Mailbox：2260891938@qq.com</li>
+              <li>Write blogs, accumulate technical articles, visit github, do arithmetic exercises (php+python), learn English daily, and learn technical courses systematically.</li>
+              <li>Like exercise, basketball, games, finance, etc.</li>
             </ul>
           </el-card>
         </el-col>
@@ -180,6 +199,7 @@
               [41, '3d（blender、three.js）'],
               [42, 'java（springboot）、c、arithmetic'],
               [65, 'redis'],
+              [66, 'photoshop'],
               [67, 'apache、nginx'],
               [70, 'linux、windows'],
               [70, 'html、css、scss、js、bootstrap'],
@@ -189,7 +209,6 @@
               [75, 'project management'],
               [79, 'mysql、sql server'],
               [85, 'php（yii2、tp、ci、own framework）'],
-
             ]
           },
           title: [
