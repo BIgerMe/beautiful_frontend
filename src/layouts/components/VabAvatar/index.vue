@@ -12,17 +12,10 @@
         我的写作
       </el-dropdown-item>
       <el-dropdown-item v-if="accessToken" command="shopping" divided>
-        购物
+        商品管理
       </el-dropdown-item>
-      <el-dropdown-item
-        v-if="
-          accessToken &&
-          (username === 'xiaoming')
-        "
-        command="baby"
-        divided
-      >
-        小棉袄
+      <el-dropdown-item v-if="accessToken" command="pics" divided>
+        图库
       </el-dropdown-item>
       <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
     </el-dropdown-menu>
@@ -65,14 +58,14 @@
           case 'login':
             this.$router.push('/login')
             break
-          case 'baby':
-            this.$router.push('/baby')
+          case 'pics':
+            this.$router.push('/pics/index')
             break
           case 'myBlog':
             this.$router.push('/blog/self')
             break
           case 'shopping':
-            this.$router.push('/shopping')
+            this.$router.push('/shopping_admin/goods')
             break
           case 'plus':
             window.open(

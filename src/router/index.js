@@ -92,33 +92,6 @@ export const asyncRoutes = [
   },
 
   {
-    //@todo 暂时用后台的layout，后续优化成前台的层次
-    path: '/shopping',
-    // component: () => import('@/layouts/frontend'),
-    component: () => import('@/layouts/frontend'),
-    redirect: '/shopping/index',
-    name: 'shopping',
-    hidden: true,
-    meta: {
-      title: '购物',
-      icon: 'shopping',
-    },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/shopping/index'),
-        name: 'shopping_home',
-        meta: { title: '商品', noCache: true },
-      },
-      {
-        path: 'detail/:id',
-        component: () => import('@/views/shopping/detail'),
-        name: 'shopping_detail',
-        meta: { title: '商品详情', noCache: true },
-      },
-    ],
-  },
-  {
     path: '/',
     component: Layout,
     redirect: '/blog/index',
@@ -132,15 +105,6 @@ export const asyncRoutes = [
           icon: 'home',
         },
       },
-      {
-        path: 'baby',
-        name: 'Baby',
-        hidden: true,
-        component: () => import('@/views/baby/index'),
-        meta: {
-          title: '小棉袄',
-        },
-      },
     ],
   },
   {
@@ -148,7 +112,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: 'noRedirect',
     name: 'shopping',
-    // hidden: 'hidden',
+    hidden: 'hidden',
     meta: {
       title: '商品管理',
     },
@@ -168,58 +132,75 @@ export const asyncRoutes = [
     ],
   },
   {
-    path: '/stock',
+    path: '/pics',
     component: Layout,
     redirect: 'noRedirect',
-    name: 'stock',
-    // hidden: 'hidden',
+    hidden: 'hidden',
     meta: {
-      title: '金融信息',
-      icon: 'chart',
+      title: '图库',
     },
     children: [
       {
-        path: 'stock-basic',
-        component: () => import('@/views/stock/stock-basic'),
-        name: 'StockBasic',
-        meta: { title: '股票基础信息', noCache: true },
-      },
-      {
-        path: 'share-float',
-        component: () => import('@/views/stock/share-float'),
-        name: 'ShareFloat',
-        meta: { title: '限售股解禁', noCache: true },
-      },
-      {
-        path: 'stock-detail/:ts_code',
-        component: () => import('@/views/stock/stock-detail'),
-        name: 'StockDetail',
-        hidden: true,
-        meta: { title: '股票详情页', icon: 'detail', noCache: true },
-      },
-    ],
-  }, {
-    path: '/three',
-    component: Layout,
-    redirect: 'noRedirect',
-    name: 'three',
-    meta: {title: '3D展示'},
-    children: [
-      {
-        path: 'one',
-        component: () => import('@/views/three/one'),
-        name: 'one',
-        meta: {title: '小凤凰'}
-      },
-      {
-        path: 'two',
-        component: () => import('@/views/three/two'),
-        name: 'two',
-        hidden:true,
-        meta: { title:'平面'}
+        path: 'index',
+        component: () => import('@/views/pics/index'),
+        name: 'pics',
       }
     ],
   },
+  // {
+    // path: '/stock',
+    // component: Layout,
+    // redirect: 'noRedirect',
+    // name: 'stock',
+    // hidden: 'hidden',
+    // meta: {
+    //   title: '金融信息',
+    //   icon: 'chart',
+    // },
+    // children: [
+    //   {
+    //     path: 'stock-basic',
+    //     component: () => import('@/views/stock/stock-basic'),
+    //     name: 'StockBasic',
+    //     meta: { title: '股票基础信息', noCache: true },
+    //   },
+    //   {
+    //     path: 'share-float',
+    //     component: () => import('@/views/stock/share-float'),
+    //     name: 'ShareFloat',
+    //     meta: { title: '限售股解禁', noCache: true },
+    //   },
+    //   {
+    //     path: 'stock-detail/:ts_code',
+    //     component: () => import('@/views/stock/stock-detail'),
+    //     name: 'StockDetail',
+    //     hidden: true,
+    //     meta: { title: '股票详情页', icon: 'detail', noCache: true },
+    //   },
+    // ],
+  // }, {
+    // path: '/three',
+    // component: Layout,
+    // redirect: 'noRedirect',
+    // name: 'three',
+    // hidden:"hidden",
+    // meta: {title: '3D展示'},
+    // children: [
+    //   {
+    //     path: 'one',
+    //     component: () => import('@/views/three/one'),
+    //     name: 'one',
+    //     meta: {title: '小凤凰'}
+    //   },
+    //   {
+    //     path: 'two',
+    //     component: () => import('@/views/three/two'),
+    //     name: 'two',
+    //     hidden:true,
+    //     meta: { title:'平面'}
+    //   }
+    // ],
+  // },
   {
     //@todo 暂时用后台的layout，后续优化成前台的层次
     path: '/other',

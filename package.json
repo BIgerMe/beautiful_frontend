@@ -39,15 +39,15 @@
     ]
   },
   "dependencies": {
-    "compression-webpack-plugin": "^2.0.0",
     "dayjs": "^1.10.7",
     "dropzone": "^6.0.0-beta.2",
-    "npm": "^8.2.0",
     "regenerator-runtime": "^0.13.9",
     "vuex": "^3.6.2",
     "zx-layouts": "^0.6.27"
   },
   "devDependencies": {
+    "npm": "^8.2.0",
+    "compression-webpack-plugin": "^2.0.0",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-eslint": "^4.5.13",
     "@vue/cli-service": "^4.5.13",

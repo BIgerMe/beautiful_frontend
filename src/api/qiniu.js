@@ -8,3 +8,11 @@ export function uploadImg(formData) {
     data:formData,
   })
 }
+
+export function getAttachment(data) {
+  return request({
+    url: '/z/qiniu/getAttachment',
+    method: 'get',
+    params:data
+  })
+}
