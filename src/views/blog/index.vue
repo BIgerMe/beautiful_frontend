@@ -101,6 +101,7 @@
                   :scroll-style="true"
                   :ishljs="true"
                   :value="item.original_content"
+                  :externalLink="externalLink"
                 />
               </template>
             </a-card-meta>
@@ -214,6 +215,24 @@
           ],
         },
         loading: false,
+        externalLink : {
+          markdown_css: function() {
+            // 这是你的markdown css文件路径
+            return '//unpkg.com/github-markdown-css@5.1.0/github-markdown.css'
+          },
+          hljs_js: function() {
+            // 这是你的hljs文件路径
+            return 'https://unpkg.com/@highlightjs/cdn-assets@10.5.0/highlight.min.js'
+          },
+          katex_css: function() {
+            // 这是你的katex配色方案路径路径
+            return '//unpkg.com/katex@0.15.3/dist/katex.min.css'
+          },
+          katex_js: function() {
+            // 这是你的katex.js路径
+            return '//unpkg.com/katex@0.15.3/dist/katex.min.js'
+          }
+        }
       }
     },
     computed: {
