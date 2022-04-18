@@ -3,17 +3,10 @@
     <router-link to="/">
       <!-- 这里是logo变更的位置 -->
       <img style="width: auto;height: 100%" src="@/assets/logo/6.png">
-
-<!--      <span-->
-<!--        class="title"-->
-<!--        :class="{ 'hidden-xs-only': layout === 'horizontal' }"-->
-<!--        :title="title"-->
-<!--      >-->
-<!--        {{ title }}-->
-<!--      </span>-->
     </router-link>
     &emsp;
     <a-input-search placeholder="搜索" v-model="content" style="width: 200px" @search="search()" />
+    &nbsp;<a-button icon="plus" shape="circle" plain  @click="createBlog" ></a-button>
   </div>
 </template>
 <script>
@@ -37,6 +30,9 @@
     methods:{
       search(){
         bus.$emit('search',this.content)
+      },
+      createBlog(){
+        this.$router.push('/blog/create')
       }
     }
   }
